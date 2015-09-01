@@ -1,0 +1,6 @@
+Differentiate/METH=1 fsmid_1000/X=radi_fsmid_1000/D=fsmid_1000_DIF
+
+matrixop/o outmat=inv(length_matrix)
+matrixmultiply outmat, fsmid_1000_dif;m_product *=-1/pi;
+duplicate/o m_product emiss_1000;append emiss_1000 vs rho_fsmid_1000
+neut_1000 = (emiss_1000)/(dens_1000*excit_rate_1000)

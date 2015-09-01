@@ -1,0 +1,72 @@
+
+Asdex_cali("time_817","time_817","baratron",2,130817)
+Asdex_cali("time_814","time_814","baratron",2,130814)
+
+Asdex_cali("time_mks","time_asdex","baratron",2,130816)
+Asdex_cali("time_mks","time_asdex","baratron",2,130812)
+
+Asdex_cali("time_mks","time_asdex","baratron",2,130813)
+Asdex_cali("time_mks","time_asdex","baratron",2,130815)
+Asdex_cali("time_mks","time_asdex","baratron",2,130818)
+
+
+duplicate/o lobafji_130818_valu ji_lobaf_130818,ji_lobaf_130818_err,ji_lobaf_130818_perr
+duplicate/o upbafji_130818_valu ji_upbaf_130818,ji_upbaf_130818_err,ji_upbaf_130818_perr
+duplicate/o pri30ji_130818_valu ji_pri30_130818,ji_pri30_130818_err,ji_pri30_130818_perr
+duplicate/o rdp30ji_130818_valu ji_rdp30_130818,ji_rdp30_130818_err,ji_rdp30_130818_perr
+
+ji_pri30_130818 = ((pri30ji_130818_valu-root:s130964:pri30ji_130964_valu)/g_pri30)*(root:s130964:pri30je_130964_valu/(pri30je_130818_valu))
+ji_pri30_130818_err = ji_pri30_130818*sqrt((pri30ji_130818_std_valu^2/pri30ji_130818_valu)+(root:s130964:pri30ji_130964_std_valu^2/root:s130964:pri30ji_130964_valu)+(pri30je_130818_std_valu^2/pri30je_130818_valu)^2+(root:s130964:pri30je_130964_std_valu^2/root:s130964:pri30je_130964_valu)^2)
+ji_pri30_130818_perr = sqrt((pri30ji_130818_std_valu^2/pri30ji_130818_valu)+(root:s130964:pri30ji_130964_std_valu^2/root:s130964:pri30ji_130964_valu)+(pri30je_130818_std_valu^2/pri30je_130818_valu)^2+(root:s130964:pri30je_130964_std_valu^2/root:s130964:pri30je_130964_valu)^2)
+
+ji_rdp30_130818 = (rdp30ji_130818_valu-root:s130964:rdp30ji_130964_valu)*1/g_rdp30*(root:s130964:rdp30je_130964_valu/(rdp30je_130818_valu))
+ji_rdp30_130818_err = ji_rdp30_130818*sqrt((rdp30ji_130818_std_valu^2/rdp30ji_130818_valu)+(root:s130964:rdp30ji_130964_std_valu^2/root:s130964:rdp30ji_130964_valu)+(rdp30je_130818_std_valu^2/rdp30je_130818_valu)^2+(root:s130964:rdp30je_130964_std_valu^2/root:s130964:rdp30je_130964_valu)^2)
+ji_rdp30_130818_perr = sqrt((rdp30ji_130818_std_valu^2/rdp30ji_130818_valu)+(root:s130964:rdp30ji_130964_std_valu^2/root:s130964:rdp30ji_130964_valu)+(rdp30je_130818_std_valu^2/rdp30je_130818_valu)^2+(root:s130964:rdp30je_130964_std_valu^2/root:s130964:rdp30je_130964_valu)^2)
+
+ji_upbaf_130818 = (upbafji_130818_valu-root:s130964:upbafji_130964_valu)*1/g_upbaf*(root:s130964:upbafje_130964_valu/(upbafje_130818_valu))
+ji_upbaf_130818_err = ji_upbaf_130818*sqrt((upbafji_130818_std_valu^2/upbafji_130818_valu)+(root:s130964:upbafji_130964_std_valu^2/root:s130964:upbafji_130964_valu)+(upbafje_130818_std_valu^2/upbafje_130818_valu)^2+(root:s130964:upbafje_130964_std_valu^2/root:s130964:upbafje_130964_valu)^2)
+ji_upbaf_130818_perr = sqrt((upbafji_130818_std_valu^2/upbafji_130818_valu)+(root:s130964:upbafji_130964_std_valu^2/root:s130964:upbafji_130964_valu)+(upbafje_130818_std_valu^2/upbafje_130818_valu)^2+(root:s130964:upbafje_130964_std_valu^2/root:s130964:upbafje_130964_valu)^2)
+
+ji_lobaf_130818 = ((lobafji_130818_valu-root:s130964:lobafji_130964_valu)/g_lobaf)*(root:s130964:lobafje_130964_valu/(lobafje_130818_valu))
+ji_lobaf_130818_err = ji_lobaf_130818*sqrt((lobafji_130818_std_valu^2/lobafji_130818_valu)+(root:s130964:lobafji_130964_std_valu^2/root:s130964:lobafji_130964_valu)+(lobafje_130818_std_valu^2/lobafje_130818_valu)^2+(root:s130964:lobafje_130964_std_valu^2/root:s130964:lobafje_130964_valu)^2)
+ji_lobaf_130818_perr = sqrt((lobafji_130818_std_valu^2/lobafji_130818_valu)+(root:s130964:lobafji_130964_std_valu^2/root:s130964:lobafji_130964_valu)+(lobafje_130818_std_valu^2/lobafje_130818_valu)^2+(root:s130964:lobafje_130964_std_valu^2/root:s130964:lobafje_130964_valu)^2)
+
+//for master plots
+
+Concatenate/O {root:med_p:baratron_130818_valu,root:hi_p:baratron_130817_valu,root:low_p:baratron_130816_valu,root:med_p:baratron_130815_valu,root:hi_p:baratron_130814_valu,root:med_p:baratron_130813_valu,root:low_p:baratron_130812_valu},master_baratron_2008
+Concatenate/O {root:med_p:baratron_130818_std_valu,root:hi_p:baratron_130817_std_valu,root:low_p:baratron_130816_std_valu,root:med_p:baratron_130815_std_valu,root:hi_p:baratron_130814_std_valu,root:med_p:baratron_130813_std_valu,root:low_p:baratron_130812_std_valu},master_baratron_2008_err
+
+Concatenate/O {root:med_p:ji_upbaf_130818,root:hi_p:ji_upbaf_130817,root:low_p:ji_upbaf_130816,root:med_p:ji_upbaf_130815,root:hi_p:ji_upbaf_130814},master_upbaf_2008
+Concatenate/O {root:med_p:ji_upbaf_130818_perr,root:hi_p:ji_upbaf_130817_perr,root:low_p:ji_upbaf_130816_perr,root:med_p:ji_upbaf_130815_perr,root:hi_p:ji_upbaf_130814_perr},master_upbaf_2008_perr
+
+Concatenate/O {root:med_p:ji_lobaf_130818,root:hi_p:ji_lobaf_130817,root:low_p:ji_lobaf_130816,root:med_p:ji_lobaf_130815,root:hi_p:ji_lobaf_130814,root:med_p:ji_lobaf_130813,root:low_p:ji_lobaf_130812},master_lobaf_2008
+Concatenate/O {root:med_p:ji_lobaf_130818_perr,root:hi_p:ji_lobaf_130817_perr,root:low_p:ji_lobaf_130816_perr,root:med_p:ji_lobaf_130815_perr,root:hi_p:ji_lobaf_130814_perr,root:med_p:ji_lobaf_130813_perr,root:low_p:ji_lobaf_130812_perr},master_lobaf_2008_perr
+
+Concatenate/O {root:med_p:ji_pri30_130818,root:hi_p:ji_pri30_130817,root:low_p:ji_pri30_130816,root:med_p:ji_pri30_130815,root:hi_p:ji_pri30_130814,root:med_p:ji_pri30_130813,root:low_p:ji_pri30_130812},master_pri30_2008
+Concatenate/O {root:med_p:ji_pri30_130818_perr,root:hi_p:ji_pri30_130817_perr,root:low_p:ji_pri30_130816_perr,root:med_p:ji_pri30_130815_perr,root:hi_p:ji_pri30_130814_perr,root:med_p:ji_pri30_130813_perr,root:low_p:ji_pri30_130812_perr},master_pri30_2008_perr
+
+Concatenate/O {root:med_p:ji_rdp30_130818,root:hi_p:ji_rdp30_130817,root:low_p:ji_rdp30_130816,root:med_p:ji_rdp30_130815,root:hi_p:ji_rdp30_130814,root:med_p:ji_rdp30_130813,root:low_p:ji_rdp30_130812},master_rdp30_2008
+Concatenate/O {root:med_p:ji_rdp30_130818_perr,root:hi_p:ji_rdp30_130817_perr,root:low_p:ji_rdp30_130816_perr,root:med_p:ji_rdp30_130815_perr,root:hi_p:ji_rdp30_130814_perr,root:med_p:ji_rdp30_130813_perr,root:low_p:ji_rdp30_130812_perr},master_rdp30_2008_perr
+
+Duplicate/o master_upbaf_2008_perr mds_upbaf_2008_err, mds_upbaf_2008
+Duplicate/o master_lobaf_2008_perr mds_lobaf_2008_err, mds_lobaf_2008
+Duplicate/o master_rdp30_2008_perr mds_rdp30_2008_err, mds_rdp30_2008
+Duplicate/o master_pri30_2008_perr mds_pri30_2008_err, mds_pri30_2008
+Duplicate/o master_baratron_2008 mds_baratron_2008,mds_baratron_2008_err, master_baratron_2008_perr
+
+master_baratron_2008_perr = master_baratron_2008_err/master_baratron_2008
+
+mds_upbaf_2008 = master_upbaf_2008*5e6
+mds_upbaf_2008_err = master_upbaf_2008_perr*mds_upbaf_2008
+mds_lobaf_2008 = master_lobaf_2008*5e6
+mds_lobaf_2008_err = master_lobaf_2008_perr*mds_lobaf_2008
+mds_pri30_2008 = master_pri30_2008*5e6
+mds_pri30_2008_err = master_pri30_2008_perr*mds_pri30_2008
+mds_rdp30_2008 = master_rdp30_2008*5e6
+mds_rdp30_2008_err = master_rdp30_2008_perr*mds_rdp30_2008
+
+mds_baratron_2008 /=1000
+mds_baratron_2008_err =mds_baratron_2008 *master_baratron_2008_perr
+
+
+CurveFit /N/NTHR=1/ODR=2/W=0/TBOX=472 Power  mds_baratron_2008 /X=mds_rdp30_2008 /D/I=1/W=mds_baratron_2008_err/xw=mds_rdp30_2008_err
