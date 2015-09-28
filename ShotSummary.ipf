@@ -20,11 +20,15 @@ Window loadPanel() : Panel
 	if(Exists("Neupath")!=2)
 		String/G Neupath = "Users:"
 	endif
+	if(Exists("mds") !=2)
+		Variable/G mds=0
+	endif
 	//End Prep
 	
 	TitleBox title0,pos={90,15},size={199,35},title="Load Shot Summary",labelBack=(0,26214,13293),font="Arial Narrow Bold",fSize=28,frame=4,fStyle=1,fColor=(65535,65535,65535),anchor= MT
 	CheckBox usePython,pos={116,166},size={113,16},title="from MDSplus"
-	CheckBox usePython,labelBack=(0,0,0),font="Arial Bold",fSize=14,value= 1,mode=1
+	CheckBox usePython,labelBack=(0,0,0),font="Arial Bold",fSize=14,value= 1,mode=0,value=mds
+	CheckBox usePython variable=mds
 	SetVariable setvar0,pos={125,68},size={115,24},title="Shot #:",valueBackColor=(39321,1,1),limits={10000,inf,0},value= shotNum,styledText= 1
 	SetVariable setvar0,labelBack=(0,26214,13293),font="Arial Narrow Bold",fSize=18,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
 	SetVariable setvar1,pos={111,191},size={140,17},title="Plot Start Time:",fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
@@ -51,6 +55,12 @@ Function ButtonProc(ba) : ButtonControl
 	switch( ba.eventCode )
 		case 2: // mouse up
 			NVAR shotNum
+			NVAR mds
+			print shotNum
+			if(mds == 1)
+				getGAdataDUMP(shotNum)
+			endif
+			
 			String fname = "paramDB_"+num2istr(shotNum)+".h5"
 			print fname
 			Variable fileID
@@ -108,7 +118,7 @@ Window Overview_p1() : Graph
 	ModifyGraph tick=2,height=210,mirror=1,standoff=0,axisOnTop=1 
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label left " "
-	Legend/C/N=text0/J/A=MC/X=1.63/Y=-31.90 "\\Z11\\s(DENSR0) DENSR0 \\M[ x10\\S19 \\Mm\\S-3\\M ] \r\\s(DENSV2) DENSV2\r\\s(DENSV3) DENSV3\r\\s(NEPED) NEPED"
+	Legend/C/N=text0/J/A=MC/X=1.63/Y=-31.90 "\\Z11\\s(DENSR0) DENSR0 \\M[ x10\\S19 \\Mm\\S-3\\M ]     \\Z11\\s(DENSV2) DENSV2\r\\s(DENSV3) DENSV3                        \\s(NEPED) NEPED"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
 	
@@ -135,16 +145,17 @@ Window Overview_p1() : Graph
 	Display/W=(0.666,0.2,1,0.295)/FG=(,FT,,)/HOST=#  H_THH98Y2 vs t_H_THH98Y2
 	AppendToGraph/C=(1,39321,19939) H_L89 vs t_H_L89
 	AppendToGraph/C=(52428,1,1) TAUE vs t_TAUE
-	WaveStats/Q/M=1 H_L89
-	SetAxis left 0,1.1*V_max
+	AppendToGraph/C=(52428,34958,1) TAU_P_STAR vs t_TAU_P_STAR
+	WaveStats/Q/M=1 TAU_P_STAR
+	SetAxis left 0.01,1.1*V_max
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75},height=210
 	ModifyGraph rgb(H_THH98Y2)=(1,34817,52428)
-	ModifyGraph muloffset(TAUE)={0,10}
+	ModifyGraph muloffset(TAUE)={0,10},log(left)=1
 	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	ModifyGraph tick=2,mirror=1,fSize(left)=12,standoff=0,axisOnTop=1, lSize=3
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-5.45/Y=-36.67 "\\Z11\\s(H_THH98Y2) H_THH98Y2\r\\s(H_L89) H_L89\r\\s(TAUE) TAUE [x0.1 sec]"
+	Legend/C/N=text0/J/A=MC/X=-5.45/Y=-36.67 "\\Z11\\s(H_THH98Y2) H_THH98Y2        \\s(H_L89) H_L89\r\\s(TAUE) TAUE [x0.1 sec]  \\s(TAU_P_STAR) TAU_P_STAR [sec]"
 	RenameWindow #,G8
 	SetActiveSubwindow ##
 	
@@ -154,21 +165,33 @@ Window Overview_p1() : Graph
 	AppendToGraph/C=(49151,65535,49151) TSTE70 vs t_TSTE70
 	AppendToGraph/C=(52428,1,1) ECE_MID vs t_ECE_MID
 	AppendToGraph/C=(52428,34958,1) ECE_CEN vs t_ECE_CEN
-	WaveStats/Q/M=1 ECE_CEN
-	SetAxis/N=2 left 0,1250*V_max
+	if(Exists("TICORE"))
+		AppendToGraph/C=(25443,0,16448) TICORE vs t_TICORE
+	else
+		Make/O/N=1 TICORE,t_TICORE = 0.0
+		AppendToGraph/C=(25443,0,16448) TICORE vs t_TICORE
+	endif
+	if(Exists("TIEDGE"))
+		AppendToGraph/C=(0,48573,56797) TIEDGE vs t_TIEDGE
+	else
+		Make/O/N=1 TIEDGE, t_TIEDGE = 0.0
+		AppendToGraph/C=(0,48573,56797) TIEDGE vs t_TIEDGE
+	endif
+	WaveStats/Q/M=1 TEPED
+	SetAxis/N=2 left 100,1.25*V_max
 	ErrorBars/Y=2 TEPED Y,wave=(TEPED_ERR,TEPED_ERR)
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75},height=210,noLabel(bottom)=2
-	ModifyGraph mode(TEPED)=3,mode(TSTE70)=3,msize(TEPED)=2,msize(TSTE70)=2, lSize(ECE_MID)=3,lSize(ECE_CEN)=3
+	ModifyGraph mode(TEPED)=3,mode(TSTE70)=3,msize(TEPED)=2,msize(TSTE70)=2, lSize(ECE_MID)=3,lSize(ECE_CEN)=3,lSize(TICORE)=3,lSize(TIEDGE)=3
 	ModifyGraph marker(TEPED)=29,marker(TSTE70)=29,rgb(TEPED)=(49151,60031,65535)
 	ModifyGraph useMrkStrokeRGB(TEPED)=1,useMrkStrokeRGB(TSTE70)=1
 	ModifyGraph mrkStrokeRGB(TEPED)=(1,34817,52428),mrkStrokeRGB(TSTE70)=(1,39321,19939)
 	ModifyGraph muloffset(ECE_MID)={0,1000},muloffset(ECE_CEN)={0,1000}
-	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=12, standoff=0,prescaleExp(left)=-3,axisOnTop=1
+	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=12, standoff=0,prescaleExp(left)=-3,axisOnTop=1,log(left)=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label left " "
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-37.33/Y=34.76 "\\Z11\\s(TEPED) TEPED [keV]\r\\s(TSTE70) TSTE70\r\\s(ECE_MID) ECE_MID\r\\s(ECE_CEN) ECE_CEN"
+	Legend/C/N=text0/J/A=MC/X=-17/Y=-40  "\\Z11\\s(TEPED) TEPED [keV] \\s(TSTE70) TSTE70\r\\s(ECE_MID) ECE_MID      \\s(ECE_CEN) ECE_CEN\r\\s(TIEDGE) TI_EDGE        \\s(TICORE) TI_CORE"
 	RenameWindow #,G5
 	SetActiveSubwindow ##
 	
@@ -204,7 +227,7 @@ Window Overview_p1() : Graph
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75},manTick(bottom)={0,1000,0,0}
 	ModifyGraph height=210,lSize=3,fSize(left)=12,noLabel(bottom)=2,tick=2, standoff=0,mirror=1,axisOnTop=1,grid(bottom)=1,manMinor(bottom)={1,0}
 	Label left " "
-	Legend/C/N=text0/J/A=MC/X=-25/Y=31.90 "\\Z11\\s(PRAD_TOT) PRAD_TOT [MW]\r\\s(PRAD_DIVU) PRAD_DIVU\r\\s(PRAD_DIVL) PRAD_DIVL\r\\s(PINJ) PINJ\r\\s(POH) POH"
+	Legend/C/N=text0/J/A=MC/X=-25/Y=31.90 "\\Z11\\s(PRAD_TOT) PRAD_TOT [MW]     \\s(PRAD_DIVU) PRAD_DIVU\r\\s(PRAD_DIVL) PRAD_DIVL             \\s(PINJ) PINJ\r\\s(POH) POH"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
 	
@@ -245,10 +268,10 @@ Window Overview_p1() : Graph
 	ModifyGraph noLabel(right)=2
 	ModifyGraph fSize(bottom)=12,fSize(left)=12
 	ModifyGraph standoff=0
-	ModifyGraph axisOnTop(bottom)=1
+	ModifyGraph axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label bottom "\\Z12time [ms]"
-	SetAxis right 0,100000000000000
+	SetAxis right 0,10000000000000000
 	SetAxis bottom root:tstart,root:tend
 	SetAxis left 10,9000
 	Legend/C/N=text0/J/A=MC/X=6.54/Y=34.76 "\\Z11\\s(FS01) FS01\r\\s(FS03) FS03\r\\s(ELM_freq_smth) ELM_freq_smth"
@@ -339,7 +362,7 @@ Window Overview_p2() : Graph
 	ModifyGraph mrkStrokeRGB=(52428,1,1),grid(bottom)=1, tick=2, standoff=0,axisOnTop=1,fSize=12
 	ModifyGraph noLabel(bottom)=2,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=4.90/Y=36.67 "\\Z11\\s(PEPED) PEPED"
+	Legend/C/N=text0/J/A=MC/X=4.90/Y=36.67 "\\Z11\\s(PEPED) PEPED [kPa]"
 	RenameWindow #,G1
 	SetActiveSubwindow ##
 	
@@ -376,7 +399,7 @@ Window Overview_p2() : Graph
 	ModifyGraph axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=41.69/Y=-27.14 "\\Z11\\s(NEWID) NEWID\r\\s(PEWID) PEWID\r\\s(TEWID) TEWID\r\\s(TRIBOT) TRIBOT\r\\s(TRITOP) TRITOP\r\\s(GAPOUT) GAPOUT"
+	Legend/C/N=text0/J/A=MC/X=10/Y=-40  "\\Z11\\s(NEWID) NEWID   \\s(PEWID) PEWID   \\s(TEWID) TEWID\r\\s(TRIBOT) TRIBOT  \\s(TRITOP) TRITOP   \\s(GAPOUT) GAPOUT"
 	RenameWindow #,G2
 	SetActiveSubwindow ##
 	
@@ -391,22 +414,23 @@ Window Overview_p2() : Graph
 	ModifyGraph height=210,axisOnTop=1,standoff=0,fSize=12,mirror=1,tick=2,grid(bottom)=1,noLabel(bottom)=2
 	ModifyGraph lSize=3,rgb(N4RMS)=(65535,43690,0),manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-8.45/Y=30.00 "\\Z11\\s(N4RMS) N4RMS\r\\s(N1RMS) N1RMS\r\\s(N2RMS) N2RMS\r\\s(N3RMS) N3RMS"
+	Legend/C/N=text0/J/A=MC/X=8.45/Y=30.00 "\\Z11\\s(N4RMS) N4RMS\r\\s(N1RMS) N1RMS\r\\s(N2RMS) N2RMS\r\\s(N3RMS) N3RMS"
 	RenameWindow #,G5
 	SetActiveSubwindow ##
 	
 	//Graph 2,2
 	SetDataFolder savDF
 	Display/W=(0.333,0.305,0.665,0.599)/HOST=#  ROTT23 vs t_ROTT23
-	WaveStats/Q/M=1 ROTT23
+	AppendToGraph/C=(0,31097,13364) ROTT01 vs t_ROTT01
+	WaveStats/Q/M=1 ROTT01
 	SetAxis left 0,1.25*V_max
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
-	ModifyGraph height=210,rgb=(52428,1,1),lSize=3,noLabel(bottom)=2
+	ModifyGraph height=210,lSize=3,noLabel(bottom)=2,rgb(ROTT23)=(52428,1,1)
 	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=12,standoff=0 
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-3.54/Y=34.29 "\\Z11\\s(ROTT23) ROTT23"
+	Legend/C/N=text0/J/A=MC/X=-3.54/Y=34.29 "\\Z11\\s(ROTT23) ROTT23\r\\s(ROTT01) ROTT01"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
 	
@@ -438,13 +462,19 @@ Window Overview_p2() : Graph
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0},lblMargin(bottom)=-40,log(left)=1
 	Label bottom "\\Z12time [ms]"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-1.63/Y=38.57 "\\Z11\\s(NU_E_STAR) NU_E_STAR\r\\s(F_GW) F_GW\r\\s(F_GW_PED) F_GW_PED"
+	Legend/C/N=text0/J/A=MC/X=-1.63/Y=38.57 "\\Z11\\s(NU_E_STAR) NU_E_STAR   \\s(F_GW) F_GW    \\s(F_GW_PED) F_GW_PED"
 	RenameWindow #,G7
 	SetActiveSubwindow ##
 	
 	//Graph 3,2
 	Display/W=(0.333,0.6,0.334,0.923)/HOST=# VIOW vs t_VIOW
-	WaveStats/Q/M=1 VIOW
+	if(Exists("FZNS"))
+		AppendToGraph/C=(52428,1,1) FZNS vs t_FZNS
+	else
+		Make/O/N=1 FZNS, t_FZNS = 0.0
+		AppendToGraph/C=(52428,1,1) FZNS vs t_FZNS
+	endif
+	WaveStats/Q/M=1 FZNS
 	SetAxis left 0.0,1.2*V_max
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5
 	ModifyGraph height=210,width={Aspect,1.75},fsize=12,lblMargin(bottom)=-40
@@ -452,7 +482,7 @@ Window Overview_p2() : Graph
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	ModifyGraph lsize=3,rgb(VIOW)=(1,39321,19939)
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-3.54/Y=45 "\\Z11\\s(VIOW) VIOW"
+	Legend/C/N=text0/J/A=MC/X=-3.54/Y=-45 "\\Z11\\s(VIOW) VIOW\r\\s(FZNS) FZNS"
 	Label bottom "\\Z12time [ms]"
 	RenameWindow #,G8
 	SetActiveSubwindow ##
