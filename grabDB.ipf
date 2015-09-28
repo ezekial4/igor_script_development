@@ -12,14 +12,16 @@ Function getGAdataDUMP(shot)
 	unixPath = ParseFilePath(5,S_path,"/",0,0)
 	
 	 print "Getting data from GA MDSplus"
+	 tic()
 	 grabDB(shot,unixPath,0)
+	toc()
 	
-	 string fname = "paramDB_"+num2istr(shot)+".h5"
-	 variable fileID
-	 print "Loading Data into IGOR"
-	 HDF5OpenFile/P=DataDump/R/Z fileID as fname
-	 HDF5LoadGroup/T/O/Z/IGOR=-1 :, fileID,"/"
-	 HDF5CloseFile/A/Z fileID
+	 //string fname = "paramDB_"+num2istr(shot)+".h5"
+	 //variable fileID
+	 //print "Loading Data into IGOR"
+	 //HDF5OpenFile/P=DataDump/R/Z fileID as fname
+	 //HDF5LoadGroup/T/O/Z/IGOR=-1 :, fileID,"/"
+	 //HDF5CloseFile/A/Z fileID
 End
 
 Function grabDB(shot,unixPath,printCmd)
@@ -27,14 +29,16 @@ Function grabDB(shot,unixPath,printCmd)
 	string unixPath
 	variable printCmd
 	
+	string savPAth = "~/Dropbox/1_NearTerm/DIIID_Analysis/DIIID_shotSum/"+num2istr(shot)
 	string pytoolsPATH = "~/Pytools/DIIID/DIIID_DBwork"
 	string igorCmd, exeCmd
-	igorCmd = "cd~;source ~/.bash_profile;python "+pytoolsPATH+"/data_grab_alone.py "+num2istr(shot)
+	igorCmd = "cd "+savPath+";source ~/.bash_profile;python "+pytoolsPATH+"/data_grab_alone.py "+num2istr(shot)
+	//igorCmd = "source ~/.bash_profile;python "+pytoolsPATH+"/data_grab_alone.py "+num2istr(shot)
 	if(printCmd)
 		print igorCmd
 	endif
 	sprintf exeCmd, "do shell script \"%s\"", igorCmd
-	ExecuteUnixShellCommand(igorCmd, 1, 1)
+	ExecuteUnixShellCommand(igorCmd, 0, 0)
 End
 
 Function/S ExecuteUnixShellCommand(uCommand, printCommandInHistory, printResultInHistory)
