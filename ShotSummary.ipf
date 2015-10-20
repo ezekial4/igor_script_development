@@ -105,20 +105,21 @@ Window Overview_p1() : Graph
 	Display/W=(0,0,0.334,0.295)/HOST=# DENSV3 vs t_DENSV3
 	AppendToGraph/C=(1,39321,19939) DENSV2 vs t_DENSV2
 	AppendToGraph/C=(1,34817,52428) DENSR0 vs t_DENSR0
-	AppendToGraph/C=(65535,49151,49151) NEPED vs t_NEPED
-	ErrorBars/Y=2 NEPED Y,wave=(NEPED_ERR,NEPED_ERR)
+	AppendToGraph/C=(65535,49151,49151,32768) NEPED vs t_NEPED
+	ErrorBars/L=3/Y=2 NEPED Y,wave=(NEPED_ERR,NEPED_ERR)
 	WaveStats/Q/m=1 DENSR0
 	SetAxis left 0,1.1*V_max
 	SetAxis bottom root:tstart,root:tend
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
 	ModifyGraph rgb(DENSV3)=(52428,34958,1),lSize(DENSV3)=3,lSize(DENSV2)=3,lSize(DENSR0)=3
-	ModifyGraph mode(NEPED)=3,msize(NEPED)=3,marker(NEPED)=19,useMrkStrokeRGB(NEPED)=1,mrkStrokeRGB(NEPED)=(52428,1,1)
+	ModifyGraph mode(NEPED)=3,msize(NEPED)=3,marker(NEPED)=19,useMrkStrokeRGB(NEPED)=1,mrkStrokeRGB(NEPED)=(52428,1,1,32768)
 	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,fSize(left)=12,prescaleExp(left)=-19
 	ModifyGraph tick=2,height=210,mirror=1,standoff=0,axisOnTop=1 
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label left " "
-	Legend/C/N=text0/J/A=MC/X=1.63/Y=-31.90 "\\Z11\\s(DENSR0) DENSR0 \\M[ x10\\S19 \\Mm\\S-3\\M ]     \\Z11\\s(DENSV2) DENSV2\r\\s(DENSV3) DENSV3                        \\s(NEPED) NEPED"
+	Legend/C/N=text0/J/A=MC/X=1.63/Y=-31.90 "\\Z12\\f01\\F'Arial Narrow'\\s(DENSR0) DENSR0 \\M[ x10\\S19 \\Mm\\S-3\\M ]     \\Z12\\s(DENSV2) DENSV2"
+	AppendText/N=text0 "\\s(DENSV3) DENSV3                           \\s(NEPED) NEPED"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
 	
