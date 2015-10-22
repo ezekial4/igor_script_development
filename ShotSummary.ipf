@@ -96,7 +96,7 @@ Window Overview_p1() : Graph
 	PauseUpdate; Silent 1		// building window...
 	Display /W=(836,44,2053,789)
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5
-	TextBox/C/N=text0/A=MB/X=-5.86/Y=1.90 "\\Z18Shot: \\{shotNum}"
+	TextBox/C/N=text0/A=MB/X=-5.86/Y=1.90 "\\Z18\\f01\\F'Arial Narrow'Shot: \\{shotNum}"
 	String savDF="root:paramDB_"+num2istr(shotNum)+":"
 	String fldrSav0= GetDataFolder(1)
 		
@@ -113,31 +113,33 @@ Window Overview_p1() : Graph
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
 	ModifyGraph rgb(DENSV3)=(52428,34958,1),lSize(DENSV3)=3,lSize(DENSV2)=3,lSize(DENSR0)=3
-	ModifyGraph mode(NEPED)=3,msize(NEPED)=3,marker(NEPED)=19,useMrkStrokeRGB(NEPED)=1,mrkStrokeRGB(NEPED)=(52428,1,1,32768)
-	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,fSize(left)=12,prescaleExp(left)=-19
+	ModifyGraph mode(NEPED)=3,msize(NEPED)=3,marker(NEPED)=19,useMrkStrokeRGB(NEPED)=1,mrkStrokeRGB(NEPED)=(52428,1,1), rgb(NEPED)=(65535,49151,49151,16384)
+	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,fSize(left)=13,prescaleExp(left)=-19
 	ModifyGraph tick=2,height=210,mirror=1,standoff=0,axisOnTop=1 
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
 	Label left " "
 	Legend/C/N=text0/J/A=MC/X=1.63/Y=-31.90 "\\Z12\\f01\\F'Arial Narrow'\\s(DENSR0) DENSR0 \\M[ x10\\S19 \\Mm\\S-3\\M ]     \\Z12\\s(DENSV2) DENSV2"
-	AppendText/N=text0 "\\s(DENSV3) DENSV3                           \\s(NEPED) NEPED"
+	AppendText/N=text0 "\\s(DENSV3) DENSV3                     \\s(NEPED) NEPED"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
 	
 	//Graph 1,2
 	SetDataFolder savDF
 	Display/W=(0.334,0,0.668,0.295)/HOST=#  IP vs t_IP
-	AppendToGraph/C=(1,34817,52428) BT0 vs t_BT0
+	AppendToGraph/C=(1,34817,52428) BT0VAC vs t_BT0VAC
 	AppendToGraph/C=(1,39321,19939) LI vs t_LI
 	AppendToGraph/C=(52428,34958,1) KAPPA vs t_KAPPA
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
-	ModifyGraph height=210, standoff=0,mirror=1,tick=2,lSize=3,fSize(left)=12,axisOnTop(left)=1
-	ModifyGraph rgb(IP)=(52428,1,1),muloffset(IP)={0,1e-06},muloffset(BT0)={0,-1} 
+	ModifyGraph height=210, standoff=0,mirror=1,tick=2,lSize=3,fSize(left)=13,axisOnTop(left)=1
+	ModifyGraph rgb(IP)=(52428,1,1),muloffset(IP)={0,1e-06},muloffset(BT0VAC)={0,-1} 
 	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
 	Label left " "
 	SetAxis left 0,*
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=1.09/Y=-31.90 "\\Z11\\s(IP) IP [MA]\r\\s(BT0) BT0 [T]\r\\s(LI) LI\r\\s(KAPPA) KAPPA"
+	Legend/C/N=text0/J/A=MC/X=1.09/Y=-31.90 "\\Z12\\f01\\F'Arial Narrow'\\s(IP) IP [MA]\r\\s(BT0VAC) BT0 [T]\r\\s(LI) LI\r\\s(KAPPA) KAPPA"
 	RenameWindow #,G1
 	SetActiveSubwindow ##
 	
@@ -154,45 +156,47 @@ Window Overview_p1() : Graph
 	ModifyGraph rgb(H_THH98Y2)=(1,34817,52428)
 	ModifyGraph muloffset(TAUE)={0,10},log(left)=1
 	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	ModifyGraph tick=2,mirror=1,fSize(left)=12,standoff=0,axisOnTop=1, lSize=3
+	ModifyGraph tick=2,mirror=1,fSize(left)=13,standoff=0,axisOnTop=1, lSize=3
+	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-5.45/Y=-36.67 "\\Z11\\s(H_THH98Y2) H_THH98Y2        \\s(H_L89) H_L89\r\\s(TAUE) TAUE [x0.1 sec]  \\s(TAU_P_STAR) TAU_P_STAR [sec]"
+	Legend/C/N=text0/J/A=MC/X=-5.45/Y=-36.67 "\\Z12\\f01\\F'Arial Narrow'\\s(H_THH98Y2) H_THH98Y2        \\s(H_L89) H_L89\r\\s(TAUE) TAUE [x0.1 sec]  \\s(TAU_P_STAR) TAU_P_STAR [sec]"
 	RenameWindow #,G8
 	SetActiveSubwindow ##
 	
 	//Graph 2,1
 	SetDataFolder savDF
 	Display/W=(0,0.293,0.334,0.587)/HOST=#  TEPED vs t_TEPED
-	AppendToGraph/C=(49151,65535,49151) TSTE70 vs t_TSTE70
-	AppendToGraph/C=(52428,1,1) ECE_MID vs t_ECE_MID
-	AppendToGraph/C=(52428,34958,1) ECE_CEN vs t_ECE_CEN
-	if(Exists("TICORE"))
-		AppendToGraph/C=(25443,0,16448) TICORE vs t_TICORE
+	AppendToGraph/C=(49151,65535,49151) TSTE_70 vs t_TSTE_70
+	AppendToGraph/C=(52428,1,1) ECE15 vs t_ECE15
+	AppendToGraph/C=(52428,34958,1) ECE29 vs t_ECE29
+	if(Exists("cerqtit1"))
+		AppendToGraph/C=(25443,0,16448) cerqtit1 vs t_cerqtit1
 	else
-		Make/O/N=1 TICORE,t_TICORE = 0.0
-		AppendToGraph/C=(25443,0,16448) TICORE vs t_TICORE
+		Make/O/N=1 cerqtit1,t_cerqtit1 = 0.0
+		AppendToGraph/C=(25443,0,16448) cerqtit1 vs cerqtit1
 	endif
-	if(Exists("TIEDGE"))
-		AppendToGraph/C=(0,48573,56797) TIEDGE vs t_TIEDGE
+	if(Exists("cerqtit23"))
+		AppendToGraph/C=(0,48573,56797) cerqtit23 vs t_cerqtit23
 	else
-		Make/O/N=1 TIEDGE, t_TIEDGE = 0.0
-		AppendToGraph/C=(0,48573,56797) TIEDGE vs t_TIEDGE
+		Make/O/N=1 cerqtit23, t_cerqtit23 = 0.0
+		AppendToGraph/C=(0,48573,56797) cerqtit23 vs t_cerqtit23
 	endif
-	WaveStats/Q/M=1 TEPED
-	SetAxis/N=2 left 100,1.25*V_max
+	WaveStats/Q/M=1 ECE29
+	SetAxis/N=2 left 100,1100*V_max
 	ErrorBars/Y=2 TEPED Y,wave=(TEPED_ERR,TEPED_ERR)
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75},height=210,noLabel(bottom)=2
-	ModifyGraph mode(TEPED)=3,mode(TSTE70)=3,msize(TEPED)=2,msize(TSTE70)=2, lSize(ECE_MID)=3,lSize(ECE_CEN)=3,lSize(TICORE)=3,lSize(TIEDGE)=3
-	ModifyGraph marker(TEPED)=29,marker(TSTE70)=29,rgb(TEPED)=(49151,60031,65535)
-	ModifyGraph useMrkStrokeRGB(TEPED)=1,useMrkStrokeRGB(TSTE70)=1
-	ModifyGraph mrkStrokeRGB(TEPED)=(1,34817,52428),mrkStrokeRGB(TSTE70)=(1,39321,19939)
-	ModifyGraph muloffset(ECE_MID)={0,1000},muloffset(ECE_CEN)={0,1000}
-	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=12, standoff=0,prescaleExp(left)=-3,axisOnTop=1,log(left)=1
+	ModifyGraph mode(TEPED)=3,mode(TSTE_70)=3,msize(TEPED)=2,msize(TSTE_70)=2, lSize(ECE15)=3,lSize(ECE29)=3,lSize(cerqtit1)=3,lSize(cerqtit23)=3
+	ModifyGraph marker(TEPED)=29,marker(TSTE_70)=29,rgb(TEPED)=(49151,60031,65535)
+	ModifyGraph useMrkStrokeRGB(TEPED)=1,useMrkStrokeRGB(TSTE_70)=1
+	ModifyGraph mrkStrokeRGB(TEPED)=(1,34817,52428),mrkStrokeRGB(TSTE_70)=(1,39321,19939)
+	ModifyGraph muloffset(ECE15)={0,1000},muloffset(ECE29)={0,1000}
+	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=13, standoff=0,prescaleExp(left)=-3,axisOnTop=1,log(left)=1
+	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label left " "
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-17/Y=-40  "\\Z11\\s(TEPED) TEPED [keV] \\s(TSTE70) TSTE70\r\\s(ECE_MID) ECE_MID      \\s(ECE_CEN) ECE_CEN\r\\s(TIEDGE) TI_EDGE        \\s(TICORE) TI_CORE"
+	Legend/C/N=text0/J/A=MC/X=-17/Y=-40  "\\Z12\\f01\\F'Arial Narrow'\\s(TEPED) TEPED [keV] \\s(TSTE_70) TSTE70\r\\s(ECE15) ECE_MID      \\s(ECE29) ECE_CEN\r\\s(cerqtit23) TI_EDGE        \\s(cerqtit1) TI_CORE"
 	RenameWindow #,G5
 	SetActiveSubwindow ##
 	
@@ -201,15 +205,17 @@ Window Overview_p1() : Graph
 	Display/W=(0.333,0.294,0.667,0.589)/HOST=#  WMHD vs t_WMHD
 	AppendToGraph/C=(1,34817,52428) BETAP vs t_BETAP
 	AppendToGraph/C=(1,39321,19939) BETAN vs t_BETAN
-	WaveStats/Q/M=1 BETAN
-	SetAxis left 0,1.1*V_max
+	AppendToGraph/C=(52428,34958,1) BETAT vs t_BETAT
+	WaveStats/Q/M=1 BETAT
+	SetAxis left 0,1.02*V_max
 	SetAxis bottom root:tstart,root:tend
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
 	ModifyGraph height=210,lSize=3,tick=2,mirror=1,standoff=0,axisOnTop=1
 	ModifyGraph rgb(WMHD)=(52428,1,1),muloffset(WMHD)={0,1e-06}
-	ModifyGraph grid(bottom)=1,fSize(left)=12,noLabel(bottom)=2, manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	Legend/C/N=text0/J/A=MC/X=3.54/Y=-37.62 "\\Z11\\s(WMHD) WMHD [MJ]\r\\s(BETAP) BETAP\r\\s(BETAN) BETAN"
+	ModifyGraph grid(bottom)=1,fSize(left)=13,noLabel(bottom)=2, manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
+	Legend/C/N=text0/J/A=LT/X=3.5/Y=10 "\\Z12\\f01\\F'Arial Narrow'\\s(WMHD) WMHD [MJ]\r\\s(BETAP) BETAP\r\\s(BETAN) BETAN\r\\s(BETAT) BETAT"
 	RenameWindow #,G2
 	SetActiveSubwindow ##
 	
@@ -218,17 +224,21 @@ Window Overview_p1() : Graph
 	Display/W=(0.665,0.294,0.8,0.589)/FG=(,,FR,)/HOST=#  PRAD_TOT vs t_PRAD_TOT
 	AppendToGraph/C=(1,39321,19939) PRAD_DIVU vs t_PRAD_DIVU
 	AppendToGraph/C=(1,34817,52428) PRAD_DIVL vs t_PRAD_DIVL
-	AppendToGraph/C=(52428,34958,1) PINJ vs t_PINJ
 	AppendToGraph/C=(26214,26214,26214) POH vs t_POH
-	WaveStats/Q/M=1 PINJ
+	Duplicate/O PINJF, PINJF_smth
+	Smooth/MPCT=25/M=0 301, PINJF_smth
+	AppendToGraph/C=(52428,34958,1) PINJF_smth vs t_PINJF
+	WaveStats/Q/M=1 PINJF_smth
 	SetAxis/N=2 left 0,1100*V_max
 	SetAxis bottom root:tstart,root:tend
+	ReorderTraces PRAD_TOT,{PINJF_smth,PRAD_DIVU,PRAD_DIVL}
 	SetDataFolder fldrSav0
-	ModifyGraph rgb(PRAD_TOT)=(52428,1,1),muloffset(PINJ)={0,1000},prescaleExp(left)=-6
+	ModifyGraph rgb(PRAD_TOT)=(52428,1,1),muloffset(PINJF_smth)={0,1000},prescaleExp(left)=-6
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75},manTick(bottom)={0,1000,0,0}
-	ModifyGraph height=210,lSize=3,fSize(left)=12,noLabel(bottom)=2,tick=2, standoff=0,mirror=1,axisOnTop=1,grid(bottom)=1,manMinor(bottom)={1,0}
+	ModifyGraph height=210,lSize=3,fSize(left)=13,noLabel(bottom)=2,tick=2, standoff=0,mirror=1,axisOnTop=1,grid(bottom)=1,manMinor(bottom)={1,0}
+	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
 	Label left " "
-	Legend/C/N=text0/J/A=MC/X=-25/Y=31.90 "\\Z11\\s(PRAD_TOT) PRAD_TOT [MW]     \\s(PRAD_DIVU) PRAD_DIVU\r\\s(PRAD_DIVL) PRAD_DIVL             \\s(PINJ) PINJ\r\\s(POH) POH"
+	Legend/C/N=text0/J/A=MC/X=-7/Y=31.90 "\\Z12\\f01\\F'Arial Narrow'\\s(PRAD_TOT) PRAD_TOT [MW]     \\s(PRAD_DIVU) PRAD_DIVU\r\\s(PRAD_DIVL) PRAD_DIVL             \\s(PINJF_smth) PINJ\r\\s(POH) POH"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
 	
@@ -239,12 +249,13 @@ Window Overview_p1() : Graph
 	AppendToGraph/C=(52428,34958,1) QMIN vs t_QMIN
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5,width={Aspect,1.75}
-	ModifyGraph height=210, lSize=3,tick=2,mirror=1,fSize=12,standoff=0, axisOnTop=1,rgb(Q95)=(52428,1,1),grid(bottom)=1
+	ModifyGraph height=210, lSize=3,tick=2,mirror=1,fSize=13,standoff=0, axisOnTop=1,rgb(Q95)=(52428,1,1),grid(bottom)=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0},lblMargin(bottom)=-40,lstyle(QMIN)=3
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	Label bottom "\\Z12time [ms]"
 	SetAxis left 0.5,6
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-1.63/Y=38.57 "\\Z11\\s(Q95) Q95\r\\s(Q0) Q0\r\\s(QMIN) QMIN"
+	Legend/C/N=text0/J/A=MC/X=-0.2/Y=-5 "\\Z12\\f01\\F'Arial Narrow'\\s(Q95) Q95\r\\s(Q0) Q0\r\\s(QMIN) QMIN"
 	RenameWindow #,G4
 	SetActiveSubwindow ##
 	
@@ -254,28 +265,25 @@ Window Overview_p1() : Graph
 	AppendToGraph/R/C=(52428,34958,1) FS01 vs t_FS01
 	Duplicate/O ELM_freq,ELM_freq_smth
 	Smooth/MPCT=25/M=0 11, ELM_freq_smth
-	AppendToGraph/C=(56797,56797,56797) ELM_freq_smth vs t_ELM_freq
+	AppendToGraph/C=(56797,56797,56797,16384) ELM_freq_smth vs t_ELM_freq
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=4,width={Aspect,1.75}
 	ModifyGraph height=210
-	ModifyGraph mode(ELM_freq_smth)=3
-	ModifyGraph marker(ELM_freq_smth)=19
+	ModifyGraph mode(ELM_freq_smth)=3,msize(ELM_freq_smth)=5,marker(ELM_freq_smth)=19,useMrkStrokeRGB(ELM_freq_smth)=1
 	ModifyGraph rgb(FS03)=(1,39321,19939)
-	ModifyGraph useMrkStrokeRGB(ELM_freq_smth)=1
 	ModifyGraph grid(bottom)=1
 	ModifyGraph log(left)=1
 	ModifyGraph tick=2
 	ModifyGraph mirror(bottom)=1
 	ModifyGraph noLabel(right)=2
-	ModifyGraph fSize(bottom)=12,fSize(left)=12
-	ModifyGraph standoff=0
-	ModifyGraph axisOnTop=1
+	ModifyGraph fSize=13,standoff=0,axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	Label bottom "\\Z12time [ms]"
-	SetAxis right 0,10000000000000000
+	SetAxis right 0,100000000000000000
 	SetAxis bottom root:tstart,root:tend
-	SetAxis left 10,9000
-	Legend/C/N=text0/J/A=MC/X=6.54/Y=34.76 "\\Z11\\s(FS01) FS01\r\\s(FS03) FS03\r\\s(ELM_freq_smth) ELM_freq_smth"
+	SetAxis left 1,1000
+	Legend/C/N=text0/J/A=MC/X=6.54/Y=34.76 "\\Z12\\f01\\F'Arial Narrow'\\s(FS01) FS01\r\\s(FS03) FS03\r\\s(ELM_freq_smth) ELM_freq_smth"
 	RenameWindow #,G6
 	SetActiveSubwindow ##
 	
@@ -311,10 +319,11 @@ Window Overview_p1() : Graph
 	ModifyGraph rgb(DRSEP)=(21845,21845,21845)
 	ModifyGraph muloffset(DRSEP)={0,10000},axisOnTop=1,prescaleExp(left)=-3,standoff=0,fSize=12,mirror=1,zero(left)=2,tick=2
 	ModifyGraph grid(bottom)=1,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	Label left "[kA] "
 	Label bottom "\\Z12time [ms]"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-0.54/Y=0.48 "\\Z11\\s(IL30) IL30\r\\s(IL90) IL90\r\\s(IL150) IL150\r\\s(IL210) IL210\r\\s(IL270) IL270\r\\s(IL330) IL330\r\\s(IU30) IU30"
+	Legend/C/N=text0/J/A=MC/X=35/Y=3 "\\Z12\\f01\\F'Arial Narrow'\\s(IL30) IL30\r\\s(IL90) IL90\r\\s(IL150) IL150\r\\s(IL210) IL210\r\\s(IL270) IL270\r\\s(IL330) IL330\r\\s(IU30) IU30"
 	AppendText "\\s(IU90) IU90\r\\s(IU150) IU150\r\\s(IU210) IU210\r\\s(IU270) IU270\r\\s(IU330) IU330\r\\s(DRSEP) DRSEP"
 	RenameWindow #,G7
 	SetActiveSubwindow ##
@@ -323,7 +332,7 @@ EndMacro
 Window Overview_p2() : Graph
 	PauseUpdate; Silent 1		// building window...
 	Display /W=(1279,44,2501,788)
-	TextBox/C/N=text0/A=MB/X=-5.86/Y=1.90 "\\Z18Shot: \\{shotNum}"
+	TextBox/C/N=text0/A=MB/X=-5.86/Y=1.90 "\\Z18\\f01\\F'Arial Narrow'Shot: \\{shotNum}"
 	String savDF="root:paramDB_"+num2istr(shotNum)+":"
 	String fldrSav0= GetDataFolder(1)
 	
@@ -343,41 +352,43 @@ Window Overview_p2() : Graph
 	ModifyGraph tick=2
 	ModifyGraph mirror=1
 	ModifyGraph noLabel(bottom)=2
-	ModifyGraph fSize=12
+	ModifyGraph fSize=13
 	ModifyGraph standoff=0
 	ModifyGraph axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	Legend/C/N=text0/J/A=MC/X=-8.17/Y=33.33 "\\Z11\\s(BDOTEVAMPL) BDOTEVAMPL\r\\s(BDOTODAMPL) BDOTODAMPL"
+	ModifyGraph fStyle=1,font="Arial Narrow"
+	Legend/C/N=text0/J/A=MC/X=-8.17/Y=33.33 "\\Z12\\f01\\F'Arial Narrow'\\s(BDOTEVAMPL) BDOTEVAMPL\r\\s(BDOTODAMPL) BDOTODAMPL"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
 	
 	//Grpah 1,2
 	SetDataFolder savDF
 	Display/W=(0.333,0,0.666,0.295)/HOST=#  PEPED vs t_PEPED
-	ErrorBars/Y=2 PEPED Y,wave=(PEPED_ERR,PEPED_ERR)
+	ErrorBars/L=3/Y=2 PEPED Y,wave=(PEPED_ERR,PEPED_ERR)
 	WaveStats/Q/M=1 PEPED
 	SetAxis/N=2 left 0,1.1*V_max
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
-	ModifyGraph height=210, mirror=1,mode=3,marker=19,rgb=(65535,49151,49151),useMrkStrokeRGB=1
-	ModifyGraph mrkStrokeRGB=(52428,1,1),grid(bottom)=1, tick=2, standoff=0,axisOnTop=1,fSize=12
+	ModifyGraph height=210, mirror=1,mode=3,marker=19,rgb=(65535,49151,49151,32768),useMrkStrokeRGB=1,msize=4
+	ModifyGraph mrkStrokeRGB=(52428,1,1),grid(bottom)=1, tick=2, standoff=0,axisOnTop=1,fSize=13
 	ModifyGraph noLabel(bottom)=2,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=4.90/Y=36.67 "\\Z11\\s(PEPED) PEPED [kPa]"
+	Legend/C/N=text0/J/A=MC/X=4.90/Y=36.67 "\\Z12\\f01\\F'Arial Narrow'\\s(PEPED) PEPED [kPa]"
 	RenameWindow #,G1
 	SetActiveSubwindow ##
 	
 	//Graph 1,3
 	SetDataFolder savDF
 	Display/W=(0.666,0,0.999,0.295)/HOST=#  NEWID vs t_NEWID
-	AppendToGraph/C=(49151,65535,49151) PEWID vs t_PEWID
-	AppendToGraph/C=(49151,60031,65535) TEWID vs t_TEWID
+	AppendToGraph/C=(49151,65535,49151,32768) PEWID vs t_PEWID
+	AppendToGraph/C=(49151,60031,65535,32768) TEWID vs t_TEWID
 	AppendToGraph/C=(26214,26214,26214) TRIBOT vs t_TRIBOT
 	AppendToGraph/C=(52428,1,1) TRITOP vs t_TRITOP
 	AppendToGraph/C=(65535,43690,0) GAPOUT vs t_GAPOUT
-	ErrorBars/Y=2 NEWID Y,wave=(NEWID_ERR,NEWID_ERR)
-	ErrorBars/Y=2 PEWID Y,wave=(PEWID_ERR,PEWID_ERR)
-	ErrorBars/Y=2 TEWID Y,wave=(TEWID_ERR,TEWID_ERR)
+	ErrorBars/L=2/Y=2 NEWID Y,wave=(NEWID_ERR,NEWID_ERR)
+	ErrorBars/L=2/Y=2 PEWID Y,wave=(PEWID_ERR,PEWID_ERR)
+	ErrorBars/L=2/Y=2 TEWID Y,wave=(TEWID_ERR,TEWID_ERR)
 	WaveStats/Q/M=1 TRIBOT
 	SetAxis/N=2 left 0.007,1.1*V_max
 	SetDataFolder fldrSav0
@@ -385,7 +396,7 @@ Window Overview_p2() : Graph
 	ModifyGraph mode(NEWID)=3,mode(PEWID)=3,mode(TEWID)=3
 	ModifyGraph marker(NEWID)=19,marker(PEWID)=19,marker(TEWID)=19
 	ModifyGraph lSize(TRIBOT)=3,lSize(TRITOP)=3,lSize(GAPOUT)=3
-	ModifyGraph rgb(NEWID)=(65535,49151,49151)
+	ModifyGraph rgb(NEWID)=(65535,49151,49151,32768)
 	ModifyGraph msize(NEWID)=2,msize(PEWID)=2,msize(TEWID)=2
 	ModifyGraph useMrkStrokeRGB(NEWID)=1,useMrkStrokeRGB(PEWID)=1,useMrkStrokeRGB(TEWID)=1
 	ModifyGraph mrkStrokeRGB(NEWID)=(52428,1,1),mrkStrokeRGB(PEWID)=(1,39321,19939)
@@ -395,12 +406,13 @@ Window Overview_p2() : Graph
 	ModifyGraph tick=2
 	ModifyGraph mirror=1
 	ModifyGraph noLabel(bottom)=2
-	ModifyGraph fSize=12
+	ModifyGraph fSize=13
 	ModifyGraph standoff=0
 	ModifyGraph axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=10/Y=-40  "\\Z11\\s(NEWID) NEWID   \\s(PEWID) PEWID   \\s(TEWID) TEWID\r\\s(TRIBOT) TRIBOT  \\s(TRITOP) TRITOP   \\s(GAPOUT) GAPOUT"
+	Legend/C/N=text0/J/A=MC/X=10/Y=-40  "\\Z12\\f01\\F'Arial Narrow'\\s(NEWID) NEWID   \\s(PEWID) PEWID   \\s(TEWID) TEWID\r\\s(TRIBOT) TRIBOT  \\s(TRITOP) TRITOP   \\s(GAPOUT) GAPOUT"
 	RenameWindow #,G2
 	SetActiveSubwindow ##
 	
@@ -412,26 +424,28 @@ Window Overview_p2() : Graph
 	AppendToGraph/C=(1,39321,19939) N3RMS vs t_N3RMS
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
-	ModifyGraph height=210,axisOnTop=1,standoff=0,fSize=12,mirror=1,tick=2,grid(bottom)=1,noLabel(bottom)=2
+	ModifyGraph height=210,axisOnTop=1,standoff=0,fSize=13,mirror=1,tick=2,grid(bottom)=1,noLabel(bottom)=2
 	ModifyGraph lSize=3,rgb(N4RMS)=(65535,43690,0),manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=8.45/Y=30.00 "\\Z11\\s(N4RMS) N4RMS\r\\s(N1RMS) N1RMS\r\\s(N2RMS) N2RMS\r\\s(N3RMS) N3RMS"
+	Legend/C/N=text0/J/A=MC/X=8.45/Y=30.00 "\\Z12\\f01\\F'Arial Narrow'\\s(N4RMS) N4RMS\r\\s(N1RMS) N1RMS\r\\s(N2RMS) N2RMS\r\\s(N3RMS) N3RMS"
 	RenameWindow #,G5
 	SetActiveSubwindow ##
 	
 	//Graph 2,2
 	SetDataFolder savDF
-	Display/W=(0.333,0.305,0.665,0.599)/HOST=#  ROTT23 vs t_ROTT23
-	AppendToGraph/C=(0,31097,13364) ROTT01 vs t_ROTT01
-	WaveStats/Q/M=1 ROTT01
+	Display/W=(0.333,0.305,0.665,0.599)/HOST=#  cerqrotct23 vs t_cerqrotct23
+	AppendToGraph/C=(0,31097,13364) cerqrotct1 vs t_cerqrotct1
+	WaveStats/Q/M=1 cerqrotct1
 	SetAxis left 0,1.25*V_max
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
-	ModifyGraph height=210,lSize=3,noLabel(bottom)=2,rgb(ROTT23)=(52428,1,1)
-	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=12,standoff=0 
+	ModifyGraph height=210,lSize=3,noLabel(bottom)=2,rgb(cerqrotct23)=(52428,1,1)
+	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=13,standoff=0 
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-3.54/Y=34.29 "\\Z11\\s(ROTT23) ROTT23\r\\s(ROTT01) ROTT01"
+	Legend/C/N=text0/J/A=MC/X=3.5/Y=10 "\\Z12\\f01\\F'Arial Narrow'\\s(cerqrotct23) Edge Rotation [km/s]\r\\s(cerqrotct1) Core Rotation"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
 	
@@ -447,8 +461,9 @@ Window Overview_p2() : Graph
 	ModifyGraph grid(bottom)=1,noLabel(bottom)=2
 	ModifyGraph mirror=1, fSize=12, standoff=0
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-3.54/Y=34.29 "\\Z11\\s(RVSOUT) RVSOUT"
+	Legend/C/N=text0/J/A=MC/X=-3.54/Y=34.29 "\\Z12\\f01\\F'Arial Narrow'\\s(RVSOUT) RVSOUT"
 	RenameWindow #,G4
 	SetActiveSubwindow ##
 	
@@ -461,9 +476,10 @@ Window Overview_p2() : Graph
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5,width={Aspect,1.75}
 	ModifyGraph height=210, lSize=3,tick=2,mirror=1,fSize=12,standoff=0, axisOnTop=1,rgb(NU_E_STAR)=(52428,1,1),grid(bottom)=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0},lblMargin(bottom)=-40,log(left)=1
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	Label bottom "\\Z12time [ms]"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-1.63/Y=38.57 "\\Z11\\s(NU_E_STAR) NU_E_STAR   \\s(F_GW) F_GW    \\s(F_GW_PED) F_GW_PED"
+	Legend/C/N=text0/J/A=MC/X=-1.63/Y=38.57 "\\Z12\\f01\\F'Arial Narrow'\\s(NU_E_STAR) NU_E_STAR   \\s(F_GW) F_GW    \\s(F_GW_PED) F_GW_PED"
 	RenameWindow #,G7
 	SetActiveSubwindow ##
 	
@@ -482,8 +498,9 @@ Window Overview_p2() : Graph
 	ModifyGraph grid(bottom)=1, tick=2, standoff=0,axisOnTop=1,mirror=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	ModifyGraph lsize=3,rgb(VIOW)=(1,39321,19939)
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-3.54/Y=-45 "\\Z11\\s(VIOW) VIOW\r\\s(FZNS) FZNS"
+	Legend/C/N=text0/J/A=MC/X=-3.54/Y=-45 "\\Z12\\f01\\F'Arial Narrow'\\s(VIOW) VIOW\r\\s(FZNS) FZNS"
 	Label bottom "\\Z12time [ms]"
 	RenameWindow #,G8
 	SetActiveSubwindow ##
@@ -491,6 +508,7 @@ Window Overview_p2() : Graph
 	//Graph 3,3
 	Display/W=(0.666,0.6,1,0.923)/HOST=# AMINOR vs t_AMINOR
 	AppendToGraph/C=(52428,1,1) VOLUME vs t_VOLUME
+	AppendToGraph GAPOUT vs t_GAPOUT
 	WaveStats/Q/M=1 AMINOR
 	SetAxis left 0,110*V_max
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5
@@ -498,8 +516,9 @@ Window Overview_p2() : Graph
 	ModifyGraph grid(bottom)=1, tick=2, standoff=0,axisOnTop=1,mirror=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	ModifyGraph lsize=3,rgb(AMINOR)=(1,39321,19939),muloffset(AMINOR)={0,100}
+	ModifyGraph fStyle=1,font="Arial Narrow"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-3.54/Y=34.29 "\\Z11\\s(VOLUME) VOLUME [m**3]\r\\s(AMINOR) AMINOR [cm]"
+	Legend/C/N=text0/J/A=MC/X=-3.54/Y=34.29 "\\Z12\\f01\\F'Arial Narrow'\\s(VOLUME) VOLUME [m**3]\r\\s(AMINOR) AMINOR [cm]"
 	Label bottom "\\Z12time [ms]"
 	RenameWindow #,G6
 	SetActiveSubwindow ##
