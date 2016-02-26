@@ -190,80 +190,60 @@ Window SumPlot() : Graph
 	SetAxis bottom 0,1.1
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,2.7}
-	ModifyGraph height=220
-	ModifyGraph mode(NEP)=3,marker(NEP)=19
-	ModifyGraph lSize=3 //lSize(NET0P)=3,lSize(NISPLPSIWAV)=3,lSize(NBSPLPSIWAV)=3
-	ModifyGraph rgb(NEP)=(34181,50372,17990,19661)
-	ModifyGraph mrkStrokeRGB(NEP)=(0,31097,13364,26214)
-	ModifyGraph msize(NEP)=4
-	ModifyGraph useMrkStrokeRGB(NEP)=1
-	ModifyGraph mrkStrokeRGB(NEP)=(0,31097,13364)
-	ModifyGraph tick=2, mirror=1, noLabel(bottom)=2
-	ModifyGraph fSize=12, font="Arial Narrow", fStyle=1
-	ModifyGraph standoff=0
-	ModifyGraph axisOnTop=1
-	Legend/C/N=text0/J/A=MC/X=32.83/Y=28.18 "\\M\\Z11\\F'Arial Narrow'\\f01\\s(NEP) NEP [x10\\S20 \\Mm\\S-3\\M]\r\\s(NETHP) NETHP\r\\s(NET0P) NET0P\r\\s(nisplpsiWAV) nisplpsiWAV"
+	ModifyGraph height=220,standoff=0,axisOnTop=1,tick=2, mirror=1, noLabel(bottom)=2
+	ModifyGraph mode(NEP)=3,marker(NEP)=19,msize(NEP)=4
+	ModifyGraph lSize=3
+	ModifyGraph rgb(NEP)=(34181,50372,17990,6554),useMrkStrokeRGB(NEP)=1,mrkStrokeRGB(NEP)=(0,31097,13364,26214)
+	ModifyGraph fSize=13, font="Arial Narrow", fStyle=1
+	Legend/C/N=text0/J/A=MC/X=32.83/Y=28.18 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(NEP) NEP [x10\\S20 \\M\Z13m\\S-3\\M]\\Z13\r\\s(NETHP) NETHP   \\s(NET0P) NET0P\r\\s(nisplpsiWAV) nisplpsiWAV"
 	AppendText "\\s(NBSPLPSIWAV) NBSPLPSIWAV"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
 
 	SetDataFolder FoldNAM
 	Display/W=(0,0.302,0.498,0.602)/HOST=#  TEP vs PTE
-	AppendToGraph TETHP vs PTETH
-	AppendToGraph TET0P vs PTET0[0,119]
-	AppendToGraph TISPLPSIWAV vs PNWAV
+	AppendToGraph/C=(34952,13107,11822) TETHP vs PTETH
+	AppendToGraph/C=(57054,30326,11565) TET0P vs PTET0
+	AppendToGraph/C=(6682,40349,38550) TISPLPSIWAV vs PNWAV
+	ErrorBars/L=3/X=1/Y=1 TEP XY,wave=(EPTE,EPTE),wave=(ETEP,ETEP)
+	SetAxis bottom 0,1.1
+	WaveStats/M=1/Q/Z TEP
+	SetAxis left 0,1.1*V_max
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,2.7}
-	ModifyGraph height=220
-	ModifyGraph mode(TEP)=3
-	ModifyGraph marker(TEP)=19
-	ModifyGraph lSize(TETHP)=3,lSize(TET0P)=3,lSize(TISPLPSIWAV)=3
-	ModifyGraph rgb(TEP)=(53456,56540,40606),rgb(TETHP)=(34952,13107,11822),rgb(TET0P)=(57054,30326,11565)
-	ModifyGraph rgb(TISPLPSIWAV)=(6682,40349,38550)
-	ModifyGraph msize(TEP)=4
-	ModifyGraph useMrkStrokeRGB(TEP)=1
-	ModifyGraph mrkStrokeRGB(TEP)=(0,31097,13364)
-	ModifyGraph tick=2
-	ModifyGraph mirror=1
-	ModifyGraph noLabel(bottom)=2
-	ModifyGraph fSize=12
-	ModifyGraph standoff=0
-	ModifyGraph axisOnTop=1
-	SetAxis bottom 0,1.1
-	ErrorBars/X=2/Y=2 TEP XY,wave=(:profdb_out_148712_4101_avfli:EPTE,:profdb_out_148712_4101_avfli:EPTE),wave=(:profdb_out_148712_4101_avfli:ETEP,:profdb_out_148712_4101_avfli:ETEP)
-	Legend/C/N=text0/J/A=MC/X=32.32/Y=30.00 "\\M\\Z11\\s(TEP) TEP [keV]\r\\s(TETHP) TETHP\r\\s(TET0P) TET0P\r\\s(TISPLPSIWAV) TISPLPSIWAV"
+	ModifyGraph height=220, standoff=0, axisOnTop=1, lSize=3, tick=2, mirror=1, noLabel(bottom)=2
+	ModifyGraph mode(TEP)=3,marker(TEP)=19,msize(TEP)=4
+	ModifyGraph rgb(TEP)=(34181,50372,17990,6554),useMrkStrokeRGB(TEP)=1,mrkStrokeRGB(TEP)=(0,31097,13364,26214)
+	ModifyGraph fSize=13, font="Arial Narrow", fStyle=1
+	Legend/C/N=text0/J/A=MC/X=32.32/Y=30.00 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(TEP) TEP [keV]\r\\s(TETHP) TETHP\r\\s(TET0P) TET0P\r\\s(TISPLPSIWAV) TISPLPSIWAV"
 	RenameWindow #,G1
 	SetActiveSubwindow ##
-	String fldrSav2= GetDataFolder(1)
-	SetDataFolder root:profdb_out_148712_4101_avfli:
+	
+	SetDataFolder FoldNAM
 	Display/W=(0,0.603,0.498,0.942)/HOST=#  PTOTSPLPSIWAV vs PNWAV
-	AppendToGraph PEP vs PPE
+	AppendToGraph/C=(34181,50372,17990,6554) PEP vs PPE
 	AppendToGraph PETHP vs PPETH
 	AppendToGraph PTTHP vs PPTTH
 	AppendToGraph PTT0P vs PPTT0
-	SetDataFolder fldrSav2
+	ErrorBars/L=3/X=1/Y=1 PEP XY,wave=(EPPE,EPPE),wave=(EPEP,EPEP)
+	WaveStats/M=1/Q/Z PEP
+	SetAxis left 0,1.1*V_max
+	SetAxis bottom 0,1.1
+	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5,width={Aspect,2.7}
-	ModifyGraph height=220
+	ModifyGraph height=220, lSize=3,axisOnTop=1,standoff=0,tick=2,mirror=1,fSize=13
 	ModifyGraph mode(PEP)=3
 	ModifyGraph marker(PEP)=19
-	ModifyGraph lSize(PTOTSPLPSIWAV)=3,lSize(PETHP)=3,lSize(PTTHP)=3,lSize(PTT0P)=3
-	ModifyGraph rgb(PTOTSPLPSIWAV)=(6682,40349,38550),rgb(PEP)=(53456,56540,40606),rgb(PETHP)=(34952,13107,11822)
+	ModifyGraph rgb(PTOTSPLPSIWAV)=(6682,40349,38550),rgb(PETHP)=(34952,13107,11822)
 	ModifyGraph rgb(PTTHP)=(58339,51400,0),rgb(PTT0P)=(57054,30326,11565)
 	ModifyGraph msize(PEP)=4
-	ModifyGraph useMrkStrokeRGB(PEP)=1
-	ModifyGraph mrkStrokeRGB(PEP)=(0,31097,13364)
+	ModifyGraph useMrkStrokeRGB(PEP)=1,mrkStrokeRGB(PEP)=(0,31097,13364,26214)
 	ModifyGraph muloffset(PTOTSPLPSIWAV)={0,0.5},muloffset(PTTHP)={0,0.5},muloffset(PTT0P)={0,0.5}
-	ModifyGraph tick=2
-	ModifyGraph mirror=1
-	ModifyGraph fSize=12
-	ModifyGraph standoff=0
-	ModifyGraph axisOnTop=1
-	SetAxis left 0,52.927305
-	SetAxis bottom 0,1.1
-	ErrorBars/X=2/Y=2 PEP XY,wave=(:profdb_out_148712_4101_avfli:EPPE,:profdb_out_148712_4101_avfli:EPPE),wave=(:profdb_out_148712_4101_avfli:EPEP,:profdb_out_148712_4101_avfli:EPEP)
 	Legend/C/N=text0/J/A=MC/X=31.82/Y=25.45 "\\M\\Z11\\s(PEP) PEP [kPa]\r\\s(PETHP) PETHP\r\\s(PTTHP) PTTHP / 2\r\\s(PTT0P) PTT0P / 2\r\\s(PTOTSPLPSIWAV) PTOTSPLPSIWAV / 2"
 	RenameWindow #,G2
 	SetActiveSubwindow ##
+	
+	
 	String fldrSav3= GetDataFolder(1)
 	SetDataFolder root:profdb_out_148712_4101_avfli:
 	Display/W=(0.494,0,0.992,0.301)/HOST=#  FZP vs PFZ
