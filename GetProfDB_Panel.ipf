@@ -166,50 +166,53 @@ Window PLTdat_graph() : Graph
 	ModifyGraph fSize=12,fStyle=1,notation(left)=1 
 	Label left z_dim
 	Label bottom "Time [msec]"
-	Legend/C/N=text0/J/A=MC/X=(-35)/Y=(35) "\\F'Arial Narrow Bold'\\Z14\\s(sig_Z) "+plot_pntnam
+	Legend/C/N=text0/J/A=MC/X=(-35)/Y=(35) "\\F'Arial Narrow'\\f01\\Z14\\s(sig_Z) "+plot_pntnam
 EndMacro
 
 Window SumPlot() : Graph
 	PauseUpdate; Silent 1		// building window...
+	Variable/G shot
+	Variable/G timeid
+	String/G runid
+	String FoldNAM = "profdb_out_"+num2istr(shot)+"_"+num2istr(timeid)+"_"+runid
 	Display /W=(1172,91,2443,855)
-	TextBox/C/N=text0/A=MB/X=0.00/Y=1.90 "\\Z18ProfDB Tags:: Shot:148712 Time:4101 Run:avfli"
+	TextBox/C/N=text0/A=MB/X=0.00/Y=1.90 "\\Z18\F'Arial Narrow'\f01ProfDB Tags:: Shot: "+num2istr(shot)+" Time: "+num2istr(timeid)+" Run: "+runid
 	String fldrSav0= GetDataFolder(1)
-	SetDataFolder root:profdb_out_148712_4101_avfli:
+	SetDataFolder FoldNAM
 	Display/W=(0,0,0.498,0.301)/HOST=#  NEP vs PNE
-	AppendToGraph NETHP vs PNETH
-	AppendToGraph NET0P vs PNET0
-	AppendToGraph NISPLPSIWAV,NBSPLPSIWAV vs PNWAV
+	ErrorBars/L=3/X=1/Y=1 NEP XY,wave=(EPNE,EPNE),wave=(ENEP,ENEP)
+	AppendToGraph/C=(57054,30326,11565) NETHP vs PNETH
+	AppendToGraph/C=(0,0,0) NET0P vs PNET0
+	AppendToGraph/C=(41120,10794,7453) NISPLPSIWAV vs PNWAV
+	APPENDToGraph/C=(6682,40349,38550) NBSPLPSIWAV vs PNWAV
+	WaveStats/M=1/Q/Z NEP
+	SetAxis left 0,1.1*V_max
+	SetAxis bottom 0,1.1
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,2.7}
 	ModifyGraph height=220
-	ModifyGraph mode(NEP)=3
-	ModifyGraph marker(NEP)=19
-	ModifyGraph lSize(NETHP)=3,lSize(NET0P)=3,lSize(NISPLPSIWAV)=3,lSize(NBSPLPSIWAV)=3
-	ModifyGraph rgb(NEP)=(53456,56540,40606),rgb(NETHP)=(57054,30326,11565),rgb(NET0P)=(0,14906,19018)
-	ModifyGraph rgb(NISPLPSIWAV)=(34952,13107,11822),rgb(NBSPLPSIWAV)=(6682,40349,38550)
+	ModifyGraph mode(NEP)=3,marker(NEP)=19
+	ModifyGraph lSize=3 //lSize(NET0P)=3,lSize(NISPLPSIWAV)=3,lSize(NBSPLPSIWAV)=3
+	ModifyGraph rgb(NEP)=(34181,50372,17990,19661)
+	ModifyGraph mrkStrokeRGB(NEP)=(0,31097,13364,26214)
 	ModifyGraph msize(NEP)=4
 	ModifyGraph useMrkStrokeRGB(NEP)=1
 	ModifyGraph mrkStrokeRGB(NEP)=(0,31097,13364)
-	ModifyGraph tick=2
-	ModifyGraph mirror=1
-	ModifyGraph noLabel(bottom)=2
-	ModifyGraph fSize=12
+	ModifyGraph tick=2, mirror=1, noLabel(bottom)=2
+	ModifyGraph fSize=12, font="Arial Narrow", fStyle=1
 	ModifyGraph standoff=0
 	ModifyGraph axisOnTop=1
-	SetAxis left 0,0.89987967
-	SetAxis bottom 0,1.1
-	ErrorBars/X=2/Y=2 NEP XY,wave=(:profdb_out_148712_4101_avfli:EPNE,:profdb_out_148712_4101_avfli:EPNE),wave=(:profdb_out_148712_4101_avfli:ENEP,:profdb_out_148712_4101_avfli:ENEP)
-	Legend/C/N=text0/J/A=MC/X=32.83/Y=28.18 "\\M\\Z11\\s(NEP) NEP [x10\\S20 \\Mm\\S-3\\M]\r\\s(NETHP) NETHP\r\\s(NET0P) NET0P\r\\s(nisplpsiWAV) nisplpsiWAV"
+	Legend/C/N=text0/J/A=MC/X=32.83/Y=28.18 "\\M\\Z11\\F'Arial Narrow'\\f01\\s(NEP) NEP [x10\\S20 \\Mm\\S-3\\M]\r\\s(NETHP) NETHP\r\\s(NET0P) NET0P\r\\s(nisplpsiWAV) nisplpsiWAV"
 	AppendText "\\s(NBSPLPSIWAV) NBSPLPSIWAV"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
-	String fldrSav1= GetDataFolder(1)
-	SetDataFolder root:profdb_out_148712_4101_avfli:
+
+	SetDataFolder FoldNAM
 	Display/W=(0,0.302,0.498,0.602)/HOST=#  TEP vs PTE
 	AppendToGraph TETHP vs PTETH
 	AppendToGraph TET0P vs PTET0[0,119]
 	AppendToGraph TISPLPSIWAV vs PNWAV
-	SetDataFolder fldrSav1
+	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,2.7}
 	ModifyGraph height=220
 	ModifyGraph mode(TEP)=3
