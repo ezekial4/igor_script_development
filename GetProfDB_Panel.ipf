@@ -194,16 +194,16 @@ Window SumPlot() : Graph
 	ModifyGraph mode(NEP)=3,marker(NEP)=19,msize(NEP)=4
 	ModifyGraph lSize=3
 	ModifyGraph rgb(NEP)=(34181,50372,17990,6554),useMrkStrokeRGB(NEP)=1,mrkStrokeRGB(NEP)=(0,31097,13364,26214)
-	ModifyGraph fSize=13, font="Arial Narrow", fStyle=1
-	Legend/C/N=text0/J/A=MC/X=32.83/Y=28.18 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(NEP) NEP [x10\\S20 \\M\Z13m\\S-3\\M]\\Z13\r\\s(NETHP) NETHP   \\s(NET0P) NET0P\r\\s(nisplpsiWAV) nisplpsiWAV"
-	AppendText "\\s(NBSPLPSIWAV) NBSPLPSIWAV"
+	ModifyGraph fSize=14, font="Arial Narrow", fStyle=1
+	Legend/C/N=text0/J/A=MC/H=9/X=30/Y=35 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(NEP) NEP [x10\\S20 \\M\Z13m\\S-3\\M]\\Z13\r\\s(NETHP)NETHP            \\s(NET0P)NET0P"
+	AppendText "\\s(nisplpsiWAV)nisplpsiWAV  \\s(NBSPLPSIWAV)NBSPLPSIWAV"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
 
 	SetDataFolder FoldNAM
 	Display/W=(0,0.302,0.498,0.602)/HOST=#  TEP vs PTE
-	AppendToGraph/C=(34952,13107,11822) TETHP vs PTETH
-	AppendToGraph/C=(57054,30326,11565) TET0P vs PTET0
+	AppendToGraph/C=(57054,30326,11565) TETHP vs PTETH
+	AppendToGraph/C=(0,0,0) TET0P vs PTET0
 	AppendToGraph/C=(6682,40349,38550) TISPLPSIWAV vs PNWAV
 	ErrorBars/L=3/X=1/Y=1 TEP XY,wave=(EPTE,EPTE),wave=(ETEP,ETEP)
 	SetAxis bottom 0,1.1
@@ -214,24 +214,25 @@ Window SumPlot() : Graph
 	ModifyGraph height=220, standoff=0, axisOnTop=1, lSize=3, tick=2, mirror=1, noLabel(bottom)=2
 	ModifyGraph mode(TEP)=3,marker(TEP)=19,msize(TEP)=4
 	ModifyGraph rgb(TEP)=(34181,50372,17990,6554),useMrkStrokeRGB(TEP)=1,mrkStrokeRGB(TEP)=(0,31097,13364,26214)
-	ModifyGraph fSize=13, font="Arial Narrow", fStyle=1
-	Legend/C/N=text0/J/A=MC/X=32.32/Y=30.00 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(TEP) TEP [keV]\r\\s(TETHP) TETHP\r\\s(TET0P) TET0P\r\\s(TISPLPSIWAV) TISPLPSIWAV"
+	ModifyGraph fSize=14,font="Arial Narrow", fStyle=1
+	Legend/C/N=text0/J/A=MC/H=9/X=32.32/Y=30.00 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(TEP)TEP [keV]\r\\s(TETHP)TETHP\r\\s(TET0P)TET0P\r\\s(TISPLPSIWAV)TISPLPSIWAV"
 	RenameWindow #,G1
 	SetActiveSubwindow ##
 	
 	SetDataFolder FoldNAM
 	Display/W=(0,0.603,0.498,0.942)/HOST=#  PTOTSPLPSIWAV vs PNWAV
 	AppendToGraph/C=(34181,50372,17990,6554) PEP vs PPE
-	AppendToGraph PETHP vs PPETH
+	AppendToGraph/C=(57054,30326,11565) PETHP vs PPETH
 	AppendToGraph PTTHP vs PPTTH
-	AppendToGraph PTT0P vs PPTT0
+	AppendToGraph/C=(41120,10794,7453) PTT0P vs PPTT0
+	AppendToGraph/C=(0,0,0) PBSPLPSIWAV vs PNWAV
 	ErrorBars/L=3/X=1/Y=1 PEP XY,wave=(EPPE,EPPE),wave=(EPEP,EPEP)
 	WaveStats/M=1/Q/Z PEP
 	SetAxis left 0,1.1*V_max
 	SetAxis bottom 0,1.1
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5,width={Aspect,2.7}
-	ModifyGraph height=220, lSize=3,axisOnTop=1,standoff=0,tick=2,mirror=1,fSize=13
+	ModifyGraph height=220, lSize=3,axisOnTop=1,standoff=0,tick=2,mirror=1,fSize=14,font="Arial Narrow",fStyle=1
 	ModifyGraph mode(PEP)=3
 	ModifyGraph marker(PEP)=19
 	ModifyGraph rgb(PTOTSPLPSIWAV)=(6682,40349,38550),rgb(PETHP)=(34952,13107,11822)
@@ -239,90 +240,65 @@ Window SumPlot() : Graph
 	ModifyGraph msize(PEP)=4
 	ModifyGraph useMrkStrokeRGB(PEP)=1,mrkStrokeRGB(PEP)=(0,31097,13364,26214)
 	ModifyGraph muloffset(PTOTSPLPSIWAV)={0,0.5},muloffset(PTTHP)={0,0.5},muloffset(PTT0P)={0,0.5}
-	Legend/C/N=text0/J/A=MC/X=31.82/Y=25.45 "\\M\\Z11\\s(PEP) PEP [kPa]\r\\s(PETHP) PETHP\r\\s(PTTHP) PTTHP / 2\r\\s(PTT0P) PTT0P / 2\r\\s(PTOTSPLPSIWAV) PTOTSPLPSIWAV / 2"
+	Legend/C/N=text0/J/A=MC/H=9/X=15/Y=25.45 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(PEP)PEP [kPa]\r\\s(PETHP)PETHP\r\\s(PTTHP)0.5xP_TOT_TANH   \\s(PTT0P)0.5xP_TOT_TANH0   \\s(PTOTSPLPSIWAV)0.5xP_TOT_SPL\r\\s(PBSPLPSIWAV)PBSPLPSIWAV"
 	RenameWindow #,G2
 	SetActiveSubwindow ##
 	
-	
-	String fldrSav3= GetDataFolder(1)
-	SetDataFolder root:profdb_out_148712_4101_avfli:
+	SetDataFolder FoldNAM
 	Display/W=(0.494,0,0.992,0.301)/HOST=#  FZP vs PFZ
-	AppendToGraph FZSPLPSIWAV vs PNWAV
-	AppendToGraph FZTHP vs PFZTH
-	AppendToGraph FZT0P vs PFZT0
-	SetDataFolder fldrSav3
-	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,2.7}
-	ModifyGraph height=220
-	ModifyGraph mode(FZP)=3
-	ModifyGraph marker(FZP)=19
-	ModifyGraph lSize(FZSPLPSIWAV)=3,lSize(FZTHP)=3,lSize(FZT0P)=3
-	ModifyGraph rgb(FZP)=(53456,56540,40606),rgb(FZSPLPSIWAV)=(20560,37265,52685),rgb(FZTHP)=(57054,30326,11565)
-	ModifyGraph rgb(FZT0P)=(34952,13107,11822)
-	ModifyGraph msize(FZP)=4
-	ModifyGraph useMrkStrokeRGB(FZP)=1
-	ModifyGraph mrkStrokeRGB(FZP)=(0,31097,13364)
-	ModifyGraph tick=2
-	ModifyGraph mirror=1
-	ModifyGraph noLabel(bottom)=2
-	ModifyGraph fSize=12
-	ModifyGraph standoff=0
-	ModifyGraph axisOnTop=1
+	If(Exists("FZSPLPSIWAV"))
+		AppendToGraph/C=(20560,37265,52685) FZSPLPSIWAV vs PNWAV
+	endif
+	AppendToGraph/C=(57054,30326,11565) FZTHP vs PFZTH
+	AppendToGraph/C=(34952,13107,11822) FZT0P vs PFZT0
+	ErrorBars/Y=1/L=3 FZP Y,wave=(EFZP,EFZP)
+	WaveStats/M=1/Q/Z FZP
+	SetAxis left 0,1.1*V_max
 	SetAxis bottom 0,1.1
-	ErrorBars/Y=2 FZP Y,wave=(:profdb_out_148712_4101_avfli:EFZP,:profdb_out_148712_4101_avfli:EFZP)
-	Legend/C/N=text0/J/A=MC/X=-34.34/Y=-29.55 "\\M\\Z11\\s(FZP) FZP = 6n\\Bc\\M/n\\Be\\M [%]\r\\Z11\\s(FZSPLPSIWAV) FZSPLPSIWAV\r\\s(FZTHP) FZTHP\r\\s(FZT0P) FZT0P"
+	SetDataFolder fldrSav0
+	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,2.7}
+	ModifyGraph height=220,lSize=3,mirror=1,standoff=0,axisOnTop=1,tick=2,noLabel(bottom)=2,fSize=14,font="Arial Narrow",fStyle=1
+	ModifyGraph mode(FZP)=3,marker(FZP)=19,msize(FZP)=4
+	ModifyGraph rgb(FZP)=(34181,50372,17990,6554)
+	ModifyGraph useMrkStrokeRGB(FZP)=1
+	ModifyGraph mrkStrokeRGB(FZP)=(0,31097,13364,26214)
+	Legend/C/N=text0/J/A=MC/H=9/X=-35/Y=30 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(FZP)FZP = 6n\\Bc\\M\Z13/n\\Be\\M\\Z13 [%]\r\\Z13\\s(FZSPLPSIWAV)FZSPLPSIWAV\r\\s(FZTHP)FZTHP\r\\s(FZT0P)FZT0P"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
-	String fldrSav4= GetDataFolder(1)
-	SetDataFolder root:profdb_out_148712_4101_avfli:
+	
+	SetDataFolder FoldNAM
 	Display/W=(0.494,0.302,0.992,0.602)/HOST=#  TIP vs PTI
-	AppendToGraph TITHP vs PTITH
-	AppendToGraph TIT0P vs PTIT0
-	AppendToGraph TISPLPSIWAV vs PNWAV
-	SetDataFolder fldrSav4
-	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,2.7}
-	ModifyGraph height=220
-	ModifyGraph mode(TIP)=3
-	ModifyGraph marker(TIP)=19
-	ModifyGraph lSize(TITHP)=3,lSize(TIT0P)=3,lSize(TISPLPSIWAV)=3
-	ModifyGraph rgb(TIP)=(53456,56540,40606),rgb(TITHP)=(34952,13107,11822),rgb(TIT0P)=(57054,30326,11565)
-	ModifyGraph rgb(TISPLPSIWAV)=(6682,40349,38550)
-	ModifyGraph msize(TIP)=4
-	ModifyGraph useMrkStrokeRGB(TIP)=1
-	ModifyGraph mrkStrokeRGB(TIP)=(0,31097,13364)
-	ModifyGraph tick=2
-	ModifyGraph mirror=1
-	ModifyGraph noLabel(bottom)=2
-	ModifyGraph fSize=12
-	ModifyGraph standoff=0
-	ModifyGraph axisOnTop=1
-	SetAxis left 0,6.6151004
+	AppendToGraph/C=(34952,13107,11822) TITHP vs PTITH
+	AppendToGraph/C=(57054,30326,11565) TIT0P vs PTIT0
+	AppendToGraph/C=(6682,40349,38550) TISPLPSIWAV vs PNWAV
+	ErrorBars/Y=1/L=3 TIP Y,wave=(ETIP,ETIP)
+	WaveStats/M=1/Q/Z TIP
+	SetAxis left 0,1.1*V_max
 	SetAxis bottom 0,1.1
-	ErrorBars/Y=2 TIP Y,wave=(:profdb_out_148712_4101_avfli:ETIP,:profdb_out_148712_4101_avfli:ETIP)
-	Legend/C/N=text0/J/A=MC/X=29.29/Y=30.00 "\\M\\Z11\\s(TIP) TIP [keV]\r\\s(TITHP) TITHP\r\\s(TIT0P) TIT0P\r\\s(TISPLPSIWAV) TISPLPSIWAV"
+	SetDataFolder fldrSav0
+	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,2.7}
+	ModifyGraph height=220,lSize=3,tick=2,mirror=1,noLabel(bottom)=2,standoff=0,axisOnTop=1,fSize=14,font="Arial Narrow",fStyle=1
+	ModifyGraph mode(TIP)=3,marker(TIP)=19,msize(TIP)=4
+	ModifyGraph rgb(TIP)=(34181,50372,17990,6554)
+	ModifyGraph useMrkStrokeRGB(TIP)=1,mrkStrokeRGB(TIP)=(0,31097,13364,26214)
+	Legend/C/N=text0/J/A=MC/H=9/X=29.29/Y=30.00 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(TIP) TIP [keV]\r\\s(TITHP) TITHP\r\\s(TIT0P) TIT0P\r\\s(TISPLPSIWAV) TISPLPSIWAV"
 	RenameWindow #,G4
 	SetActiveSubwindow ##
-	String fldrSav5= GetDataFolder(1)
-	SetDataFolder root:profdb_out_148712_4101_avfli:
+	
+	SetDataFolder FoldNAM
 	Display/W=(0.494,0.603,0.992,0.942)/HOST=#  OMEVBSPLPSIWAV vs PNWAV
-	AppendToGraph OMGHBSPLPSIWAV vs PNWAV
-	AppendToGraph OMMPPSPLPSIWAV vs PNWAV
-	AppendToGraph OMGPPSPLPSIWAV vs PNWAV
-	SetDataFolder fldrSav5
-	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5,width={Aspect,2.7}
-	ModifyGraph height=220
-	ModifyGraph lSize=3
-	ModifyGraph rgb(OMEVBSPLPSIWAV)=(6682,40349,38550),rgb(OMGHBSPLPSIWAV)=(57054,30326,11565)
-	ModifyGraph rgb(OMMPPSPLPSIWAV)=(41120,10794,7453),rgb(OMGPPSPLPSIWAV)=(0,31097,13364)
-	ModifyGraph muloffset(OMEVBSPLPSIWAV)={0,0.5}
-	ModifyGraph tick=2
-	ModifyGraph zero(left)=1
-	ModifyGraph mirror=1
-	ModifyGraph fSize=12
-	ModifyGraph standoff=0
-	ModifyGraph axisOnTop=1
+	AppendToGraph/C=(57054,30326,11565) OMGHBSPLPSIWAV vs PNWAV
+	AppendToGraph/C=(41120,10794,7453) OMMPPSPLPSIWAV vs PNWAV
+	AppendToGraph/C=(0,31097,13364) OMGPPSPLPSIWAV vs PNWAV
 	SetAxis left -120,55
 	SetAxis bottom 0,1.1
-	Legend/C/N=text0/J/A=MC/X=-4.38/Y=-25.91 "\\M\\Z11\\s(OMEVBSPLPSIWAV) OMEG_VxB [krad/s]\r\\s(OMGHBSPLPSIWAV) OMEG_HAHM-BURREL\r\\s(OMGPPSPLPSIWAV) OMEG_DIAG_E"
+	SetDataFolder fldrSav0
+	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5,width={Aspect,2.7}
+	ModifyGraph height=220,zero(left)=1,tick=2,mirror=1,standoff=0,axisOnTop=1
+	ModifyGraph lSize=3,fSize=14,font="Arial Narrow",fStyle=1
+	ModifyGraph rgb(OMEVBSPLPSIWAV)=(6682,40349,38550)
+	ModifyGraph muloffset(OMEVBSPLPSIWAV)={0,0.5}
+	Legend/C/N=text0/J/A=MC/H=9/X=-4.38/Y=-25.91 "\\M\Z13\\F'Arial Narrow'\\f01\\s(OMEVBSPLPSIWAV) OMEG_VxB [krad/s]\r\\s(OMGHBSPLPSIWAV) OMEG_HAHM-BURREL\r\\s(OMGPPSPLPSIWAV) OMEG_DIAG_E"
 	AppendText "\\s(OMMPPSPLPSIWAV) OMEG_DIAG_ION"
 	RenameWindow #,G5
 	SetActiveSubwindow ##
