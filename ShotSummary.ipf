@@ -2,51 +2,46 @@
 
 Window loadPanel() : Panel
 	PauseUpdate; Silent 1		// building window...
-	NewPanel /W=(478,44,850,400)
+	NewPanel /W=(161,45,533,334)
 	ModifyPanel cbRGB=(65535,60076,49151)
-	
-	//Prep Work
-	FindHome()
-	Homepath +=":"
-	if (exists("shotNum") != 2)
-		Variable/G shotNum = 126006
-	endif
-	if (exists("tstart") != 2)
-		Variable/G tstart = -50. 
-	endif
-	if (exists("tend") != 2)
-		Variable/G/O tend = 5500. 
-	endif
-	if(Exists("Neupath")!=2)
-		String/G Neupath = "Users:"
-	endif
-	if(Exists("mds") !=2)
-		Variable/G mds=0
-	endif
-	//End Prep
-	
-	TitleBox title0,pos={90,15},size={199,35},title="Load Shot Summary",labelBack=(0,26214,13293),font="Arial Narrow Bold",fSize=28,frame=4,fStyle=1,fColor=(65535,65535,65535),anchor= MT
-	CheckBox usePython,pos={116,166},size={113,16},title="from MDSplus"
-	CheckBox usePython,labelBack=(0,0,0),font="Arial Bold",fSize=14,value= 1,mode=0,value=mds
-	CheckBox usePython variable=mds
-	SetVariable setvar0,pos={125,68},size={115,24},title="Shot #:",valueBackColor=(39321,1,1),limits={10000,inf,0},value= shotNum,styledText= 1
-	SetVariable setvar0,labelBack=(0,26214,13293),font="Arial Narrow Bold",fSize=18,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
-	SetVariable setvar1,pos={111,191},size={140,17},title="Plot Start Time:",fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
-	SetVariable setvar1,labelBack=(0,26214,13293),font="Arial Narrow Bold",fSize=16,valueBackColor=(39321,1,1),limits={-inf,inf,0},value= tstart,styledText= 1
-	SetVariable setvar2,pos={111,217},size={140,17},title="Plot End Time:",labelBack=(0,26214,13293),font="Arial Narrow Bold",fSize=16
+	ShowTools/A
+	TitleBox title0,pos={74.00,15.00},size={231.00,41.00},title="Load Shot Summary"
+	TitleBox title0,labelBack=(0,26214,13293),font="Arial Narrow",fSize=28,frame=4
+	TitleBox title0,fStyle=1,fColor=(65535,65535,65535),anchor= MT
+	CheckBox usePython,pos={116.00,166.00},size={106.00,16.00},title="from MDSplus"
+	CheckBox usePython,labelBack=(0,0,0),font="Arial",fSize=14,variable= mds
+	SetVariable setvar0,pos={125.00,68.00},size={115.00,24.00},title="Shot #:"
+	SetVariable setvar0,labelBack=(0,26214,13293),font="Arial Narrow",fSize=18
+	SetVariable setvar0,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
+	SetVariable setvar0,valueBackColor=(39321,1,1)
+	SetVariable setvar0,limits={10000,inf,0},value= shotNum,styledText= 1
+	SetVariable setvar1,pos={111.00,191.00},size={140.00,22.00},title="Plot Start Time:"
+	SetVariable setvar1,labelBack=(0,26214,13293),font="Arial Narrow",fSize=16
+	SetVariable setvar1,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
+	SetVariable setvar1,valueBackColor=(39321,1,1)
+	SetVariable setvar1,limits={-inf,inf,0},value= tstart,styledText= 1
+	SetVariable setvar2,pos={111.00,217.00},size={140.00,22.00},title="Plot End Time:"
+	SetVariable setvar2,labelBack=(0,26214,13293),font="Arial Narrow",fSize=16
 	SetVariable setvar2,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
-	SetVariable setvar2,valueBackColor=(39321,1,1),limits={-inf,inf,0},value= tend,styledText= 1
-	Button button0,pos={150,249},size={50,30},proc=ButtonProc,title="Plot",fSize=18,fStyle=1,fColor=(1,39321,19939)
-	
-	SetVariable pathDSPL,pos={5,100},size={160,24},title="Data Path:",labelBack=(0,26214,13293),fColor=(65535,65535,65535),valueColor=(65535,65535,65535),valueBackColor=(39321,1,1)
-	SetVariable pathDSPL,font="Arial Narrow Bold",fSize=18,frame=0
+	SetVariable setvar2,valueBackColor=(39321,1,1)
+	SetVariable setvar2,limits={-inf,inf,0},value= tend,styledText= 1
+	Button button0,pos={103.00,243.00},size={50.00,30.00},proc=ButtonProc,title="Plot"
+	Button button0,fSize=18,fStyle=1,fColor=(1,39321,19939)
+	SetVariable pathDSPL,pos={5.00,100.00},size={160.00,24.00},title="Data Path:"
+	SetVariable pathDSPL,labelBack=(0,26214,13293),font="Arial Narrow",fSize=18
+	SetVariable pathDSPL,frame=0,fColor=(65535,65535,65535)
+	SetVariable pathDSPL,valueColor=(65535,65535,65535),valueBackColor=(39321,1,1)
 	SetVariable pathDSPL,limits={-inf,inf,0},value= Homepath,noedit= 1
-	SetVariable pathDSPL1,pos={160,100},size={200,24},title=" "
-	SetVariable pathDSPL1,font="Arial Narrow Bold",fSize=14,fstyle=2,valueColor=(65535,65535,65535), valueBackColor=(39321,1,1), labelBack=(39321,1,1)
+	SetVariable pathDSPL1,pos={160.00,100.00},size={200.00,20.00},title=" "
+	SetVariable pathDSPL1,labelBack=(39321,1,1),font="Arial Narrow",fSize=14
+	SetVariable pathDSPL1,fStyle=2,valueColor=(65535,65535,65535)
+	SetVariable pathDSPL1,valueBackColor=(39321,1,1)
 	SetVariable pathDSPL1,limits={-inf,inf,0},value= Neupath
-	Button MakePATH,pos={120,130},size={120,30},proc=ButtonProc_2,title="Make New Path?"
-	Button MakePATH,font="Arial Narrow Bold",fSize=18,fStyle=0,fColor=(1,39321,19939)
-	
+	Button MakePATH,pos={120.00,130.00},size={120.00,30.00},proc=ButtonProc_2,title="Make New Path?"
+	Button MakePATH,font="Arial Narrow",fSize=18,fStyle=0,fColor=(1,39321,19939)
+	Button button1,pos={219.00,244.00},size={50.00,30.00},proc=ButtonProc_3,title="Save"
+	Button button1,fSize=18,fStyle=1,fColor=(1,39321,19939)
+	ToolsGrid visible=1
 EndMacro
 
 Function ButtonProc(ba) : ButtonControl
