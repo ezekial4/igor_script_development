@@ -6,13 +6,14 @@
 //---var^2 = (1/N)*SUM(datapoint-truepoint)^2
 
 	
-Function pntname_sm_n_sdev(i_sm, fname,sm_type)
+Function pntname_sm_n_sdev(i_sm,foldnam,fname,sm_type)
 	Variable i_sm 
+	String foldnam
 	String fname 
 	Variable sm_type              //use 1 for boxcar; 2 for median
 	
 	Silent 1;DelayUpdate
-
+	SetDataFolder foldnam
 // Now my crude way of getting an average signal
 	Duplicate/O $fname $fname+"_sm"
 
@@ -41,12 +42,12 @@ Function pntname_sm_n_sdev(i_sm, fname,sm_type)
 	Wave dum4 = $fname+"_sdev"
 	dum4 = sqrt(dum3)
 
-	duplicate/O $fname $fname+"_plus" $fname+"_minus"
+	Duplicate/O $fname $fname+"_plus" $fname+"_minus"
 	Wave dum5 =$fname+"_plus"
 	Wave dum6 =$fname+"_minus" 
 	dum5 = (dum2) + (dum4)
 	dum6 = (dum2) -(dum4)
 
 	KillWaves/Z $fname+"_var", $fname+"_sqd",$fname+"_sm_sqd",$"sm_"+fname+"_sqd"
-
+	SetDataFolder root:
 End
