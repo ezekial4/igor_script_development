@@ -247,8 +247,9 @@ Window Overview_p1() : Graph
 	ReorderTraces POH,{ECHPWRC,PINJF_smth,PRAD_TOT,PRAD_DIVU,PRAD_DIVL}
 	SetDataFolder fldrSav0
 	ModifyGraph rgb(PRAD_TOT)=(52428,1,1),prescaleExp(left)=-6
-	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75},manTick(bottom)={0,1000,0,0}
-	ModifyGraph height=210,lSize=3,fSize(left)=13,noLabel(bottom)=2,tick=2, standoff=0,mirror=1,axisOnTop=1,grid(bottom)=1,manMinor(bottom)={1,0}
+	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,manTick(bottom)={0,1000,0,0}
+	ModifyGraph height=210,width={Aspect,1.75}
+	ModifyGraph lSize=3,fSize(left)=13,noLabel(bottom)=2,tick=2, standoff=0,mirror=1,axisOnTop=1,grid(bottom)=1,manMinor(bottom)={1,0}
 	ModifyGraph mode(PRAD_TOT)=7,mode(PRAD_DIVU)=7,hbFill(PRAD_DIVU)=2,toMode(PRAD_DIVU)=3,mode(PRAD_DIVL)=7,hbFill(PRAD_DIVL)=2,hbFill(PRAD_TOT)=2
 	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
 	Label left " "
@@ -281,8 +282,8 @@ Window Overview_p1() : Graph
 	Smooth/MPCT=25/M=0 11, ELM_freq_smth
 	AppendToGraph/C=(56797,56797,56797,16384) ELM_freq_smth vs t_ELM_freq
 	SetDataFolder fldrSav0
-	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=4,width={Aspect,1.75}
-	ModifyGraph height=210
+	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=4
+	ModifyGraph height=210,width={Aspect,1.75}
 	ModifyGraph mode(ELM_freq_smth)=3,msize(ELM_freq_smth)=5,marker(ELM_freq_smth)=19,useMrkStrokeRGB(ELM_freq_smth)=1
 	ModifyGraph rgb(FS03)=(1,39321,19939)
 	ModifyGraph grid(bottom)=1
