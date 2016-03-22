@@ -1,10 +1,12 @@
 #pragma rtGlobals=1		// Use modern global access method.
 
-function Palop_smooth(wavein, sampwid,stdev)
+function Palop_smooth(wavein,foldnam,sampwid,stdev)
 	String wavein
+	String foldnam
 	Variable stdev
 	Variable sampwid
 	
+	SetDataFolder foldnam
 	Make/O/n=(sampwid+1) xs,g_1, g_2,g_3, g_4,g_tot, term1
 	xs=p-(sampwid/2)
 	
@@ -42,5 +44,8 @@ function Palop_smooth(wavein, sampwid,stdev)
 	If (V_endrow > endrow)
 		 DeletePoints (endrow), inf, $wavein+"_paloped" 
 	endif
+	
+	KillWaves/Z g_tot,g_1,g_2,g_3,g_4,holder,term1,xs,V_npnts
+	SetDataFolder ::
 end
 	
