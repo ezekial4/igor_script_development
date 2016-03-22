@@ -2,9 +2,29 @@
 
 Window loadPanel() : Panel
 	PauseUpdate; Silent 1		// building window...
+	
+	//Prep Work
+	FindHome()
+	Homepath +=":"
+	if (exists("shotNum") != 2)
+		Variable/G shotNum = 126006
+	endif
+	if (exists("tstart") != 2)
+		Variable/G tstart = -50. 
+	endif
+	if (exists("tend") != 2)
+		Variable/G/O tend = 5500. 
+	endif
+	if(Exists("Neupath")!=2)
+		String/G Neupath = "Users:"
+	endif
+	if(Exists("mds") !=2)
+		Variable/G mds=0
+	endif
+	//End Prep
+
 	NewPanel /W=(161,45,533,334)
 	ModifyPanel cbRGB=(65535,60076,49151)
-	ShowTools/A
 	TitleBox title0,pos={74.00,15.00},size={231.00,41.00},title="Load Shot Summary"
 	TitleBox title0,labelBack=(0,26214,13293),font="Arial Narrow",fSize=28,frame=4
 	TitleBox title0,fStyle=1,fColor=(65535,65535,65535),anchor= MT
@@ -41,7 +61,6 @@ Window loadPanel() : Panel
 	Button MakePATH,font="Arial Narrow",fSize=18,fStyle=0,fColor=(1,39321,19939)
 	Button button1,pos={219.00,244.00},size={50.00,30.00},proc=ButtonProc_3,title="Save"
 	Button button1,fSize=18,fStyle=1,fColor=(1,39321,19939)
-	ToolsGrid visible=1
 EndMacro
 
 Function ButtonProc(ba) : ButtonControl
@@ -571,10 +590,11 @@ Function FindHome()
 End
 
 Function MakeNeuIGORPath()
-	
+
 	String/G Homepath 
 	String/G Neupath
-	String totpath = HomePath+Neupath
+	Variable/G shotNum 
+	String totpath = HomePath+Neupath+":"+num2istr(shotNum)
 	NewPath/Q/O DataDump totpath
 	
 	return 0
