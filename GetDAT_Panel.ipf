@@ -86,8 +86,8 @@ Window PLTdat_graph() : Graph
 	ModifyGraph rgb=(52428,1,1)
 	Label left z_dim
 	Label bottom "Time [msec]"
-	Legend/C/N=text0/J/A=LT/Z=0 "\\F'Arial Narrow Bold'\\Z14\\s(sig_Z) "+plot_pntnam
-	TextBox/C/N=text1/Z=1/A=RT/X=1.00/Y=1.00 "\\F'Arial Narrow Bold'\\Z14"+num2istr(shot)
+	Legend/C/N=text0/J/A=LT/Z=0 "\\F'Helvetica Neue Bold Condensed'\\Z14\\s(sig_Z) "+plot_pntnam
+	TextBox/C/N=text1/Z=1/A=RT/X=1.00/Y=1.00 "\\F'Helvetica Neue Bold Condensed'\\Z14"+num2istr(shot)
 EndMacro
 
 Function ButtonProc_1(ba) : ButtonControl
