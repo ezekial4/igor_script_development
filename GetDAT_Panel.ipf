@@ -10,6 +10,9 @@ Window GetDAT_Panel() : Panel
 	if(Exists("pntname")!=2)
 		String/G pntname = "density"
 	endif
+	if(Exists("server")!=2)
+		String/G server = "atlas.gat.com"
+	endif
 	if(Exists("plot_pntnam")!=2)
 		String/G plot_pntnam = "density"
 	endif
@@ -55,7 +58,8 @@ Function ButtonProc(ba) : ButtonControl
 		case 2: // mouse up
 			NVAR shot
 			SVAR pntname
-			getGADAT(shot,pntname)
+			SVAR server
+			getGADAT(shot,pntname,server)
 			break
 		case -1: // control being killed
 			break
