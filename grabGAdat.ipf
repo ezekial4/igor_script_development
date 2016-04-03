@@ -1,8 +1,9 @@
 #pragma rtGlobals=1		// Use modern global access method.
 
-Function getGADAT(shot,pntname)
+Function getGADAT(shot,pntname,server)
 	variable shot
 	string pntname
+	string server
 	
 	PathInfo DataDump  
 	if(V_flag  == 0)
@@ -12,7 +13,7 @@ Function getGADAT(shot,pntname)
 	unixPath = ParseFilePath(5,S_path,"/",0,0)
 	
 	 print "Getting data from GA MDSplus"
-	 grabGAdat(shot,pntname,unixPath,0)
+	 grabGAdat(shot,pntname,server,unixPath,0)
 	
 	 string fname = "pyd3dat_"+pntname+"_"+num2istr(shot)+".h5"
 	 variable fileID
@@ -27,14 +28,15 @@ Function getGADAT(shot,pntname)
 	 ExecuteUnixShellCommand(igorCmd, 0, 0)
 End
 
-Function grabGAdat(shot,tags,unixPath,printCmd)
-	variable shot
-	string tags
-	string unixPath
-	variable printCmd
+Function grabGAdat(shot,tags,server,unixPath,printCmd)
+	Variable shot
+	String tags
+	String server
+	String unixPath
+	Variable printCmd
 	
 	string igorCmd, exeCmd
-	igorCmd = "cd ~;source .bash_profile;cd '"+unixPath+"';python pyD3D2hdf5.py "+num2istr(shot)+" '"+tags+"' "
+	igorCmd = "cd ~;source .bash_profile;cd '"+unixPath+"';python pyD3D2hdf5.py "+" '"+server+"' "+num2istr(shot)+" '"+tags+"' "
 	if(printCmd)
 		print igorCmd
 	endif
