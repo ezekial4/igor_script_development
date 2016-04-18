@@ -49,6 +49,8 @@ Window GetDAT_Panel() : Panel
 	SetVariable plot_pntname,pos={90,219},size={255,24},title="PLTdat: PointName?"
 	SetVariable plot_pntname,font="Arial Narrow Bold",fSize=18
 	SetVariable plot_pntname,limits={100000,999999,1},value= plot_pntnam
+	SetVariable setServer title="Server",size={100,20},value=server
+	SetVariable setServer size={200,16},font="Arial Narrow",fSize=20
 EndMacro
 
 Function ButtonProc(ba) : ButtonControl
