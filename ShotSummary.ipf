@@ -24,43 +24,43 @@ Window loadPanel() : Panel
 	//End Prep
 
 	NewPanel /W=(161,45,533,334)
-	ModifyPanel cbRGB=(65535,60076,49151)
-	TitleBox title0,pos={74.00,15.00},size={231.00,41.00},title="Load Shot Summary"
-	TitleBox title0,labelBack=(0,26214,13293),font="Arial Narrow",fSize=28,frame=4
-	TitleBox title0,fStyle=1,fColor=(65535,65535,65535),anchor= MT
-	CheckBox usePython,pos={116.00,166.00},size={106.00,16.00},title="from MDSplus"
-	CheckBox usePython,labelBack=(0,0,0),font="Arial",fSize=14,variable= mds
-	SetVariable setvar0,pos={125.00,68.00},size={115.00,24.00},title="Shot #:"
-	SetVariable setvar0,labelBack=(0,26214,13293),font="Arial Narrow",fSize=18
+	ModifyPanel cbRGB=(34181,50372,17990)
+	TitleBox title0,pos={70,15},size={265,40},title="Load: Shot Summary"
+	TitleBox title0,labelBack=(0,26214,13293),font="Myriad Pro Condensed",fSize=36,frame=5
+	TitleBox title0,fStyle=1,fColor=(65535,65535,65535),anchor= MC,fixedSize=1
+	CheckBox usePython,pos={133,160},size={106.00,16.00},title="from MDSplus"
+	CheckBox usePython,labelBack=(0,0,0),font="Myriad Pro Condensed",fSize=14,variable= mds,fStyle=1
+	SetVariable setvar0,pos={125.00,57},size={137.00,24.00},title="Shot #:"
+	SetVariable setvar0,labelBack=(0,26214,13293),font="Myriad Pro Condensed",fSize=24,fStyle=1
 	SetVariable setvar0,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
-	SetVariable setvar0,valueBackColor=(39321,1,1)
+	SetVariable setvar0,valueBackColor=(34952,13107,11822)
 	SetVariable setvar0,limits={10000,inf,0},value= shotNum,styledText= 1
-	SetVariable setvar1,pos={111.00,191.00},size={140.00,22.00},title="Plot Start Time:"
-	SetVariable setvar1,labelBack=(0,26214,13293),font="Arial Narrow",fSize=16
+	SetVariable setvar1,pos={111.00,191.00},size={165,22.00},title="Plot Start Time:"
+	SetVariable setvar1,labelBack=(0,26214,13293),font="Myriad Pro Condensed",fSize=20,fStyle=1
 	SetVariable setvar1,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
-	SetVariable setvar1,valueBackColor=(39321,1,1)
+	SetVariable setvar1,valueBackColor=(34952,13107,11822)
 	SetVariable setvar1,limits={-inf,inf,0},value= tstart,styledText= 1
-	SetVariable setvar2,pos={111.00,217.00},size={140.00,22.00},title="Plot End Time:"
-	SetVariable setvar2,labelBack=(0,26214,13293),font="Arial Narrow",fSize=16
+	SetVariable setvar2,pos={111.00,217.00},size={165,22.00},title="Plot End Time:   "
+	SetVariable setvar2,labelBack=(0,26214,13293),font="Myriad Pro Condensed",fSize=20,fStyle=1
 	SetVariable setvar2,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
-	SetVariable setvar2,valueBackColor=(39321,1,1)
+	SetVariable setvar2,valueBackColor=(34952,13107,11822)
 	SetVariable setvar2,limits={-inf,inf,0},value= tend,styledText= 1
-	Button button0,pos={103.00,243.00},size={50.00,30.00},proc=ButtonProc,title="Plot"
-	Button button0,fSize=18,fStyle=1,fColor=(1,39321,19939)
-	SetVariable pathDSPL,pos={5.00,100.00},size={160.00,24.00},title="Data Path:"
-	SetVariable pathDSPL,labelBack=(0,26214,13293),font="Arial Narrow",fSize=18
-	SetVariable pathDSPL,frame=0,fColor=(65535,65535,65535)
-	SetVariable pathDSPL,valueColor=(65535,65535,65535),valueBackColor=(39321,1,1)
+	Button button0,pos={103.00,243.00},size={50.00,35},proc=ButtonProc,title="Plot"
+	Button button0,fSize=28,fStyle=1,fColor=(1,39321,19939),font="Myriad Pro Condensed"
+	SetVariable pathDSPL,pos={5.00,100.00},size={121,22},title="Path "
+	SetVariable pathDSPL,labelBack=(0,26214,13293),font="Myriad Pro Condensed",fSize=18
+	SetVariable pathDSPL,frame=0,fColor=(65535,65535,65535),fStyle=1
+	SetVariable pathDSPL,valueColor=(65535,65535,65535),valueBackColor=(34952,13107,11822)
 	SetVariable pathDSPL,limits={-inf,inf,0},value= Homepath,noedit= 1
-	SetVariable pathDSPL1,pos={160.00,100.00},size={200.00,20.00},title=" "
-	SetVariable pathDSPL1,labelBack=(39321,1,1),font="Arial Narrow",fSize=14
+	SetVariable pathDSPL1,pos={125,100},size={235,20.00},title=" "
+	SetVariable pathDSPL1,labelBack=(39321,1,1),font="Myriad Pro Condensed",fSize=14
 	SetVariable pathDSPL1,fStyle=2,valueColor=(65535,65535,65535)
-	SetVariable pathDSPL1,valueBackColor=(39321,1,1)
+	SetVariable pathDSPL1,valueBackColor=(34952,13107,11822)
 	SetVariable pathDSPL1,limits={-inf,inf,0},value= Neupath
 	Button MakePATH,pos={120.00,130.00},size={120.00,30.00},proc=ButtonProc_2,title="Make New Path?"
-	Button MakePATH,font="Arial Narrow",fSize=18,fStyle=0,fColor=(1,39321,19939)
-	Button button1,pos={219.00,244.00},size={50.00,30.00},proc=ButtonProc_3,title="Save"
-	Button button1,fSize=18,fStyle=1,fColor=(1,39321,19939)
+	Button MakePATH,font="Myriad Pro Condensed",fSize=18,fStyle=1,fColor=(1,39321,19939)
+	Button button1,pos={219.00,244.00},size={50.00,35},proc=ButtonProc_3,title="Save"
+	Button button1,fSize=28,fStyle=1,fColor=(1,39321,19939),font="Myriad Pro Condensed"
 EndMacro
 
 Function ButtonProc(ba) : ButtonControl
