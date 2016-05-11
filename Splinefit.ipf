@@ -49,5 +49,6 @@ Function splinefit(y_data,x_data,y_error,knots,outpnts)
 	error_wave[2] = degrees
 
 	KillWaves y_diff_sq,temp1
+	KillVariables chisq, redchisq, degrees, free, pnts, stdev
 End
 	
