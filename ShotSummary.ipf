@@ -124,7 +124,7 @@ Window Overview_p1() : Graph
 	PauseUpdate; Silent 1		// building window...
 	Display /W=(836,44,2053,789)
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5
-	TextBox/C/N=text0/A=MB/X=-5.86/Y=1.90 "\\Z18\\f01\\F'Arial Narrow'Shot: \\{shotNum}"
+	TextBox/C/N=text0/A=MB/X=-5.86/Y=1.90 "\\Z18\\f01\\F'Myriad Pro Condensed'Shot: \\{shotNum}"
 	String savDF="root:paramDB_"+num2istr(shotNum)+":"
 	String fldrSav0= GetDataFolder(1)
 		
@@ -142,13 +142,13 @@ Window Overview_p1() : Graph
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
 	ModifyGraph rgb(DENSV3)=(52428,34958,1),lSize(DENSV3)=3,lSize(DENSV2)=3,lSize(DENSR0)=3
 	ModifyGraph mode(NEPED)=3,msize(NEPED)=3,marker(NEPED)=19,useMrkStrokeRGB(NEPED)=1,mrkStrokeRGB(NEPED)=(52428,1,1), rgb(NEPED)=(65535,49151,49151,16384)
-	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,fSize(left)=13,prescaleExp(left)=-19
+	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,fSize(left)=15,prescaleExp(left)=-19
 	ModifyGraph tick=2,height=210,mirror=1,standoff=0,axisOnTop=1 
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
+	ModifyGraph fStyle(left)=1,font(left)="Myriad Pro Condensed"
 	Label left " "
-	Legend/C/N=text0/J/A=MC/X=1.63/Y=-31.90 "\\Z12\\f01\\F'Arial Narrow'\\s(DENSR0) DENSR0 \\M[ x10\\S19 \\Mm\\S-3\\M ]     \\Z12\\s(DENSV2) DENSV2"
-	AppendText/N=text0 "\\s(DENSV3) DENSV3                     \\s(NEPED) NEPED"
+	Legend/C/N=text0/J/A=MC/X=0/Y=-40/H=6 "\\Z16\\f01\\F'Myriad Pro Condensed'\\s(DENSR0) DENSR0 \\M\\Z16[ x10\\S19 \\M\\Z16m\\S-3\\M\\Z16 ]     \\Z16\\s(DENSV2) DENSV2"
+	AppendText/N=text0 "\\s(DENSV3) DENSV3                               \\s(NEPED)  NEPED"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
 	
@@ -160,14 +160,14 @@ Window Overview_p1() : Graph
 	AppendToGraph/C=(52428,34958,1) KAPPA vs t_KAPPA
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
-	ModifyGraph height=210, standoff=0,mirror=1,tick=2,lSize=3,fSize(left)=13,axisOnTop(left)=1
+	ModifyGraph height=210, standoff=0,mirror=1,tick=2,lSize=3,fSize(left)=15,axisOnTop(left)=1
 	ModifyGraph rgb(IP)=(52428,1,1),muloffset(IP)={0,1e-06},muloffset(BT0VAC)={0,-1} 
 	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
+	ModifyGraph fStyle(left)=1,font(left)="Myriad Pro Condensed"
 	Label left " "
 	SetAxis left 0,*
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=1.09/Y=-31.90 "\\Z12\\f01\\F'Arial Narrow'\\s(IP) IP [MA]\r\\s(BT0VAC) BT0 [T]\r\\s(LI) LI\r\\s(KAPPA) KAPPA"
+	Legend/C/N=text0/J/A=MC/X=1.09/Y=-40/H=6 "\\Z16\\f01\\F'Myriad Pro Condensed'\\s(IP) IP [MA]  \\s(BT0VAC) BT0 [T]\r\\s(LI) LI                 \\s(KAPPA) KAPPA"
 	RenameWindow #,G1
 	SetActiveSubwindow ##
 	
@@ -184,10 +184,10 @@ Window Overview_p1() : Graph
 	ModifyGraph rgb(H_THH98Y2)=(1,34817,52428)
 	ModifyGraph muloffset(TAUE)={0,10},log(left)=1
 	ModifyGraph grid(bottom)=1,noLabel(bottom)=2,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	ModifyGraph tick=2,mirror=1,fSize(left)=13,standoff=0,axisOnTop=1, lSize=3
-	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
+	ModifyGraph tick=2,mirror=1,fSize(left)=15,standoff=0,axisOnTop=1, lSize=3
+	ModifyGraph fStyle(left)=1,font(left)="Myriad Pro Condensed"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-5.45/Y=-36.67 "\\Z12\\f01\\F'Arial Narrow'\\s(H_THH98Y2) H_THH98Y2        \\s(H_L89) H_L89\r\\s(TAUE) TAUE [x0.1 sec]  \\s(TAU_P_STAR) TAU_P_STAR [sec]"
+	Legend/C/N=text0/J/A=MC/X=0/Y=-36.67 "\\Z16\\f01\\F'Myriad Pro Condensed'\\s(H_THH98Y2) H_THH98Y2        \\s(H_L89) H_L89\r\\s(TAUE) TAUE [x0.1 sec]  \\s(TAU_P_STAR) TAU_P_STAR [sec]"
 	RenameWindow #,G2
 	SetActiveSubwindow ##
 	
@@ -220,12 +220,12 @@ Window Overview_p1() : Graph
 	ModifyGraph rgb(TEPED)=(1,34817,52428,16384),useMrkStrokeRGB(TEPED)=1,useMrkStrokeRGB(TSTE_70)=1,useMrkStrokeRGB(TSTE_39)=1
 	ModifyGraph mrkStrokeRGB(TSTE_70)=(0,31097,13364),mrkStrokeRGB(TEPED)=(20560,37265,52685),mrkStrokeRGB(TSTE_39)=(57054,30326,11565)
 	ModifyGraph muloffset(ECE15)={0,1000},muloffset(ECE29)={0,1000}
-	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=13, standoff=0,prescaleExp(left)=-3,axisOnTop=1,log(left)=1
-	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
+	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=15, standoff=0,prescaleExp(left)=-3,axisOnTop=1,log(left)=1
+	ModifyGraph fStyle(left)=1,font(left)="Myriad Pro Condensed"
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label left " "
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-17/Y=-40/H={6,0,0}  "\\Z12\\f01\\F'Arial Narrow'T_E [keV]: \\s(TSTE_39)TS(0)   \\s(TEPED)TS(ped) \\s(TSTE_70)TS(a)\r                  \\s(ECE29)ECE(0) \\s(ECE15)ECE(0.5)\rT_I [keV]:  \\s(cerqtit1)CER(0) \\s(cerqtit23)CER(ped)"
+	Legend/C/N=text0/J/A=MC/X=-17/Y=-40/H={6,0,0}  "\\Z16\\f01\\F'Myriad Pro Condensed'T_E [keV]: \\s(TSTE_39)TS(0)   \\s(TEPED)TS(ped) \\s(TSTE_70)TS(a)\r                  \\s(ECE29)ECE(0) \\s(ECE15)ECE(0.5)\rT_I [keV]:  \\s(cerqtit1)CER(0) \\s(cerqtit23)CER(ped)"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
 	
@@ -243,8 +243,8 @@ Window Overview_p1() : Graph
 	ModifyGraph height=210,lSize=3,tick=2,mirror=1,standoff=0,axisOnTop=1
 	ModifyGraph rgb(WMHD)=(52428,1,1),muloffset(WMHD)={0,1e-06}
 	ModifyGraph grid(bottom)=1,fSize(left)=13,noLabel(bottom)=2, manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
-	Legend/C/N=text0/J/A=LT/X=3.5/Y=10 "\\Z12\\f01\\F'Arial Narrow'\\s(WMHD) WMHD [MJ]\r\\s(BETAP) BETAP\r\\s(BETAN) BETAN\r\\s(BETAT) BETAT"
+	ModifyGraph fStyle(left)=1,font(left)="Myriad Pro Condensed"
+	Legend/C/N=text0/J/A=LT/X=3.5/Y=10 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(WMHD) WMHD [MJ]\r\\s(BETAP) BETAP\r\\s(BETAN) BETAN\r\\s(BETAT) BETAT"
 	RenameWindow #,G4
 	SetActiveSubwindow ##
 	
@@ -270,9 +270,9 @@ Window Overview_p1() : Graph
 	ModifyGraph height=210,width={Aspect,1.75}
 	ModifyGraph lSize=3,fSize(left)=13,noLabel(bottom)=2,tick=2, standoff=0,mirror=1,axisOnTop=1,grid(bottom)=1,manMinor(bottom)={1,0}
 	ModifyGraph mode(PRAD_TOT)=7,mode(PRAD_DIVU)=7,hbFill(PRAD_DIVU)=2,toMode(PRAD_DIVU)=3,mode(PRAD_DIVL)=7,hbFill(PRAD_DIVL)=2,hbFill(PRAD_TOT)=2
-	ModifyGraph fStyle(left)=1,font(left)="Arial Narrow"
+	ModifyGraph fStyle(left)=1,font(left)="Myriad Pro Condensed"
 	Label left " "
-	Legend/C/N=text0/J/A=MC/X=-7/Y=31.90 "\\Z12\\f01\\F'Arial Narrow'\\s(PRAD_TOT) PRAD_TOT [MW]     \\s(PRAD_DIVU) PRAD_DIVU\r\\s(PRAD_DIVL) PRAD_DIVL             \\s(PINJF_smth) PINJ\r\\s(POH) POH   \\s(ECHPWRC) PECH"
+	Legend/C/N=text0/J/A=MC/X=-7/Y=31.90 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(PRAD_TOT) PRAD_TOT [MW]     \\s(PRAD_DIVU) PRAD_DIVU\r\\s(PRAD_DIVL) PRAD_DIVL             \\s(PINJF_smth) PINJ\r\\s(POH) POH   \\s(ECHPWRC) PECH"
 	RenameWindow #,G5
 	SetActiveSubwindow ##
 	
@@ -285,11 +285,11 @@ Window Overview_p1() : Graph
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5,width={Aspect,1.75}
 	ModifyGraph height=210, lSize=3,tick=2,mirror=1,fSize=13,standoff=0, axisOnTop=1,rgb(Q95)=(52428,1,1),grid(bottom)=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0},lblMargin(bottom)=-40,lstyle(QMIN)=3
-	ModifyGraph fStyle=1,font="Arial Narrow"
+	ModifyGraph fStyle=1,font="Myriad Pro Condensed"
 	Label bottom "\\Z12time [ms]"
 	SetAxis left 0.5,6
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-0.2/Y=-5 "\\Z12\\f01\\F'Arial Narrow'\\s(Q95) Q95\r\\s(Q0) Q0\r\\s(QMIN) QMIN"
+	Legend/C/N=text0/J/A=MC/X=-0.2/Y=-5 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(Q95) Q95\r\\s(Q0) Q0\r\\s(QMIN) QMIN"
 	RenameWindow #,G6
 	SetActiveSubwindow ##
 	
@@ -312,12 +312,12 @@ Window Overview_p1() : Graph
 	ModifyGraph noLabel(right)=2
 	ModifyGraph fSize=13,standoff=0,axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	ModifyGraph fStyle=1,font="Arial Narrow"
+	ModifyGraph fStyle=1,font="Myriad Pro Condensed"
 	Label bottom "\\Z12time [ms]"
 	SetAxis right 0,100000000000000000
 	SetAxis bottom root:tstart,root:tend
 	SetAxis left 1,1000
-	Legend/C/N=text0/J/A=MC/X=6.54/Y=34.76 "\\Z12\\f01\\F'Arial Narrow'\\s(FS01) FS01\r\\s(FS03) FS03\r\\s(ELM_freq_smth) ELM_freq_smth"
+	Legend/C/N=text0/J/A=MC/X=6.54/Y=34.76 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(FS01) FS01\r\\s(FS03) FS03\r\\s(ELM_freq_smth) ELM_freq_smth"
 	RenameWindow #,G7
 	SetActiveSubwindow ##
 	
@@ -353,11 +353,11 @@ Window Overview_p1() : Graph
 	ModifyGraph rgb(DRSEP)=(21845,21845,21845)
 	ModifyGraph muloffset(DRSEP)={0,10000},axisOnTop=1,prescaleExp(left)=-3,standoff=0,fSize=12,mirror=1,zero(left)=2,tick=2
 	ModifyGraph grid(bottom)=1,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	ModifyGraph fStyle=1,font="Arial Narrow"
+	ModifyGraph fStyle=1,font="Myriad Pro Condensed"
 	Label left "[kA] "
 	Label bottom "\\Z12time [ms]"
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=35/Y=3 "\\Z12\\f01\\F'Arial Narrow'\\s(IL30) IL30\r\\s(IL90) IL90\r\\s(IL150) IL150\r\\s(IL210) IL210\r\\s(IL270) IL270\r\\s(IL330) IL330\r\\s(IU30) IU30"
+	Legend/C/N=text0/J/A=MC/X=35/Y=3 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(IL30) IL30\r\\s(IL90) IL90\r\\s(IL150) IL150\r\\s(IL210) IL210\r\\s(IL270) IL270\r\\s(IL330) IL330\r\\s(IU30) IU30"
 	AppendText "\\s(IU90) IU90\r\\s(IU150) IU150\r\\s(IU210) IU210\r\\s(IU270) IU270\r\\s(IU330) IU330\r\\s(DRSEP) DRSEP"
 	RenameWindow #,G8
 	SetActiveSubwindow ##
@@ -366,7 +366,7 @@ EndMacro
 Window Overview_p2() : Graph
 	PauseUpdate; Silent 1		// building window...
 	Display /W=(1279,45,2501,789)
-	TextBox/C/N=text0/A=MB/X=-5.86/Y=1.90 "\\Z18\\f01\\F'Arial Narrow'Shot: \\{shotNum}"
+	TextBox/C/N=text0/A=MB/X=-5.86/Y=1.90 "\\Z18\\f01\\F'Myriad Pro Condensed'Shot: \\{shotNum}"
 	String savDF="root:paramDB_"+num2istr(shotNum)+":"
 	String fldrSav0= GetDataFolder(1)
 	
@@ -383,10 +383,10 @@ Window Overview_p2() : Graph
 	ModifyGraph rgb(BDOTEVAMPL)=(52428,1,1),rgb(BDOTODAMPL)=(1,34817,52428)
 	ModifyGraph hbFill=2,toMode=3
 	ModifyGraph grid(bottom)=1,tick=2,mirror=1
-	ModifyGraph font="Arial Narrow"
+	ModifyGraph font="Myriad Pro Condensed"
 	ModifyGraph noLabel(bottom)=2,fSize=13,fStyle=1,standoff=0,axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	Legend/C/N=text0/J/A=MC/X=3.00/Y=35.24 "\\Z12\\f01\\F'Arial Narrow'\\s(BDOTEVAMPL) BDOTEVAMPL\r\\s(BDOTODAMPL) BDOTODAMPL"
+	Legend/C/N=text0/J/A=MC/X=3.00/Y=35.24 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(BDOTEVAMPL) BDOTEVAMPL\r\\s(BDOTODAMPL) BDOTODAMPL"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
 		
@@ -400,9 +400,9 @@ Window Overview_p2() : Graph
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
 	ModifyGraph height=210,mode=3,marker=19,rgb=(65535,49151,49151,32768),msize=4,useMrkStrokeRGB=1
-	ModifyGraph mrkStrokeRGB=(52428,1,1),grid(bottom)=1,tick=2,mirror=1,font="Arial Narrow",noLabel(bottom)=2
+	ModifyGraph mrkStrokeRGB=(52428,1,1),grid(bottom)=1,tick=2,mirror=1,font="Myriad Pro Condensed",noLabel(bottom)=2
 	ModifyGraph fSize=13,fStyle=1,standoff=0,axisOnTop=1,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	Legend/C/N=text0/J/A=MC/X=4.90/Y=36.67 "\\Z12\\f01\\F'Arial Narrow'\\s(PEPED) PEPED [kPa]"
+	Legend/C/N=text0/J/A=MC/X=4.90/Y=36.67 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(PEPED) PEPED [kPa]"
 	RenameWindow #,G1
 	SetActiveSubwindow ##
 	
@@ -423,10 +423,10 @@ Window Overview_p2() : Graph
 	ModifyGraph rgb(NEWID)=(65535,49151,49151,32768),rgb(PEWID)=(49151,65535,49151,32768)
 	ModifyGraph rgb(TEWID)=(49151,60031,65535,32768),msize=2
 	ModifyGraph useMrkStrokeRGB=1,mrkStrokeRGB(NEWID)=(52428,1,1),mrkStrokeRGB(PEWID)=(1,39321,19939)
-	ModifyGraph mrkStrokeRGB(TEWID)=(1,34817,52428),grid(bottom)=1,log(left)=1,tick=2,mirror=1,font="Arial Narrow"
+	ModifyGraph mrkStrokeRGB(TEWID)=(1,34817,52428),grid(bottom)=1,log(left)=1,tick=2,mirror=1,font="Myriad Pro Condensed"
 	ModifyGraph noLabel(bottom)=2,fSize=13,fStyle=1,standoff=0,axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	Legend/C/N=text0/J/A=MC/X=3.27/Y=41.90 "\\Z12\\f01\\F'Arial Narrow'\\s(NEWID) NEWID   \\s(PEWID) PEWID   \\s(TEWID) TEWID"
+	Legend/C/N=text0/J/A=MC/X=3.27/Y=41.90 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(NEWID) NEWID   \\s(PEWID) PEWID   \\s(TEWID) TEWID"
 	RenameWindow #,G2
 	SetActiveSubwindow ##
 	
@@ -444,10 +444,10 @@ Window Overview_p2() : Graph
 	ModifyGraph height=210,mode=7,lSize=3
 	ModifyGraph rgb(N1RMS)=(65535,43690,0),rgb(N2RMS)=(52428,1,1),rgb(N3RMS)=(1,34817,52428)
 	ModifyGraph rgb(N4RMS)=(1,39321,19939)
-	ModifyGraph hbFill=2,toMode=3,grid(bottom)=1,tick=2,mirror=1,font="Arial Narrow"
+	ModifyGraph hbFill=2,toMode=3,grid(bottom)=1,tick=2,mirror=1,font="Myriad Pro Condensed"
 	ModifyGraph noLabel(bottom)=2,fSize=13,fStyle=1,standoff=0,axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	Legend/C/N=text0/J/A=MC/X=8.45/Y=30.00 "\\Z12\\f01\\F'Arial Narrow'\\s(N1RMS) N1RMS\r\\s(N2RMS) N2RMS\r\\s(N3RMS) N3RMS\r\\s(N4RMS) N4RMS"
+	Legend/C/N=text0/J/A=MC/X=8.45/Y=30.00 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(N1RMS) N1RMS\r\\s(N2RMS) N2RMS\r\\s(N3RMS) N3RMS\r\\s(N4RMS) N4RMS"
 	RenameWindow #,G5
 	SetActiveSubwindow ##
 	
@@ -466,13 +466,13 @@ Window Overview_p2() : Graph
 	ModifyGraph grid(bottom)=1
 	ModifyGraph tick=2
 	ModifyGraph mirror=1
-	ModifyGraph font="Arial Narrow"
+	ModifyGraph font="Myriad Pro Condensed"
 	ModifyGraph noLabel(bottom)=2
 	ModifyGraph fSize=13
 	ModifyGraph fStyle=1
 	ModifyGraph standoff=0
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	Legend/C/N=text0/J/A=MC/X=3.50/Y=10.00 "\\Z12\\f01\\F'Arial Narrow'\\s(cerqrotct23) Edge Rotation [km/s]\r\\s(cerqrotct1) Core Rotation"
+	Legend/C/N=text0/J/A=MC/X=3.50/Y=10.00 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(cerqrotct23) Edge Rotation [km/s]\r\\s(cerqrotct1) Core Rotation"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
 	
@@ -484,9 +484,9 @@ Window Overview_p2() : Graph
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75}
 	ModifyGraph height=210,lSize=3,rgb=(52428,1,1)
-	ModifyGraph grid(bottom)=1,tick=2,mirror=1,font="Arial Narrow",noLabel(bottom)=2,fSize=12
+	ModifyGraph grid(bottom)=1,tick=2,mirror=1,font="Myriad Pro Condensed",noLabel(bottom)=2,fSize=12
 	ModifyGraph fStyle=1,standoff=0,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	Legend/C/N=text0/J/A=MC/X=0.00/Y=2.86 "\\Z12\\f01\\F'Arial Narrow'\\s(RVSOUT) RVSOUT"
+	Legend/C/N=text0/J/A=MC/X=0.00/Y=2.86 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(RVSOUT) RVSOUT"
 	RenameWindow #,G4
 	SetActiveSubwindow ##
 	
@@ -507,7 +507,7 @@ Window Overview_p2() : Graph
 	ModifyGraph log(left)=1
 	ModifyGraph tick=2
 	ModifyGraph mirror=1
-	ModifyGraph font="Arial Narrow"
+	ModifyGraph font="Myriad Pro Condensed"
 	ModifyGraph fSize=12
 	ModifyGraph fStyle=1
 	ModifyGraph lblMargin(bottom)=-40
@@ -515,7 +515,7 @@ Window Overview_p2() : Graph
 	ModifyGraph axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label bottom "\\Z12time [ms]"
-	Legend/C/N=text0/J/A=MC/X=-1.09/Y=46.67 "\\Z12\\f01\\F'Arial Narrow'\\s(NU_E_STAR) NU_E_STAR   \\s(F_GW) F_GW    \\s(F_GW_PED) F_GW_PED"
+	Legend/C/N=text0/J/A=MC/X=-1.09/Y=46.67 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(NU_E_STAR) NU_E_STAR   \\s(F_GW) F_GW    \\s(F_GW_PED) F_GW_PED"
 	RenameWindow #,G7
 	SetActiveSubwindow ##
 	
@@ -536,14 +536,14 @@ Window Overview_p2() : Graph
 	ModifyGraph lSize=3
 	ModifyGraph rgb(VIOW)=(1,39321,19939),rgb(fzns)=(52428,1,1)
 	ModifyGraph grid(bottom)=1,tick=2,mirror=1
-	ModifyGraph font="Arial Narrow"
+	ModifyGraph font="Myriad Pro Condensed"
 	ModifyGraph fSize=12,fStyle=1
 	ModifyGraph lblMargin(bottom)=-40
 	ModifyGraph standoff=0
 	ModifyGraph axisOnTop=1
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label bottom "\\Z12time [ms]"
-	Legend/C/N=text0/J/A=MC/X=3.81/Y=34.29 "\\Z12\\f01\\F'Arial Narrow'\\s(VIOW) VIOW\r\\s(FZNS) FZNS\r\\s(TINJ_smth) NBI NET TORQUE"
+	Legend/C/N=text0/J/A=MC/X=3.81/Y=34.29 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(VIOW) VIOW\r\\s(FZNS) FZNS\r\\s(TINJ_smth) NBI NET TORQUE"
 	RenameWindow #,G8
 	SetActiveSubwindow ##
 	
@@ -568,13 +568,13 @@ Window Overview_p2() : Graph
 	ModifyGraph log(left)=1
 	ModifyGraph tick=2
 	ModifyGraph mirror=1
-	ModifyGraph font="Arial Narrow"
+	ModifyGraph font="Myriad Pro Condensed"
 	ModifyGraph fSize=12
 	ModifyGraph fStyle=1
 	ModifyGraph lblMargin(bottom)=-40
 	ModifyGraph standoff=0,axisOnTop=1,manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label bottom "\\Z12time [ms]"
-	Legend/C/N=text0/J/A=MC/X=3.27/Y=22.38 "\\Z12\\f01\\F'Arial Narrow'\\s(VOLUME) VOLUME [m**3]\r\\s(AMINOR) AMINOR [cm] \r\\s(GAPOUT) GAPOUT [cm]\r\\s(TRIBOT) TRIBOT  "
+	Legend/C/N=text0/J/A=MC/X=3.27/Y=22.38 "\\Z12\\f01\\F'Myriad Pro Condensed'\\s(VOLUME) VOLUME [m**3]\r\\s(AMINOR) AMINOR [cm] \r\\s(GAPOUT) GAPOUT [cm]\r\\s(TRIBOT) TRIBOT  "
 	AppendText "\\s(TRITOP) TRITOP"
 	RenameWindow #,G6
 	SetActiveSubwindow ##
