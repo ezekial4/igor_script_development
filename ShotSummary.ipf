@@ -45,7 +45,7 @@ Window loadPanel() : Panel
 	SetVariable setvar2,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)
 	SetVariable setvar2,valueBackColor=(34952,13107,11822)
 	SetVariable setvar2,limits={-inf,inf,0},value= tend,styledText= 1
-	Button button0,pos={103.00,243.00},size={50.00,35},proc=ButtonProc,title="Plot"
+	Button button0,pos={50,243.00},size={50.00,35},proc=ButtonProc,title="Plot"
 	Button button0,fSize=28,fStyle=1,fColor=(1,39321,19939),font="Myriad Pro Condensed"
 	SetVariable pathDSPL,pos={5.00,100.00},size={121,22},title="Path "
 	SetVariable pathDSPL,labelBack=(0,26214,13293),font="Myriad Pro Condensed",fSize=18
@@ -59,8 +59,10 @@ Window loadPanel() : Panel
 	SetVariable pathDSPL1,limits={-inf,inf,0},value= Neupath
 	Button MakePATH,pos={120.00,130.00},size={120.00,30.00},proc=ButtonProc_2,title="Make New Path?"
 	Button MakePATH,font="Myriad Pro Condensed",fSize=18,fStyle=1,fColor=(1,39321,19939)
-	Button button1,pos={219.00,244.00},size={50.00,35},proc=ButtonProc_3,title="Save"
+	Button button1,pos={150,244.00},size={50.00,35},proc=ButtonProc_3,title="Save"
 	Button button1,fSize=28,fStyle=1,fColor=(1,39321,19939),font="Myriad Pro Condensed"
+	Button button2,pos={240,244.00},size={85,35},proc=ButtonProc_4,title="CloseAll"
+	Button button2,fSize=28,fStyle=1,fColor=(1,39321,19939),font="Myriad Pro Condensed"
 EndMacro
 
 Function ButtonProc(ba) : ButtonControl
@@ -119,6 +121,21 @@ Function ButtonProc_3(ba) : ButtonControl
 
 	return 0
 End
+
+Function ButtonProc_4(ba) : ButtonControl
+	STRUCT WMButtonAction &ba
+
+	switch( ba.eventCode )
+		case 2: // mouse up
+			Execute "KillOverviews()"
+			break
+		case -1: // control being killed
+			break
+	endswitch
+
+	return 0
+End
+
 
 Window Overview_p1() : Graph
 	PauseUpdate; Silent 1		// building window...
@@ -605,5 +622,11 @@ Function sav2PDF()
 
 	SavePICT/O/P=DataDump/E=1/EF=2/WIN=Overview_p1
 	SavePICT/O/P=DataDump/E=1/EF=2/WIN=Overview_p2
+	return 0
+End
+
+Function KillOverviews()
+	KillWindow/Z Overview_p1
+	KillWindow/Z Overview_p2
 	return 0
 End
