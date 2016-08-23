@@ -77,9 +77,10 @@ Function ButtonProc(ba) : ButtonControl
 		case 2: // mouse up
 			NVAR shotNum
 			NVAR mds
+			NVAR icoil_type
 			print shotNum
 			if(mds == 1)
-				getGAdataDUMP(shotNum)
+				getGAdataDUMP(shotNum, icoil_type)
 			endif
 			
 			String fname = "paramDB_"+num2istr(shotNum)+".h5"
