@@ -21,6 +21,9 @@ Window loadPanel() : Panel
 	if(Exists("mds") !=2)
 		Variable/G mds=0
 	endif
+	if(Exists("icoil_type") !=2)
+		Variable/G icoil_type=0
+	endif
 	//End Prep
 
 	NewPanel /W=(161,45,533,334)
@@ -28,8 +31,10 @@ Window loadPanel() : Panel
 	TitleBox title0,pos={70,15},size={265,40},title="Load: Shot Summary"
 	TitleBox title0,labelBack=(0,26214,13293),font="Myriad Pro Condensed",fSize=36,frame=5
 	TitleBox title0,fStyle=1,fColor=(65535,65535,65535),anchor= MC,fixedSize=1
-	CheckBox usePython,pos={133,160},size={106.00,16.00},title="from MDSplus"
+	CheckBox usePython,pos={80,160},size={106.00,16.00},title="from MDSplus"
 	CheckBox usePython,labelBack=(0,0,0),font="Myriad Pro Condensed",fSize=14,variable= mds,fStyle=1
+	CheckBox whicIC,pos={190,160},size={106.00,16.00},title="use PCS Icoil"
+	CheckBox whicIC,labelBack=(0,0,0),font="Myriad Pro Condensed",fSize=14,variable= icoil_type,fStyle=1
 	SetVariable setvar0,pos={125.00,57},size={137.00,24.00},title="Shot #:"
 	SetVariable setvar0,labelBack=(0,26214,13293),font="Myriad Pro Condensed",fSize=24,fStyle=1
 	SetVariable setvar0,fColor=(65535,65535,65535),valueColor=(65535,65535,65535)

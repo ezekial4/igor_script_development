@@ -1,7 +1,8 @@
 #pragma rtGlobals=1		// Use modern global access method.
 
-Function getGAdataDUMP(shot)
+Function getGAdataDUMP(shot, icoil_type)
 	variable shot
+	variable icoil_type
 	string pntname
 	
 	PathInfo DataDump  
@@ -14,19 +15,24 @@ Function getGAdataDUMP(shot)
 	print unixPath
 	print "Getting data from GA MDSplus"
 	tic()
-	grabDB(shot,unixPath,0)
+	grabDB(shot, icoil_type, unixPath,0)
 	toc()
 End
 
-Function grabDB(shot,unixPath,printCmd)
+Function grabDB(shot,icoil_type,unixPath,printCmd)
 	variable shot
+	variable icoil_type
 	string unixPath
 	variable printCmd
 	
 	string savPAth = "~/Dropbox/1_NearTerm/DIIID_Analysis/DIIID_shotSum/"+num2istr(shot)
 	string pytoolsPATH = "~/Pytools/DIIID/DIIID_DBwork"
 	string igorCmd, exeCmd
-	igorCmd = "cd "+savPath+";source ~/.bash_profile;python "+pytoolsPATH+"/data_grab_nosqlDB.py "+num2istr(shot)
+	if(icoil_type)
+	   igorCmd = "cd "+savPath+";source ~/.bash_profile;python "+pytoolsPATH+"/data_grab_nosqlDB.py "+num2istr(shot)+" --icoil 'pc'"
+	else
+	   igorCmd = "cd "+savPath+";source ~/.bash_profile;python "+pytoolsPATH+"/data_grab_nosqlDB.py "+num2istr(shot)
+	endif
 	if(printCmd)
 		print igorCmd
 	endif
