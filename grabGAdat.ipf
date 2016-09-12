@@ -55,7 +55,7 @@ Function/S ExecuteUnixShellCommand(uCommand, printCommandInHistory, printResultI
 
 	String cmd
 	sprintf cmd, "do shell script \"%s\"", uCommand
-	ExecuteScriptText cmd
+	ExecuteScriptText/Z cmd
 
 	if (printResultInHistory)
 		Print S_value
