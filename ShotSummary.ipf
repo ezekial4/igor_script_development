@@ -218,7 +218,7 @@ Window Overview_p1() : Graph
 	SetDataFolder savDF
 	Display/W=(0,0.293,0.334,0.587)/HOST=#  TEPED vs t_TEPED
 	AppendToGraph/C=(1,39321,19939,16384) TSTE_70 vs t_TSTE_70
-	AppendToGraph/C=(57054,30326,11565,16384) TSTE_39 vs t_TSTE_39
+	AppendToGraph/C=(57054,30326,11565,16384) TSTE_43 vs t_TSTE_43
 	AppendToGraph/C=(52428,1,1) ECE15 vs t_ECE15
 	AppendToGraph/C=(34181,50372,17990) ECE29 vs t_ECE29
 	if(Exists("cerqtit1"))
@@ -239,16 +239,16 @@ Window Overview_p1() : Graph
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,1.75},height=210,noLabel(bottom)=2
 	ModifyGraph mode(TEPED)=3,mode(TSTE_70)=3,msize(TEPED)=2,msize(TSTE_70)=2, lSize(ECE15)=3,lSize(ECE29)=3,lSize(cerqtit1)=3,lSize(cerqtit23)=3
-	ModifyGraph marker(TEPED)=29,marker(TSTE_70)=29,mode(TSTE_39)=3,marker(TSTE_39)=29,msize(TSTE_39)=2
-	ModifyGraph rgb(TEPED)=(1,34817,52428,16384),useMrkStrokeRGB(TEPED)=1,useMrkStrokeRGB(TSTE_70)=1,useMrkStrokeRGB(TSTE_39)=1
-	ModifyGraph mrkStrokeRGB(TSTE_70)=(0,31097,13364),mrkStrokeRGB(TEPED)=(20560,37265,52685),mrkStrokeRGB(TSTE_39)=(57054,30326,11565)
+	ModifyGraph marker(TEPED)=29,marker(TSTE_70)=29,mode(TSTE_43)=3,marker(TSTE_43)=29,msize(TSTE_43)=2
+	ModifyGraph rgb(TEPED)=(1,34817,52428,16384),useMrkStrokeRGB(TEPED)=1,useMrkStrokeRGB(TSTE_70)=1,useMrkStrokeRGB(TSTE_43)=1
+	ModifyGraph mrkStrokeRGB(TSTE_70)=(0,31097,13364),mrkStrokeRGB(TEPED)=(20560,37265,52685),mrkStrokeRGB(TSTE_43)=(57054,30326,11565)
 	ModifyGraph muloffset(ECE15)={0,1000},muloffset(ECE29)={0,1000}
 	ModifyGraph grid(bottom)=1,tick=2,mirror=1,fSize=15, standoff=0,prescaleExp(left)=-3,axisOnTop=1,log(left)=1
 	ModifyGraph fStyle(left)=1,font(left)="Myriad Pro Condensed"
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
 	Label left " "
 	SetAxis bottom root:tstart,root:tend
-	Legend/C/N=text0/J/A=MC/X=-10/Y=-40/H={6,0,0}  "\\Z16\\f01\\F'Myriad Pro Condensed'T_E [keV]: \\s(TSTE_39)TS(0)   \\s(TEPED)TS(ped) \\s(TSTE_70)TS(a)\r                      \\s(ECE29)ECE(0) \\s(ECE15)ECE(0.5)\rT_I [keV]:  \\s(cerqtit1)CER(0) \\s(cerqtit23)CER(ped)"
+	Legend/C/N=text0/J/A=MC/X=-10/Y=-40/H={6,0,0}  "\\Z16\\f01\\F'Myriad Pro Condensed'T_E [keV]: \\s(TSTE_43)TS(0)   \\s(TEPED)TS(ped) \\s(TSTE_70)TS(a)\r                      \\s(ECE29)ECE(0) \\s(ECE15)ECE(0.5)\rT_I [keV]:  \\s(cerqtit1)CER(0) \\s(cerqtit23)CER(ped)"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
 	
