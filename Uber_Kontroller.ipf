@@ -245,7 +245,7 @@ Window Plot_fs_data() : Graph
 	PauseUpdate; Silent 1		// building window...
 	String fldrSav0= GetDataFolder(1)
 	String dataset = "root:s"+num2istr(ishot)
-	string septrix = "rmidout"
+	string septrix = "rmidout_"+num2istr(ishot)
 	SetDataFolder dataset
 	if(checkname("fsmid1_da",1)!=0)
 		Display /W=(7,44,559,465) fsmid1_da vs t_fsmid1_da

@@ -57,7 +57,7 @@ Function Splineopt(y_data,x_data,y_err_str,int_knots,tol,itermax)
 	
 	Variable i,j
 	Make/O/N=(outpnts,itermax) mat_spline_str = 0
-	Make/O/N=(y_lgth)  y_random y_random_cs
+	Make/O/N=(y_lgth)  y_random, y_random_cs
 	
 	Wave dummy =$y_data
 	Wave dummy2 = $y_data+"_cs"
