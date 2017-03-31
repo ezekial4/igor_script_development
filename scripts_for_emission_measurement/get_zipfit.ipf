@@ -10,11 +10,11 @@ Function get_zipfit(ishot,fname_dens,fname_temp,GA_DL,LocalDL)
 	SetDataFolder root:
 	String setname = "s"+num2istr(ishot)
 	
-		If(DataFolderExists(setname) ==1 )
-			Setdatafolder root:$setname
-		else
-			NewDataFolder/S $setname
-		endif
+	if(DataFolderExists(setname) ==1 )
+		Setdatafolder root:$setname
+	else
+		NewDataFolder/S $setname
+	endif
 	
 	String fnamelong = fname_dens+"_"+num2istr(ishot)+".ibw"
 	String fnamelong2 = fname_temp+"_"+num2istr(ishot)+".ibw"
@@ -26,12 +26,12 @@ Function get_zipfit(ishot,fname_dens,fname_temp,GA_DL,LocalDL)
 	String fnamelong6 = "time_"+num2istr(ishot)+".ibw"
 
 	if (GA_DL ==1)
-		GA_Download(fnamelong)
-		GA_Download(fnamelong2)
-		GA_Download(fnamelong3)
-		GA_Download(fnamelong4)
-		GA_Download(fnamelong5)
-		GA_Download(fnamelong6)
+//		GA_Download(fnamelong)
+//		GA_Download(fnamelong2)
+//		GA_Download(fnamelong3)
+//		GA_Download(fnamelong4)
+//		GA_Download(fnamelong5)
+//		GA_Download(fnamelong6)
 	endif
 	
 	if(LocalDL ==1)

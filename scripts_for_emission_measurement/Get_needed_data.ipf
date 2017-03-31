@@ -1,8 +1,5 @@
 #pragma rtGlobals=1		// Use modern global access method.
 
-// This macro looks for time history data from 2 places. Eother via FTP and the GA server 
-//or my local HD.
-
 Function GA_load_wav_time_his(ishot,fname,GAdlwav,LocalDLWav)
 	Variable ishot 
 	String fname
@@ -16,22 +13,21 @@ Function GA_load_wav_time_his(ishot,fname,GAdlwav,LocalDLWav)
 		NewDataFolder/S $setname
 	endif
 	
-	String fnamelong = fname+"_"+num2istr(ishot)+".ibw"
-	String fname_t_long = "t_"+fname+"_"+num2istr(ishot)+".ibw"
-	
-	if (GAdlwav ==1)
-		GA_Download(fnamelong)
-		GA_Download(fname_t_long)
+	String server
+	if (GAdlwav == 1)
+		server="atlas.gat.com"
+		getGADAT(ishot,fname,server)
 	endif
 	
-	if(LocalDLWav ==1)
-		PathInfo Unt_path
-		If (V_flag == 0)
-			NewPath/C/O/M="Find Ye Path to the Data" Unt_path
-		Endif
-		LoadWave /H/O/Q/P=Unt_path fnamelong
-		LoadWave /H/O/Q/P= unt_path fname_t_long
+	if(LocalDLWav == 1)
+		server="localhost"
+		getGADAT(ishot,fname,server)
 	endif
+	
+	MoveWave root:$"s"+num2istr(ishot):$"pyd3dat_"+fname+"_"+num2istr(ishot):sig_Z, root:$"s"+num2istr(ishot):$fname
+	MoveWave root:$"s"+num2istr(ishot):$"pyd3dat_"+fname+"_"+num2istr(ishot):sig_X, root:$"s"+num2istr(ishot):$"t_"+fname
+
+	KillDataFolder $"pyd3dat_"+fname+"_"+num2istr(ishot)
 	
 	Setdatafolder root:
 End

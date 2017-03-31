@@ -2,21 +2,21 @@
 
 Macro Pre_process_FS_mid(ishot,GA,Local)
 	Variable ishot = 110000
-	Variable  GA =0
-	Variable Local =1
+	Variable  GA = 0
+	Variable Local = 1
 	
 	PauseUpdate; Silent 1
 	
 	Silent,1
-	String fsname = "fsmid"
+	String fsname = "fs"
 	String dum
 	
 //Set if we are doing the d_alpha or c3 filtescopes
 	String ext
 	If(gRadioVal2 == 1)
-		ext="_da"
+		ext="midda"
 	else(gRadioVal2 == 2)
-		ext="_c3"
+		ext="midc3"
 	Endif
 
 	Variable i=1
@@ -38,9 +38,9 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 
 //Make a noise wav to store error from digitizer noise 
 	Make/O/N=8 fsnoise_err
-	Variable ierr =40    //This is the stopping point of the offset analysis 
+	Variable ierr = 40    //This is the stopping point of the offset analysis 
 	
-//	Move raw waves out of the working directory	 and correct for offsets
+//	Move raw waves out of the working directory and correct for offsets
 	i=1
 	do
 		dum =  fsname+num2str(i)+ext+"_"+num2istr(ishot)

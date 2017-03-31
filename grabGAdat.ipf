@@ -6,26 +6,26 @@ Function getGADAT(shot,pntname,server)
 	string server
 	
 	PathInfo DataDump  
-	if(V_flag  == 0)
+	if(V_flag == 0)
 		Abort "Data Path does Exist: Make New Path."
 	endif
 	String unixPath
 	unixPath = ParseFilePath(5,S_path,"/",0,0)
 	
-	 print "Getting data from GA MDSplus"
-	 grabGAdat(shot,pntname,server,unixPath,0)
+	print "Getting data from GA MDSplus"
+	grabGAdat(shot,pntname,server,unixPath,0)
 	
-	 string fname = "pyd3dat_"+pntname+"_"+num2istr(shot)+".h5"
-	 variable fileID
-	 print "Loading Data into IGOR"
-	 HDF5OpenFile/P=DataDump/R/Z fileID as fname
-	 HDF5LoadGroup/T/O/Z/IGOR=-1 :, fileID,"/"
-	 HDF5CloseFile/A/Z fileID
-	 
-	 string igorCmd = "cd ~;source .bash_profile;cd "+unixPath+";rm "+fname
-	 string exeCmd
-	 sprintf exeCmd, "do shell script \"%s\"", igorCmd
-	 ExecuteUnixShellCommand(igorCmd, 0, 0)
+	string fname = "pyd3dat_"+pntname+"_"+num2istr(shot)+".h5"
+	variable fileID
+	print "Loading Data into IGOR"
+	HDF5OpenFile/P=DataDump/R/Z fileID as fname
+	HDF5LoadGroup/T/O/Z/IGOR=-1 :, fileID,"/"
+	HDF5CloseFile/A/Z fileID
+	
+	string igorCmd = "cd ~;source .bash_profile;cd '"+unixPath+"';rm -f "+fname
+	string exeCmd
+	sprintf exeCmd, "do shell script \"%s\"", igorCmd
+	ExecuteUnixShellCommand(igorCmd, 0, 0)
 End
 
 Function grabGAdat(shot,tags,server,unixPath,printCmd)
