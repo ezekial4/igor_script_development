@@ -52,9 +52,9 @@ Function makeDELW(inwave,t_inwave,tstart,tend,WMHDwave,t_WMHDwave,level,shot,kil
 	Variable i, elmpnt, pnt_start, pnt_end, stopitr
 	stopitr = numpnts(hold_x_shrt)
 	for (i=0;i<=stopitr;i+=1)
-		elmpnt = BinarySearchInterp(tstart, hold_x_shrt[i])
-		pnt_start = BinarySearchInterp(t_WMHDwave, tstart[elmpnt])
-		pnt_end = BinarySearchInterp(t_WMHDwave, tend[elmpnt])
+		elmpnt = BinarySearch(tstart, hold_x_shrt[i])
+		pnt_start = BinarySearch(t_WMHDwave, tstart[elmpnt])
+		pnt_end = BinarySearch(t_WMHDwave, tend[elmpnt])
 		newOUTx[i] = t_WMHDwave[pnt_start]
 		holdy_start[i] = WMHDwave[pnt_start]
 		holdy_end[i] = WMHDwave[pnt_end]
