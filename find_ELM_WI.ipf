@@ -22,15 +22,17 @@ Function findELMWI(inwave,t_inwave,tstart,tend,FSCOPEwave,t_FSCOPEwave,level,sho
 	
 	Duplicate/O hold_x_shrt,newOUTx,holdy_end,holdy_start, newOUTy
 	Variable i, elmpnt, pnt_start, pnt_end, stopitr
+	Make/O/N=0 M_WaveStats
 	stopitr = numpnts(hold_x_shrt)
-	for (i=0;i<=stopitr;i+=1)
+	for (i=0;i<=stopitr-1;i+=1)
 		elmpnt = BinarySearch(tstart, hold_x_shrt[i])
-		pnt_start = BinarySearch(t_FSCOPEwave, tstart[elmpnt])
+		pnt_start = BinarySearch(t_FSCOPEwave, tstart[elmpnt]-0.25)
 		pnt_end = BinarySearch(t_FSCOPEwave, tend[elmpnt])
-		newOUTx[i] = t_FSCOPEwave[pnt_start]
-//		holdy_start[i] = FSCOPEwave[pnt_start]
-//		holdy_end[i] = FSCOPEwave[pnt_end]
-		newOUTy[i] = mean(FSCOPEwave,pnt_start,pnt_end)
+		newOUTx[i] = t_FSCOPEwave[pnt_start] + (t_FSCOPEwave[pnt_end] - t_FSCOPEwave[pnt_start])/2
+		WaveStats/Q/W/R=[pnt_start,pnt_end] FSCOPEwave
+		//newOUTy[i] = M_WaveStats[12]              // element 12 is max value
+		newOUTy[i] = M_WaveStats[5]               // element 5 is rms value
+		//newOUTy[i] = mean(FSCOPEwave,pnt_start,pnt_end)
 	endfor
 	
 	
@@ -38,6 +40,6 @@ Function findELMWI(inwave,t_inwave,tstart,tend,FSCOPEwave,t_FSCOPEwave,level,sho
 	Duplicate/O newOUTx $"t_FSCOPE_WI_ELM_"+num2istr(shot)
 	if (killem==1)
 		KillWaves W_FindLevels,W_FindLevels_shrt,hold_x,hold_x_shrt,holdy_start,holdy_end
-		KillWaves newOUTy,newOUTx
+		KillWaves newOUTy,newOUTx, M_WaveStats
 	endif
 End
