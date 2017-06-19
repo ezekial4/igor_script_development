@@ -80,6 +80,7 @@ Function ButtonProc(ba) : ButtonControl
 			NVAR icoil_type
 			print shotNum
 			if(mds == 1)
+			   print "here"
 				getGAdataDUMP(shotNum, icoil_type)
 			endif
 			
@@ -90,6 +91,7 @@ Function ButtonProc(ba) : ButtonControl
 			HDF5LoadGroup/T/O/Z/IGOR=-1 :, fileID,"/"
 			HDF5CloseFile/A/Z fileID
 			Execute "Calc_nu_e(shotNum)"
+			Execute "Calc_psep_pthres(shotNum)"
 			Execute "Overview_p1()"
 			Execute "Overview_p2()"
 			break
@@ -141,7 +143,6 @@ Function ButtonProc_4(ba) : ButtonControl
 
 	return 0
 End
-
 
 Window Overview_p1() : Graph
 	PauseUpdate; Silent 1		// building window...
@@ -277,6 +278,8 @@ Window Overview_p1() : Graph
 	AppendToGraph/C=(1,39321,19939) PRAD_DIVU vs t_PRAD_DIVU
 	AppendToGraph/C=(1,34817,52428) PRAD_DIVL vs t_PRAD_DIVL
 	AppendToGraph/C=(0,0,0) POH vs t_POH
+	AppendToGraph/C=(34181,50372,17990) P_SEP vs t_POH
+	AppendToGraph/C=(65535,34848,13326) P_THRES vs t_POH
 	Duplicate/O PINJF, PINJF_smth
 	//Smooth/MPCT=75/M=0 401, PINJF_smth
 	Smooth/B 301, PINJF_smth
@@ -295,7 +298,7 @@ Window Overview_p1() : Graph
 	ModifyGraph mode(PRAD_TOT)=7,mode(PRAD_DIVU)=7,hbFill(PRAD_DIVU)=2,toMode(PRAD_DIVU)=3,mode(PRAD_DIVL)=7,hbFill(PRAD_DIVL)=2,hbFill(PRAD_TOT)=2
 	ModifyGraph fStyle(left)=1,font(left)="Myriad Pro Condensed"
 	Label left " "
-	Legend/C/N=text0/J/A=MC/X=0/Y=31.90/H=9 "\\Z13\\f01\\F'Myriad Pro Condensed'\\s(PRAD_TOT) PRAD_TOT [MW]     \\s(PRAD_DIVU) PRAD_DIVU\r\\s(PRAD_DIVL) PRAD_DIVL               \\s(PINJF_smth) PINJ\r\\s(POH) POH                   \\s(ECHPWRC) PECH"
+	Legend/C/N=text0/J/A=MC/X=0/Y=31.90/H=9 "\\Z13\\f01\\F'Myriad Pro Condensed'\\s(PRAD_TOT) PRAD_TOT [MW]     \\s(PRAD_DIVU) PRAD_DIVU\r\\s(PRAD_DIVL) PRAD_DIVL                \\s(PINJF_smth) PINJ\r\\s(POH) POH                               \\s(ECHPWRC) PECH\r\Z13\\s(P_SEP) P_SEP                       \\s(P_THRES) P_THRES"
 	RenameWindow #,G5
 	SetActiveSubwindow ##
 	
@@ -495,7 +498,7 @@ Window Overview_p2() : Graph
 	ModifyGraph fStyle=1
 	ModifyGraph standoff=0
 	ModifyGraph manTick(bottom)={0,1000,0,0},manMinor(bottom)={1,0}
-	Legend/C/N=text0/J/A=MC/X=0/Y=-40/H=9 "\\Z16\\f01\\F'Myriad Pro Condensed'\\s(cerqrotct23) Edge Rotation [km/s]\r\\s(cerqrotct1) Core Rotation"
+	Legend/C/N=text0/J/A=MC/X=0/Y=-40/H=9 "\\Z16\\f01\\F'Myriad Pro Condensed'\\s(cerqrotct23) Edge Rotation [krad/s]\r\\s(cerqrotct1) Core Rotation"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
 	
