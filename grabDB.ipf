@@ -37,7 +37,7 @@ Function grabDB(shot,icoil_type,unixPath,printCmd)
 		print igorCmd
 	endif
 	sprintf exeCmd, "do shell script \"%s\"", igorCmd
-	ExecuteUnixShellCommand(igorCmd, 0, 0)
+	ExecuteUnixShellCommand(igorCmd, 0, 1)
 End
 
 Function/S ExecuteUnixShellCommand(uCommand, printCommandInHistory, printResultInHistory)
