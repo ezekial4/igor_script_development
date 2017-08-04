@@ -26,7 +26,7 @@ Function findELMWI(inwave,t_inwave,tstart,tend,FSCOPEwave,t_FSCOPEwave,level,sho
 	stopitr = numpnts(hold_x_shrt)
 	for (i=0;i<=stopitr-1;i+=1)
 		elmpnt = BinarySearch(tstart, hold_x_shrt[i])
-		pnt_start = BinarySearch(t_FSCOPEwave, tstart[elmpnt]-0.25)
+		pnt_start = BinarySearch(t_FSCOPEwave, tstart[elmpnt])
 		pnt_end = BinarySearch(t_FSCOPEwave, tend[elmpnt])
 		newOUTx[i] = t_FSCOPEwave[pnt_start] + (t_FSCOPEwave[pnt_end] - t_FSCOPEwave[pnt_start])/2
 		WaveStats/Q/W/R=[pnt_start,pnt_end] FSCOPEwave

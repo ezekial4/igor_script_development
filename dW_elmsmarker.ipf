@@ -51,7 +51,7 @@ Function makeDELW(inwave,t_inwave,tstart,tend,WMHDwave,t_WMHDwave,level,shot,kil
 	Duplicate/O hold_x_shrt,newOUTx,holdy_end,holdy_start
 	Variable i, elmpnt, pnt_start, pnt_end, stopitr
 	stopitr = numpnts(hold_x_shrt)
-	for (i=0;i<=stopitr;i+=1)
+	for (i=0;i<=stopitr-1;i+=1)
 		elmpnt = BinarySearch(tstart, hold_x_shrt[i])
 		pnt_start = BinarySearch(t_WMHDwave, tstart[elmpnt])
 		pnt_end = BinarySearch(t_WMHDwave, tend[elmpnt])
@@ -64,6 +64,7 @@ Function makeDELW(inwave,t_inwave,tstart,tend,WMHDwave,t_WMHDwave,level,shot,kil
 	
 	Duplicate/O newOUTy $"dWmhd_neu_"+num2istr(shot)
 	Duplicate/O newOUTx $"t_dWmhd_neu_"+num2istr(shot)
+	Duplicate/O holdy_start $"Wmhd_neu_"+num2istr(shot)
 	if (killem==1)
 		KillWaves W_FindLevels,W_FindLevels_shrt,hold_x,hold_x_shrt,holdy_start,holdy_end
 		KillWaves newOUTy,newOUTx
