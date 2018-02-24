@@ -13,17 +13,17 @@ Function doALL(fnam)
 	getDATAhdf(fnam, simmsGRP,0)
 	getDATAhdf(fnam, arealGRP,0)
 	
-	SetDataFolder simmsGRP
-	Wave table_Ffloor_8682, table_Ffloor_8482, table_Ffloor_8382
-	Wave table_Fshelf_8682, table_Fshelf_8482, table_Fshelf_8382
-	Wave table_err_Fshelf_8682, table_err_Fshelf_8482, table_err_Fshelf_8382
-	Wave table_err_Ffloor_8682, table_err_Ffloor_8482, table_err_Ffloor_8382
-	Duplicate/O table_Ffloor_8682, Ffloor_AVG, Fshelf_AVG, err_Ffloor_AVG, err_Fshelf_AVG
-	Ffloor_AVG = (table_Ffloor_8682 + table_Ffloor_8482 + table_Ffloor_8382)/3.
-	Fshelf_AVG = (table_Fshelf_8682 + table_Fshelf_8482 + table_Fshelf_8382)/3.
-	err_Fshelf_AVG = sqrt(table_err_Fshelf_8682^2 + table_err_Fshelf_8482^2 + table_err_Fshelf_8382^2)
-	err_Ffloor_AVG = sqrt(table_err_Ffloor_8682^2 + table_err_Ffloor_8482^2 + table_err_Ffloor_8382^2)
-	SetDataFolder ::
+//	SetDataFolder simmsGRP
+//	Wave table_Ffloor_8682, table_Ffloor_8482, table_Ffloor_8382
+//	Wave table_Fshelf_8682, table_Fshelf_8482, table_Fshelf_8382
+//	Wave table_err_Fshelf_8682, table_err_Fshelf_8482, table_err_Fshelf_8382
+//	Wave table_err_Ffloor_8682, table_err_Ffloor_8482, table_err_Ffloor_8382
+//	Duplicate/O table_Ffloor_8682, Ffloor_AVG, Fshelf_AVG, err_Ffloor_AVG, err_Fshelf_AVG
+//	Ffloor_AVG = (table_Ffloor_8682 + table_Ffloor_8482 + table_Ffloor_8382)/3.
+//	Fshelf_AVG = (table_Fshelf_8682 + table_Fshelf_8482 + table_Fshelf_8382)/3.
+//	err_Fshelf_AVG = sqrt(table_err_Fshelf_8682^2 + table_err_Fshelf_8482^2 + table_err_Fshelf_8382^2)
+//	err_Ffloor_AVG = sqrt(table_err_Ffloor_8682^2 + table_err_Ffloor_8482^2 + table_err_Ffloor_8382^2)
+//	SetDataFolder ::
 	
 	string efPLOT_str = "EF_PLOT(\""+efGRP+"\",\""+fnam+"\")"
 	Execute efPLOT_str
@@ -80,7 +80,7 @@ Window EF_PLOT(efFOLD,fnam)
 	ModifyGraph margin(left)=73,margin(bottom)=10,margin(top)=35,margin(right)=40
 	ModifyGraph mode=3, lblMargin(left)=30
 	ModifyGraph marker=19
-	ModifyGraph msize=2.5
+	ModifyGraph msize=1.5
 	ModifyGraph mrkThick(table_EF186)=1,mrkThick(table_EF180)=0.25,mrkThick(table_EF182)=0.25
 	ModifyGraph mrkThick(table_EF183)=0.25,mrkThick(table_EF184)=0.25
 	ModifyGraph gaps=0
@@ -99,6 +99,7 @@ Window EF_PLOT(efFOLD,fnam)
 	ModifyGraph logHTrip(left)=1
 	ModifyGraph logLTrip(left)=0.01
 	ModifyGraph axisOnTop=1
+	ModifyGraph manTick(top)={0,20,0,0},manMinor(top)={1,0}
 	Label left "enrichment fractor, EF"
 	Label top "probe distance [mm]"
 	SetAxis left 0.0001,1
@@ -117,14 +118,14 @@ Window SIMMS_PLOT(simmFOLD)
 	string simmFOLD
 	PauseUpdate; Silent 1		// building window...
 	SetDataFolder simmFOLD
-	Display /W=(731,66,1339,482) Ffloor_AVG vs table_index
-	AppendToGraph fshelf_avg vs table_index
-	ErrorBars Ffloor_AVG SHADE= {0,0,(0,0,0,0),(0,0,0,0)},wave=(err_Ffloor_AVG,err_Ffloor_AVG)
-	ErrorBars Fshelf_AVG SHADE= {0,0,(0,0,0,0),(0,0,0,0)},wave=(err_Fshelf_AVG,err_Fshelf_AVG)
+	Display /W=(731,66,1339,482) table_simm_shelf_AVG vs table_index
+	AppendToGraph table_simm_floor_AVG vs table_index
+	ErrorBars table_simm_floor_AVG SHADE= {0,0,(0,0,0,0),(0,0,0,0)},wave=(table_err_simm_floor_AVG,table_err_simm_floor_AVG)
+	ErrorBars table_simm_shelf_AVG SHADE= {0,0,(0,0,0,0),(0,0,0,0)},wave=(table_err_simm_shelf_AVG,table_err_simm_shelf_AVG)
 	SetDataFolder ::
 	ModifyGraph margin(left)=73,margin(bottom)=35,margin(top)=10,margin(right)=40
 	ModifyGraph lSize=1,noLabel(bottom)=2
-	ModifyGraph rgb(Ffloor_AVG)=(0,28784,47545),rgb(Fshelf_AVG)=(34952,13107,11822)
+	ModifyGraph rgb(table_simm_floor_AVG)=(0,28784,47545),rgb(table_simm_shelf_AVG)=(34952,13107,11822)
 	ModifyGraph lblMargin(left)=30
 	ModifyGraph gaps=0
 	ModifyGraph tick=2
@@ -133,6 +134,7 @@ Window SIMMS_PLOT(simmFOLD)
 	ModifyGraph fStyle=1
 	ModifyGraph standoff=0
 	ModifyGraph axisOnTop=1
+	ModifyGraph manTick(bottom)={0,20,0,0},manMinor(top)={1,0}
 	SetAxis left -0.025,1.1
 	SetAxis bottom*,102
 	Label left "Avg. SIMM fraction"
@@ -145,8 +147,8 @@ Window AREALfrac_PLOT(arealFOLD)
 	string arealFOLD
 	PauseUpdate; Silent 1		// building window...
 	SetDataFolder arealFOLD
-	Display /W=(923,187,1440,746) table_arealFRAC_floor,table_arealFRAC_shelf vs table_frac_areal_rminrsep
-	AppendToGraph/T table_arealFRAC_floor vs table_frac_areal_d_probe_mm
+	Display /W=(923,187,1440,746) table_arealFRAC_floor,table_arealFRAC_shelf vs table_index
+	AppendToGraph/T table_arealFRAC_floor vs table_arealFRAC_dprobe_mm
 	ErrorBars/T=0/Y=1 table_arealFRAC_floor Y,wave=(table_err_arealFRAC_floor,table_err_arealFRAC_floor)
 	ErrorBars/T=0/Y=1 table_arealFRAC_shelf Y,wave=(table_err_arealFRAC_shelf,table_err_arealFRAC_shelf)
 	SetDataFolder ::
@@ -172,6 +174,8 @@ Window AREALfrac_PLOT(arealFOLD)
 	ModifyGraph axisOnTop(bottom)=1
 	ModifyGraph axisEnab(top)={0.115,1}
 	ModifyGraph useMrkStrokeRGB(table_arealFRAC_floor#1)=0,msize(table_arealFRAC_floor#1)=2
+	ModifyGraph manTick(bottom)={0,2,0,0},manMinor(bottom)={1,0}
+	ModifyGraph manTick(top)={0,20,0,0},manMinor(top)={1,0}
 	
 	Label left "\\Z12Fractional Areal Density [x10\\S15\\M\\Z12atom/cm\\S2\\M\\Z12]"
 	Label bottom "R - R\\Bsep \\M[cm]"
