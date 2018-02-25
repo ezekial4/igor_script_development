@@ -103,6 +103,8 @@ Window EF_PLOT(efFOLD,fnam)
 	Label left "enrichment fractor, EF"
 	Label top "probe distance [mm]"
 	SetAxis left 0.0001,1
+	SetAxis top *,100
+	
 	TextBox/C/N=text1_1/LS=-1/F=0/H=12/A=MC/X=57.00/Y=44.00 "\\Z12\\f01W182"
 	TextBox/C/N=text1_2/LS=-1/F=0/H=12/A=MC/X=57.00/Y=27.00 "\\Z12\\f01W186"
 	TextBox/C/N=text1_3/LS=-1/F=0/H=12/A=MC/X=57.00/Y=33.00 "\\Z12\\f01W184"
@@ -134,13 +136,15 @@ Window SIMMS_PLOT(simmFOLD)
 	ModifyGraph fStyle=1
 	ModifyGraph standoff=0
 	ModifyGraph axisOnTop=1
-	ModifyGraph manTick(bottom)={0,20,0,0},manMinor(top)={1,0}
+	ModifyGraph manTick(bottom)={0,20,0,0},manMinor(bottom)={1,0}
+	ModifyGraph manTick(left)={0,0.5,0,1},manMinor(left)={1,0}
+	
 	SetAxis left -0.025,1.1
 	SetAxis bottom*,102
 	Label left "Avg. SIMM fraction"
 	
-	TextBox/C/N=text0/F=0/A=MC/X=5.00/Y=20.00 "\\Z16\\f01f\\Bshelf"
-	TextBox/C/N=text1/F=0/A=MC/X=5.00/Y=-25.00 "\\Z16\\f01f\\Bfloor"
+	TextBox/C/N=text0/F=0/A=MC/X=5.00/Y=20.00/B=1 "\\Z16\\f01f\\Bshelf"
+	TextBox/C/N=text1/F=0/A=MC/X=5.00/Y=-25.00/B=1 "\\Z16\\f01f\\Bfloor"
 EndMacro
 
 Window AREALfrac_PLOT(arealFOLD)
