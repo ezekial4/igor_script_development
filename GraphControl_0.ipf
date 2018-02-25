@@ -1,6 +1,6 @@
 #pragma rtGlobals=3		// Use modern global access method and strict wave access.\
 #include <Axis Utilities>
-//#include <Graph Utility Procs>
+#include <Graph Utility Procs>
 menu "Graph"
 	"GraphControl",/q, GraphControlInit()
 end
