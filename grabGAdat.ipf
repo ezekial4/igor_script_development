@@ -1,4 +1,4 @@
-#pragma rtGlobals=3		// Use modern global access method and strict wave access.
+#pragma rtGlobals=1		// Use modern global access method.
 
 Function getGADAT(shot,pntname,server)
 	variable shot
