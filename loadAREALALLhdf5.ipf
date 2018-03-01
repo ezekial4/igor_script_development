@@ -13,17 +13,17 @@ Function doALL(fnam)
 	getDATAhdf(fnam, simmsGRP,0)
 	getDATAhdf(fnam, arealGRP,0)
 	
-	SetDataFolder simmsGRP
-	Wave table_Ffloor_8682, table_Ffloor_8482, table_Ffloor_8382
-	Wave table_Fshelf_8682, table_Fshelf_8482, table_Fshelf_8382
-	Wave table_err_Fshelf_8682, table_err_Fshelf_8482, table_err_Fshelf_8382
-	Wave table_err_Ffloor_8682, table_err_Ffloor_8482, table_err_Ffloor_8382
-	Duplicate/O table_Ffloor_8682, Ffloor_AVG, Fshelf_AVG, err_Ffloor_AVG, err_Fshelf_AVG
-	Ffloor_AVG = (table_Ffloor_8682 + table_Ffloor_8482 + table_Ffloor_8382)/3.
-	Fshelf_AVG = (table_Fshelf_8682 + table_Fshelf_8482 + table_Fshelf_8382)/3.
-	err_Fshelf_AVG = sqrt(table_err_Fshelf_8682^2 + table_err_Fshelf_8482^2 + table_err_Fshelf_8382^2)
-	err_Ffloor_AVG = sqrt(table_err_Ffloor_8682^2 + table_err_Ffloor_8482^2 + table_err_Ffloor_8382^2)
-	SetDataFolder ::
+//	SetDataFolder simmsGRP
+//	Wave table_Ffloor_8682, table_Ffloor_8482, table_Ffloor_8382
+//	Wave table_Fshelf_8682, table_Fshelf_8482, table_Fshelf_8382
+//	Wave table_err_Fshelf_8682, table_err_Fshelf_8482, table_err_Fshelf_8382
+//	Wave table_err_Ffloor_8682, table_err_Ffloor_8482, table_err_Ffloor_8382
+//	Duplicate/O table_Ffloor_8682, Ffloor_AVG, Fshelf_AVG, err_Ffloor_AVG, err_Fshelf_AVG
+//	Ffloor_AVG = (table_Ffloor_8682 + table_Ffloor_8482 + table_Ffloor_8382)/3.
+//	Fshelf_AVG = (table_Fshelf_8682 + table_Fshelf_8482 + table_Fshelf_8382)/3.
+//	err_Fshelf_AVG = sqrt(table_err_Fshelf_8682^2 + table_err_Fshelf_8482^2 + table_err_Fshelf_8382^2)
+//	err_Ffloor_AVG = sqrt(table_err_Ffloor_8682^2 + table_err_Ffloor_8482^2 + table_err_Ffloor_8382^2)
+//	SetDataFolder ::
 	
 	string efPLOT_str = "EF_PLOT(\""+efGRP+"\",\""+fnam+"\")"
 	Execute efPLOT_str
@@ -78,19 +78,18 @@ Window EF_PLOT(efGRP, fnam)
 	ErrorBars/T=0/Y=1 table_EF184 Y,wave=(table_EF184err,table_EF184err)
 	SetDataFolder ::
 	ModifyGraph margin(left)=73,margin(bottom)=10,margin(top)=35,margin(right)=40
-	ModifyGraph mode=3
+	ModifyGraph mode=3, lblMargin(left)=30
 	ModifyGraph marker=19
-	ModifyGraph rgb(table_EF186)=(61680,58596,16962,32767),rgb(table_EF180)=(37522,0,0,26214)
-	ModifyGraph rgb(table_EF182)=(0,28013,56283,26214),rgb(table_EF183)=(54741,24158,0,26214)
-	ModifyGraph rgb(table_EF184)=(18761,0,37522,26214)
-	ModifyGraph msize=2
+	ModifyGraph msize=1.5
 	ModifyGraph mrkThick(table_EF186)=1,mrkThick(table_EF180)=0.25,mrkThick(table_EF182)=0.25
 	ModifyGraph mrkThick(table_EF183)=0.25,mrkThick(table_EF184)=0.25
 	ModifyGraph gaps=0
 	ModifyGraph useMrkStrokeRGB=1
-	ModifyGraph mrkStrokeRGB(table_EF186)=(61680,58596,16962),mrkStrokeRGB(table_EF180)=(37522,0,0)
-	ModifyGraph mrkStrokeRGB(table_EF182)=(0,28013,56283),mrkStrokeRGB(table_EF183)=(54741,24158,0)
-	ModifyGraph mrkStrokeRGB(table_EF184)=(18761,0,37522)
+	ModifyGraph rgb(table_EF186)=(65278,52171,0,26214),mrkStrokeRGB(table_EF186)=(65278,52171,0)
+	ModifyGraph rgb(table_EF180)=(0,30840,13107,26214),mrkStrokeRGB(table_EF180)=(0,30840,13107)
+	ModifyGraph rgb(table_EF182)=(33924,50372,17990,26214),mrkStrokeRGB(table_EF182)=(33924,50372,17990)
+	ModifyGraph rgb(table_EF183)=(0,28784,47545,26214), mrkStrokeRGB(table_EF183)=(20560,37265,52685)
+	ModifyGraph rgb(table_EF184)=(25186,0,16191,26214),mrkStrokeRGB(table_EF184)=(25186,0,16191)
 	ModifyGraph log(left)=1
 	ModifyGraph tick=2
 	ModifyGraph mirror=1
@@ -101,31 +100,37 @@ Window EF_PLOT(efGRP, fnam)
 	ModifyGraph logHTrip(left)=1
 	ModifyGraph logLTrip(left)=0.01
 	ModifyGraph axisOnTop=1
+	ModifyGraph manTick(top)={0,20,0,0},manMinor(top)={1,0}
 	Label left "enrichment fractor, EF"
 	Label top "probe distance [mm]"
 	SetAxis left 0.0001,1
-	string probeTXT= fnam[0,3]
-	TextBox/C/N=text1/H=12/A=MC/X=40.00/Y=-37.50 "\\Z12\\f01probe\r\\Z16"+probeTXT
+	SetAxis top *,100
+	
 	TextBox/C/N=text1_1/LS=-1/F=0/H=12/A=MC/X=57.00/Y=44.00 "\\Z12\\f01W182"
 	TextBox/C/N=text1_2/LS=-1/F=0/H=12/A=MC/X=57.00/Y=27.00 "\\Z12\\f01W186"
 	TextBox/C/N=text1_3/LS=-1/F=0/H=12/A=MC/X=57.00/Y=33.00 "\\Z12\\f01W184"
 	TextBox/C/N=text1_4/LS=-1/F=0/H=12/A=MC/X=57.00/Y=-5.00 "\\Z12\\f01W180"
 	TextBox/C/N=text1_5/LS=-1/F=0/H=12/A=MC/X=57.00/Y=20.00 "\\Z12\\f01W183"
+	
+	string textPLOT = fnam[0,3]
+	print "plotting: "+textPLOT
+	TextBox/C/N=text1/A=MC/X=39.00/Y=-37.00 "\\Z12\\f01\\JCprobe\r"+textPLOT
 EndMacro
    
 Window SIMMS_PLOT(simmsGRP)
 	string simmsGRP
 	
 	PauseUpdate; Silent 1		// building window...
-	SetDataFolder simmsGRP
-	Display /W=(731,66,1339,482) Ffloor_AVG vs table_index
-	AppendToGraph Fshelf_AVG vs table_index
-	ErrorBars Ffloor_AVG SHADE= {0,0,(0,0,0,0),(0,0,0,0)},wave=(err_Ffloor_AVG,err_Ffloor_AVG)
-	ErrorBars Fshelf_AVG SHADE= {0,0,(0,0,0,0),(0,0,0,0)},wave=(err_Fshelf_AVG,err_Fshelf_AVG)
+	SetDataFolder simmFOLD
+	Display /W=(731,66,1339,482) table_simm_shelf_AVG vs table_index
+	AppendToGraph table_simm_floor_AVG vs table_index
+	ErrorBars table_simm_floor_AVG SHADE= {0,0,(0,0,0,0),(0,0,0,0)},wave=(table_err_simm_floor_AVG,table_err_simm_floor_AVG)
+	ErrorBars table_simm_shelf_AVG SHADE= {0,0,(0,0,0,0),(0,0,0,0)},wave=(table_err_simm_shelf_AVG,table_err_simm_shelf_AVG)
 	SetDataFolder ::
 	ModifyGraph margin(left)=73,margin(bottom)=35,margin(top)=10,margin(right)=40
-	ModifyGraph lSize(Ffloor_AVG)=2,lSize(Fshelf_AVG)=3
-	ModifyGraph rgb(Ffloor_AVG)=(3077,24858,54102)
+	ModifyGraph lSize=1,noLabel(bottom)=2
+	ModifyGraph rgb(table_simm_floor_AVG)=(0,28784,47545),rgb(table_simm_shelf_AVG)=(34952,13107,11822)
+	ModifyGraph lblMargin(left)=30
 	ModifyGraph gaps=0
 	ModifyGraph tick=2
 	ModifyGraph mirror=1
@@ -135,11 +140,15 @@ Window SIMMS_PLOT(simmsGRP)
 	ModifyGraph lblMargin(left)=25
 	ModifyGraph standoff=0
 	ModifyGraph axisOnTop=1
-	Label left "SIMM fraction"
+	ModifyGraph manTick(bottom)={0,20,0,0},manMinor(bottom)={1,0}
+	ModifyGraph manTick(left)={0,0.5,0,1},manMinor(left)={1,0}
+	
 	SetAxis left -0.025,1.1
 	SetAxis bottom*,102
-	TextBox/C/N=text0/F=0/H=12/A=MC "\\Z18\\f01f\\Bfloor"
-	TextBox/C/N=text1/F=0/H=12/A=MC "\\Z18\\f01f\\Bshelf"
+	Label left "Avg. SIMM fraction"
+	
+	TextBox/C/N=text0/F=0/A=MC/X=5.00/Y=20.00/B=1 "\\Z16\\f01f\\Bshelf"
+	TextBox/C/N=text1/F=0/A=MC/X=5.00/Y=-25.00/B=1 "\\Z16\\f01f\\Bfloor"
 EndMacro
 
 Window AREALfrac_PLOT(arealFOLD)
@@ -147,17 +156,19 @@ Window AREALfrac_PLOT(arealFOLD)
 	
 	PauseUpdate; Silent 1		// building window...
 	SetDataFolder arealFOLD
-	Display /W=(923,187,1440,746) table_arealFRAC_floor,table_arealFRAC_shelf vs table_frac_areal_rminrsep
-	AppendToGraph/T table_arealFRAC_floor vs table_frac_areal_d_probe_mm
+	Display /W=(923,187,1440,746) table_arealFRAC_floor,table_arealFRAC_shelf vs table_index
+	AppendToGraph/T table_arealFRAC_floor vs table_arealFRAC_dprobe_mm
 	ErrorBars/T=0/Y=1 table_arealFRAC_floor Y,wave=(table_err_arealFRAC_floor,table_err_arealFRAC_floor)
 	ErrorBars/T=0/Y=1 table_arealFRAC_shelf Y,wave=(table_err_arealFRAC_shelf,table_err_arealFRAC_shelf)
 	SetDataFolder ::
+	
 	ModifyGraph margin(left)=40,margin(bottom)=37,margin(top)=10,margin(right)=45
 	ModifyGraph mode=3
-	ModifyGraph marker(table_arealFRAC_floor#1)=23,marker(table_arealFRAC_floor)=23
-	ModifyGraph marker(table_arealFRAC_shelf)=19
-	ModifyGraph rgb(table_arealFRAC_floor#1)=(3307,27958,56280),rgb(table_arealFRAC_floor)=(3307,27958,56280)
-	ModifyGraph rgb(table_arealFRAC_shelf)=(37469,0,673)
+	ModifyGraph marker(table_arealFRAC_floor)=23,marker(table_arealFRAC_floor#1)=23,marker(table_arealFRAC_shelf)=19
+	ModifyGraph rgb(table_arealFRAC_shelf)=(34952,13107,11822),rgb(table_arealFRAC_floor#1)=(0,0,0)
+	ModifyGraph rgb(table_arealFRAC_floor)=(0,28784,47545)
+	ModifyGraph mrkThick(table_arealFRAC_shelf)=1,msize(table_arealFRAC_floor)=2,mrkThick(table_arealFRAC_floor#1)=1
+	ModifyGraph axisOnTop(left)=1,mrkThick=1
 	ModifyGraph msize=4
 	ModifyGraph gaps=0
 	ModifyGraph useMrkStrokeRGB=1
@@ -171,8 +182,13 @@ Window AREALfrac_PLOT(arealFOLD)
 	ModifyGraph prescaleExp(left)=-15
 	ModifyGraph axisOnTop(bottom)=1
 	ModifyGraph axisEnab(top)={0.115,1}
-	Label left "\\Z12Fractional Areal Density [x10\\S15\\M\\Z12 atom/cm\\S2\\M\\Z12]"
+	ModifyGraph useMrkStrokeRGB(table_arealFRAC_floor#1)=0,msize(table_arealFRAC_floor#1)=2
+	ModifyGraph manTick(bottom)={0,2,0,0},manMinor(bottom)={1,0}
+	ModifyGraph manTick(top)={0,20,0,0},manMinor(top)={1,0}
+	
+	Label left "\\Z12Fractional Areal Density [x10\\S15\\M\\Z12atom/cm\\S2\\M\\Z12]"
 	Label bottom "R - R\\Bsep \\M[cm]"
+	
 	SetAxis left -10000000000000,500000000000000
 	SetAxis bottom 5,15.75
 	SetAxis top 0,102
