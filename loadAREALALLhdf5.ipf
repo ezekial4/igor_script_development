@@ -58,6 +58,9 @@ Function getDATAhdf(fnam, grpnam, quiet)
 	HDF5OpenFile/P=DropboxSIMMS/R/Z fileID as fnam
 	HDF5LoadGroup/T/O/R/IGOR=-1 :, fileID, grpnam
 	HDF5CloseFile/A/Z fileID
+	
+	String killer=grpnam+"_i_table"
+	KillDataFolder $killer
 End
 	
 Function makeDROPBOXpmi(neuPATH)
