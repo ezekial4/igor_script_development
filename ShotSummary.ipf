@@ -324,7 +324,11 @@ Window Overview_p1() : Graph
 	Display/W=(0.333,0.588,0.666,0.923)/HOST=# /R FS03 vs t_FS03
 	AppendToGraph/R/C=(52428,34958,1) FS01 vs t_FS01
 	Duplicate/O ELM_freq,ELM_freq_smth
-	Smooth/MPCT=25/M=0 11, ELM_freq_smth
+	if(numpnts(ELM_freq) > 5)
+		Smooth/MPCT=25/M=0 11, ELM_freq_smth
+	else
+		ELM_freq_smth = 0.1
+	endif
 	AppendToGraph/C=(56797,56797,56797,16384) ELM_freq_smth vs t_ELM_freq
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=4
