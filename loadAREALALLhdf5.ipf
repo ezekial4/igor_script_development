@@ -124,7 +124,7 @@ Window SIMMS_PLOT(simmsGRP)
 	string simmsGRP
 	
 	PauseUpdate; Silent 1		// building window...
-	SetDataFolder simmFOLD
+	SetDataFolder simmsGRP
 	Display /W=(731,66,1339,482) table_simm_shelf_AVG vs table_index
 	AppendToGraph table_simm_floor_AVG vs table_index
 	ErrorBars table_simm_floor_AVG SHADE= {0,0,(0,0,0,0),(0,0,0,0)},wave=(table_err_simm_floor_AVG,table_err_simm_floor_AVG)
@@ -204,7 +204,7 @@ Window FULLLayout() : Macros
 		LayoutPageAction size=(612,792),margins=(18,18,18,18)
 	endif
 	ModifyLayout mag=1
-	AppendLayoutObject/F=0/T=1/R=(36,36,360,252) Graph EF_PLOT
-	AppendLayoutObject/F=0/T=1/R=(36,240,360,456) Graph SIMMS_PLOT
-	AppendLayoutObject/F=0/T=1/R=(41,418,365,634) Graph AREALfrac_PLOT
+	AppendLayoutObject/F=0/T=1/R=(36,36,360,252) Graph EF_PLOT_4
+	AppendLayoutObject/F=0/T=1/R=(36,240,360,456) Graph SIMMS_PLOT_4
+	AppendLayoutObject/F=0/T=1/R=(41,418,365,634) Graph AREALfrac_PLOT_4
 EndMacro
