@@ -5,10 +5,11 @@ Macro Calc_nu_e(ishot)
 	variable ishot
 	
 	string DFpath="paramDB_"+num2istr(ishot)
-	variable loadIT = 0
+	variable loadIT =0
 	variable athome =0
-	variable plotIT = 0
+	variable plotIT =0
 	variable smIT =1
+	Variable z_i =3 //for dueterium
 	Silent 1
 	SetDataFolder root:
 	
@@ -118,16 +119,20 @@ Macro Calc_nu_e(ishot)
 //	Duplicate/O $"t_teped_"+num2istr(ishot) t_base
 //	Killwaves $"t_teped_"+num2istr(ishot)
 	
-	Duplicate/O NEPED NU_E_STAR, LAMBDA_E,f_GW_PED,f_GW
+	Duplicate/O NEPED NU_E_STAR, LAMBDA_E, f_GW_PED, f_GW, LNG_A, LNG_B, LN_LAMBDA
 	// definition of pedestal collisionality taken from Loarte 2003
-	// electron mean free path taken from Callen's plasmas physics book
-	Variable z_i = 1 //for dueterium
-	LAMBDA_E =  1.2e16*teped^2*(1/(neped*z_i)) // also contains (17/ln_lambda) factor which is assumed 1; and Z
+	// electron mean free path taken from Callen's plasmas physics book, appendix Z
+	LNG_A = 5e-10*(z_i/teped)
+	LNG_B = 1.1e-10*(1/teped)
+	LN_LAMBDA = LN((7.4e3*sqrt(teped/neped))/max(LNG_A,LNG_B))
+	LAMBDA_E =  1.2e16*teped^2*(1/(neped*z_i))*(17/LN_LAMBDA) 
 	NU_E_STAR = (r0_L^(5/2)*q95_L)/(r_minor_L^(3/2))*(1/LAMBDA_E) 
 	
 	f_GW_PED = (NEPED/1e20)/((1e-6*abs(IP_L))/(pi*r_minor_L^2))
 	f_GW = (DENSR0_l/1e20)*(pi*r_minor_L^2)/(1e-6*abs(IP_L))
-	KillWaves R0_L,Q95_L,r_minor_L,IP_L
+	
+	KillWaves R0_L,Q95_L,r_minor_L,IP_L,LNG_B,LNG_A,LN_LAMBDA
+	
 	if(smIT ==1)
 		Smooth 11, nu_e_star
 		Smooth 11, f_GW_PED
