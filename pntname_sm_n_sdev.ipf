@@ -2,7 +2,7 @@
 
 //---This FUNCTION is meant to get a smoothed (true) signal from a noisey signal and then calculate a standard
 //---deviation of the signal from this true signal. 
-//---Taken from BEvington eq. 1.8
+//---Taken from Bevington eq. 1.8
 //---var^2 = (1/N)*SUM(datapoint-truepoint)^2
 
 	
@@ -10,7 +10,7 @@ Function pntname_sm_n_sdev(i_sm,foldnam,fname,sm_type)
 	Variable i_sm 
 	String foldnam
 	String fname 
-	Variable sm_type              //use 1 for boxcar; 2 for median
+	Variable sm_type              //use 1 for boxcar; 2 for median; 3 for percentile
 	
 	Silent 1;DelayUpdate
 	SetDataFolder foldnam
@@ -24,6 +24,10 @@ Function pntname_sm_n_sdev(i_sm,foldnam,fname,sm_type)
 //---Using a median value smoothing technique
 	If (sm_type == 2)
 		Smooth/M=0 i_sm,$fname+"_sm"
+	Endif
+//---Using a median value smoothing technique
+	If (sm_type == 3)
+		Smooth/M=0/MPCT=90 i_sm,$fname+"_sm"
 	Endif
 	
 //Another crude way to sum square signals
