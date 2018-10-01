@@ -9,8 +9,7 @@ Function getGADAT(shot,pntname,server)
 	if(V_flag == 0)
 		Abort "Data Path does Exist: Make New Path."
 	endif
-	String unixPath
-	unixPath = ParseFilePath(5,S_path,"/",0,0)
+	String unixPath = ParseFilePath(5,S_path,"/",0,0)
 	
 	print "Getting data from GA MDSplus"
 	grabGAdat(shot,pntname,server,unixPath,0)
@@ -41,7 +40,7 @@ Function grabGAdat(shot,tags,server,unixPath,printCmd)
 		print igorCmd
 	endif
 	sprintf exeCmd, "do shell script \"%s\"", igorCmd
-	ExecuteUnixShellCommand(igorCmd, 0, 0)
+	ExecuteUnixShellCommand(igorCmd, 0, 1)
 End
 
 Function/S ExecuteUnixShellCommand(uCommand, printCommandInHistory, printResultInHistory)
