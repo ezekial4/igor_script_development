@@ -204,7 +204,7 @@ Window FULLLayout() : Macros
 		LayoutPageAction size=(612,792),margins=(18,18,18,18)
 	endif
 	ModifyLayout mag=1
-	AppendLayoutObject/F=0/T=1/R=(36,36,360,252) Graph EF_PLOT_4
-	AppendLayoutObject/F=0/T=1/R=(36,240,360,456) Graph SIMMS_PLOT_4
-	AppendLayoutObject/F=0/T=1/R=(41,418,365,634) Graph AREALfrac_PLOT_4
+	AppendLayoutObject/F=0/T=1/R=(36,36,360,252) Graph EF_PLOT_2
+	AppendLayoutObject/F=0/T=1/R=(36,240,360,456) Graph SIMMS_PLOT_2
+	AppendLayoutObject/F=0/T=1/R=(41,418,365,634) Graph AREALfrac_PLOT_2
 EndMacro
