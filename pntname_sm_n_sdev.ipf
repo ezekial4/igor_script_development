@@ -25,6 +25,10 @@ Function pntname_sm_n_sdev(i_sm,foldnam,fname,sm_type)
 	If (sm_type == 2)
 		Smooth/M=0 i_sm,$fname+"_sm"
 	Endif
+//---Using a percentile smoothing technique
+	If (sm_type == 3)
+		Smooth/M=0/MPCT=75 i_sm,$fname+"_sm"
+	Endif
 	
 //Another crude way to sum square signals
 	Duplicate/O $fname+"_sm" $"sm_"+fname+"_sqd"
