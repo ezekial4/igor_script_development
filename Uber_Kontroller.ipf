@@ -327,7 +327,7 @@ Window Plot_zipfit_data() : Graph
 	AppendMatrixContour edens_plot vs {time_edens_plot,rho_edens_plot}
 	ModifyContour edens_plot autoLevels={0,9,10}, rgbLines=(65535,65535,65535), labels=0
 	AppendImage edens_plot vs {time_edens_plot,rho_edens_plot}
-	ModifyImage edens_plot ctab={0,9,root:Packages:ColorTables:Matplotlib:inferno,0}
+	ModifyImage edens_plot ctab={0,9,root:Packages:ColorTables:Matplotlib:viridis,0}
 	ModifyGraph margin(bottom)=30,margin(top)=75,margin(right)=10,margin(left)=45
 	ModifyGraph grid(bottom)=1
 	ModifyGraph tick=2
@@ -357,7 +357,7 @@ Window Plot_zipfit_data() : Graph
 	ModifyContour etemp_plot autoLevels={0,3,6}, rgbLines=(65535,65535,65535)
 	ModifyContour etemp_plot labels=0
 	AppendImage etemp_plot vs {time_etemp_plot,rho_etemp_plot}
-	ModifyImage etemp_plot ctab= {0,3,root:Packages:ColorTables:Matplotlib:plasma,0}
+	ModifyImage etemp_plot ctab= {0,3,root:Packages:ColorTables:Matplotlib:inferno,0}
 	ModifyGraph margin(left)=15,margin(bottom)=30,margin(top)=75,margin(right)=10
 	ModifyGraph grid(bottom)=1
 	ModifyGraph tick=2
