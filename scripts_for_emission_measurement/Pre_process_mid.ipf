@@ -89,12 +89,11 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 			Duplicate/O $"t_"+dum $"t_"+fname[i]+"_raw"
 			Killwaves $"t_"+dum
 		i+=1	
-		while(i <=0)
+		while(i<=3)
 	endif
-//---end---
-
 	KillWaves/Z fname
 //	Setdatafolder root:$setname	
+//---end---
 
 //---load all the space waves ---	
 	Variable j=0

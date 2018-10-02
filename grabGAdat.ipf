@@ -16,7 +16,7 @@ Function getGADAT(shot,pntname,server)
 	
 	string fname = "pyd3dat_"+pntname+"_"+num2istr(shot)+".h5"
 	variable fileID
-	print "Loading Data into IGOR"
+	print "Loading Data into IGOR for pointname: "+pntname
 	HDF5OpenFile/P=DataDump/R/Z fileID as fname
 	HDF5LoadGroup/T/O/Z/IGOR=-1 :, fileID,"/"
 	HDF5CloseFile/A/Z fileID
@@ -40,7 +40,7 @@ Function grabGAdat(shot,tags,server,unixPath,printCmd)
 		print igorCmd
 	endif
 	sprintf exeCmd, "do shell script \"%s\"", igorCmd
-	ExecuteUnixShellCommand(igorCmd, 0, 1)
+	ExecuteUnixShellCommand(igorCmd, 0, 0)
 End
 
 Function/S ExecuteUnixShellCommand(uCommand, printCommandInHistory, printResultInHistory)
