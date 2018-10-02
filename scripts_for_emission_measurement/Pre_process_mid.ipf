@@ -43,19 +43,15 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 //	Move raw waves out of the working directory and correct for offsets
 	i=1
 	do
-		dum =  fsname+num2str(i)+ext+"_"+num2istr(ishot)
+		dum =  fsname+num2str(i)+ext
 		
 		Wavestats/Q/R=[0,ierr] ::$dum
 		fsnoise_err[i-1]=V_sdev
-		Duplicate/O ::$dum ::$fsname+num2str(i)+ext
-		
+		Duplicate/O ::$"t_"+dum $"t_"+fsname+num2str(i)+ext+"_raw"
+		Duplicate/O ::$dum $fsname+num2str(i)+ext+"_raw"
 		::$fsname+num2str(i)+ext -=V_avg
 		
-		Duplicate/O ::$dum $fsname+num2str(i)+ext+"_raw"
 		Killwaves ::$dum
-
-		Duplicate/O ::$"t_"+dum ::$"t_"+fsname+num2str(i)+ext
-		Duplicate/O ::$"t_"+dum $"t_"+fsname+num2str(i)+ext+"_raw"
 		Killwaves ::$"t_"+dum
 		
 		dum = fsname
