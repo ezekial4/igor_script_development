@@ -60,39 +60,38 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 
 //Load in other needed waves
 	If (local == 1)
-		PathInfo Unt_path
-		If (V_flag == 0)
-			NewPath/C/O/M="Find Ye Path to the Data" Unt_path
-		Endif
 		
 		Make/T/O/N=3 fname
 		fname[0]="rmidout"
-		fname[1]="fsmid_psi"
-		fname[2]="fsmid_rho"
-		
-		String fnamelong, fname_t_long
+		fname[1]="fsmid_psiN"
+		fname[2]="fsmid_rhoN"
 		
 		i=0
 		do
-			fnamelong = fname[i]+"_"+num2istr(ishot)+".ibw"
-			fname_t_long = "t_"+fname[i]+"_"+num2istr(ishot)+".ibw"
-			LoadWave /H/O/Q/P=Unt_path fnamelong
-			LoadWave /H/O/Q/P= unt_path fname_t_long
-			
 			dum = fname[i]+"_"+num2istr(ishot)
-	
-			Duplicate/O $dum ::$fname[i]
+			Setdatafolder root:$setname
+			if(i=0)
+				getGADAT(ishot,"rmidout","localhost")
+				Duplicate/O root:$"s"+num2istr(ishot):$"pyd3dat_"+fname[i]+"_"+num2istr(ishot):sig_Z, root:$"s"+num2istr(ishot):$dum
+				Duplicate/O root:$"s"+num2istr(ishot):$"pyd3dat_"+fname[i]+"_"+num2istr(ishot):sig_X, root:$"s"+num2istr(ishot):$"t_"+dum
+			elseif(i=1)
+				getGADAT(ishot,"rmidout","localhost")
+				Duplicate/O root:$"s"+num2istr(ishot):$"pyd3dat_"+fname[i]+"_"+num2istr(ishot):sig_Z, root:$"s"+num2istr(ishot):$dum
+				Duplicate/O root:$"s"+num2istr(ishot):$"pyd3dat_"+fname[i]+"_"+num2istr(ishot):sig_X, root:$"s"+num2istr(ishot):$"t_"+dum
 		
+			If(DataFolderExists("Raw_FS_data"))
+				Setdatafolder "Raw_FS_data"
+			else
+				NewDataFolder/S Raw_FS_data
+			endif
 			Duplicate/O $dum $fname[i]+"_raw"
-			KillWaves $dum
-			Duplicate/O $"t_"+dum ::$"t_"+fname[i]
 			Duplicate/O $"t_"+dum $"t_"+fname[i]+"_raw"
+			KillWaves $dum
 			Killwaves $"t_"+dum
 		i+=1	
 		while(i<=3)
 	endif
 	KillWaves/Z fname
-//	Setdatafolder root:$setname	
 //---end---
 
 //---load all the space waves ---	
