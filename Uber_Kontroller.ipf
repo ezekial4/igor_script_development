@@ -324,27 +324,28 @@ Window Plot_zipfit_data() : Graph
 	ShowInfo
 	Display/W=(0,0,0.5,1)/HOST=# 
 	SetDataFolder dataset
-	AppendMatrixContour dens_plot vs {time_plot,rho_plot}
-	ModifyContour dens_plot autoLevels={0,9,16}, rgbLines=(65535,0,0), labels=0
-	AppendImage dens_plot vs {time_plot,rho_plot}
-	ModifyImage dens_plot ctab= {0,9,PlanetEarth256,0}
-	ModifyGraph margin(bottom)=30,margin(top)=75,margin(right)=10
+	AppendMatrixContour edens_plot vs {time_edens_plot,rho_edens_plot}
+	ModifyContour edens_plot autoLevels={0,9,10}, rgbLines=(65535,65535,65535), labels=0
+	AppendImage edens_plot vs {time_edens_plot,rho_edens_plot}
+	ModifyImage edens_plot ctab={0,9,root:Packages:ColorTables:Matplotlib:inferno,0}
+	ModifyGraph margin(bottom)=30,margin(top)=75,margin(right)=10,margin(left)=45
 	ModifyGraph grid(bottom)=1
 	ModifyGraph tick=2
 	ModifyGraph mirror(left)=1,mirror(bottom)=2
-	ModifyGraph font="Helvetica"
+	ModifyGraph font="Helvetica Neue Condensed Bold"
 	ModifyGraph fSize=12
 	ModifyGraph standoff=0
 	ModifyGraph gridRGB(bottom)=(43690,43690,43690)
 	ModifyGraph prescaleExp(bottom)=-3
 	ModifyGraph manTick(bottom)={0,0.5,0,1},manMinor(bottom)={0,0}
 	Label bottom "Time [s]"
+	Label left "\\Z16\\Z18ρ"
 	SetAxis left 0.5,1.21
 	SetAxis bottom 0,6000
-	Cursor/P/I A dens_plot 146,96
-	ColorScale/C/N=text0/F=0/A=MC/X=-0.50/Y=60.32 image=dens_plot, vert=0
-	ColorScale/C/N=text0 side=2, tickLen=0.5
-	AppendText "Electron Density [X10^19 m^-3]"
+	Cursor/P/I A edens_plot 146,96
+	ColorScale/C/N=text0/F=0/A=MC/X=-0.50/Y=60.32 image=edens_plot, vert=0
+	ColorScale/C/N=text0 side=2, tickLen=0.5,font="Helvetica Neue Condensed Bold",nticks=10
+	AppendText "Electron Density [X10\\S19 \\Mm\\S-3\\M ]"
 	SetDrawLayer UserFront
 	DrawLine 2.1,0.296875,1.05,0.296875
 	SetDrawEnv linethick= 2,linefgc= (52428,52428,52428)
@@ -353,15 +354,15 @@ Window Plot_zipfit_data() : Graph
 	SetActiveSubwindow ##
 	Display/W=(0.501,0,1,1)/FG=(,,,FB)/HOST=# 
 	AppendMatrixContour etemp_plot vs {time_etemp_plot,:rho_etemp_plot}
-	ModifyContour etemp_plot autoLevels={0,6,16}, rgbLines=(65535,65535,65535)
+	ModifyContour etemp_plot autoLevels={0,3,6}, rgbLines=(65535,65535,65535)
 	ModifyContour etemp_plot labels=0
 	AppendImage etemp_plot vs {time_etemp_plot,rho_etemp_plot}
-	ModifyImage etemp_plot ctab= {0,6,BlueHot256,0}
+	ModifyImage etemp_plot ctab= {0,3,root:Packages:ColorTables:Matplotlib:plasma,0}
 	ModifyGraph margin(left)=15,margin(bottom)=30,margin(top)=75,margin(right)=10
 	ModifyGraph grid(bottom)=1
 	ModifyGraph tick=2
 	ModifyGraph mirror=1
-	ModifyGraph font="Helvetica"
+	ModifyGraph font="Helvetica Neue Condensed Bold"
 	ModifyGraph noLabel(left)=2
 	ModifyGraph fSize=12
 	ModifyGraph standoff=0
@@ -372,7 +373,7 @@ Window Plot_zipfit_data() : Graph
 	SetAxis left 0.5,1.21
 	SetAxis bottom 0,6000
 	ColorScale/C/N=text0/F=0/A=MC/X=1.25/Y=61.20 image=etemp_plot, vert=0
-	ColorScale/C/N=text0 side=2, tickLen=0.5
+	ColorScale/C/N=text0 side=2, tickLen=0.5,font="Helvetica Neue Condensed Bold"
 	AppendText "Electron Temperature (keV)"
 	SetDrawLayer UserFront
 	SetDrawEnv linethick= 2,linefgc= (52428,52428,52428)
