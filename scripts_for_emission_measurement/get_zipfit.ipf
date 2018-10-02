@@ -19,41 +19,24 @@ Function get_zipfit(ishot,fname_dens,fname_temp,GA_DL,LocalDL)
 	String fnamelong5 = "time_"+fname_temp+"_"+num2istr(ishot)+".ibw"
 	String fnamelong6 = "time_"+fname_dens+"_"+num2istr(ishot)+".ibw"
 
-	if (GA_DL==1)
-		NVAR local=root:local
-		NVAR ga=root:ga
-		if(local==1)
-			getGADAT(ishot,fname_dens+"fit","localhost")
-			getGADAT(ishot,fname_temp+"fit","localhost")
-		elseif (ga == 1)
-			getGADAT(ishot,fname_dens+"fit","atlas.gat.com")
-			getGADAT(ishot,fname_temp+"fit","atlas.gat.com")
-		endif
-
-		MoveWave root:$"pyd3dat_"+fname_dens+"fit_"+num2istr(ishot):sig_Z, root:$"s"+num2istr(ishot):$fname_dens+"_"+num2istr(ishot)
-		MoveWave root:$"pyd3dat_"+fname_dens+"fit_"+num2istr(ishot):sig_X, root:$"s"+num2istr(ishot):$"rho_"+fname_dens+"_"+num2istr(ishot)
-		MoveWave root:$"pyd3dat_"+fname_dens+"fit_"+num2istr(ishot):sig_Y, root:$"s"+num2istr(ishot):$"time_"+fname_dens+"_"+num2istr(ishot)
-	
-		MoveWave root:$"pyd3dat_"+fname_temp+"fit_"+num2istr(ishot):sig_Z, root:$"s"+num2istr(ishot):$fname_temp+"_"+num2istr(ishot)
-		MoveWave root:$"pyd3dat_"+fname_temp+"fit_"+num2istr(ishot):sig_X, root:$"s"+num2istr(ishot):$"rho_"+fname_temp+"_"+num2istr(ishot)
-		MoveWave root:$"pyd3dat_"+fname_temp+"fit_"+num2istr(ishot):sig_Y, root:$"s"+num2istr(ishot):$"time_"+fname_temp+"_"+num2istr(ishot)
-
-		KillDataFolder root:$"pyd3dat_"+fname_dens+"fit_"+num2istr(ishot)
-		KillDataFolder root:$"pyd3dat_"+fname_temp+"fit_"+num2istr(ishot)
-	endif
-	
 	if(LocalDL==1)
-		PathInfo Unt_path
-		If (V_flag == 0)
-			NewPath/C/O/M="Find Ye Path to the Data" Unt_path
-		Endif
-		LoadWave /H/O/Q/P=Unt_path fnamelong
-		LoadWave /H/O/Q/P=Unt_path fnamelong2
-		LoadWave /H/O/Q/P=Unt_path fnamelong3
-		LoadWave /H/O/Q/P=Unt_path fnamelong4
-		LoadWave /H/O/Q/P=Unt_path fnamelong5
-		LoadWave /H/O/Q/P=Unt_path fnamelong6
+		getGADAT(ishot,fname_dens+"fit","localhost")
+		getGADAT(ishot,fname_temp+"fit","localhost")
+	elseif (GA_DL==1)
+		getGADAT(ishot,fname_dens+"fit","atlas.gat.com")
+		getGADAT(ishot,fname_temp+"fit","atlas.gat.com")
 	endif
+
+	MoveWave root:$"pyd3dat_"+fname_dens+"fit_"+num2istr(ishot):sig_Z, root:$"s"+num2istr(ishot):$fname_dens+"_"+num2istr(ishot)
+	MoveWave root:$"pyd3dat_"+fname_dens+"fit_"+num2istr(ishot):sig_X, root:$"s"+num2istr(ishot):$"rho_"+fname_dens+"_"+num2istr(ishot)
+	MoveWave root:$"pyd3dat_"+fname_dens+"fit_"+num2istr(ishot):sig_Y, root:$"s"+num2istr(ishot):$"time_"+fname_dens+"_"+num2istr(ishot)
+
+	MoveWave root:$"pyd3dat_"+fname_temp+"fit_"+num2istr(ishot):sig_Z, root:$"s"+num2istr(ishot):$fname_temp+"_"+num2istr(ishot)
+	MoveWave root:$"pyd3dat_"+fname_temp+"fit_"+num2istr(ishot):sig_X, root:$"s"+num2istr(ishot):$"rho_"+fname_temp+"_"+num2istr(ishot)
+	MoveWave root:$"pyd3dat_"+fname_temp+"fit_"+num2istr(ishot):sig_Y, root:$"s"+num2istr(ishot):$"time_"+fname_temp+"_"+num2istr(ishot)
+
+	KillDataFolder root:$"pyd3dat_"+fname_dens+"fit_"+num2istr(ishot)
+	KillDataFolder root:$"pyd3dat_"+fname_temp+"fit_"+num2istr(ishot)
 	
 	if(DataFolderExists(setname) ==1)
 		Setdatafolder root:$setname
