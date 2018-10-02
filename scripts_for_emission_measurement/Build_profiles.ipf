@@ -32,7 +32,7 @@ Function Build_profiles(Timepnts,zipfit_YN)
 //		Make/N=8/O $"radi_fsmid_"+num2istr(Tmpnt[i])
 	
 		if(zipfit_YN ==1)
-			Make/N=8/O $"dens_"+num2istr(Tmpnt[i])
+			Make/N=8/O $"edens_"+num2istr(Tmpnt[i])
         		Make/N=8/O $"etemp_"+num2istr(Tmpnt[i])
 		endif
 		
