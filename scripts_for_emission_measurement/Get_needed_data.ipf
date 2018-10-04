@@ -6,26 +6,17 @@ Function GA_load_wav_time_his(ishot,fname,GAdlwav,LocalDLWav)
 	Variable GAdlwav
 	Variable LocalDLWav
 	
-	String setname = "s"+num2istr(ishot)
-	If(DataFolderExists(setname))
-		Setdatafolder root:$setname
-	else
-		NewDataFolder/S $setname
-	endif
-	
 	String server
 	if (GAdlwav == 1)
-		server="atlas.gat.com"
-		getGADAT(ishot,fname,server)
+		getGADAT(ishot,fname,"atlas.gat.com")
 	endif
 	
 	if(LocalDLWav == 1)
-		server="localhost"
-		getGADAT(ishot,fname,server)
+		getGADAT(ishot,fname,"localhost")
 	endif
 	
-	MoveWave root:$"s"+num2istr(ishot):$"pyd3dat_"+fname+"_"+num2istr(ishot):sig_Z, root:$"s"+num2istr(ishot):$fname
-	MoveWave root:$"s"+num2istr(ishot):$"pyd3dat_"+fname+"_"+num2istr(ishot):sig_X, root:$"s"+num2istr(ishot):$"t_"+fname
+	Duplicate/O root:$"pyd3dat_"+fname+"_"+num2istr(ishot):sig_Z, root:$"s"+num2istr(ishot):$fname
+	Duplicate/O root:$"pyd3dat_"+fname+"_"+num2istr(ishot):sig_X, root:$"s"+num2istr(ishot):$"t_"+fname
 
 	KillDataFolder $"pyd3dat_"+fname+"_"+num2istr(ishot)
 	
