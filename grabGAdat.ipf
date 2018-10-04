@@ -5,7 +5,7 @@ Function getGADAT(shot,pntname,server)
 	string pntname
 	string server
 	
-	PathInfo DataDump  
+	PathInfo usrDesktop 
 	if(V_flag == 0)
 		Abort "Data Path does Exist: Make New Path."
 	endif
@@ -17,7 +17,7 @@ Function getGADAT(shot,pntname,server)
 	string fname = "pyd3dat_"+pntname+"_"+num2istr(shot)+".h5"
 	variable fileID
 	print "Loading Data into IGOR for pointname: "+pntname
-	HDF5OpenFile/P=DataDump/R/Z fileID as fname
+	HDF5OpenFile/P=usrDesktop/R/Z fileID as fname
 	HDF5LoadGroup/T/O/Z/IGOR=-1 :, fileID,"/"
 	HDF5CloseFile/A/Z fileID
 	
@@ -35,31 +35,10 @@ Function grabGAdat(shot,tags,server,unixPath,printCmd)
 	Variable printCmd
 	
 	string igorCmd, exeCmd
-	igorCmd = "cd ~;source .bash_profile;cd '"+unixPath+"';python pyD3D2hdf5.py "+" '"+server+"' "+num2istr(shot)+" '"+tags+"' "
+	igorCmd = "cd ~;source .bash_profile;cd '"+unixPath+"';python ../../../pytools/DIIID/DIIID_mdsdat/pyD3D2hdf5.py "+" '"+server+"' "+num2istr(shot)+" '"+tags+"' "
 	if(printCmd)
 		print igorCmd
 	endif
 	sprintf exeCmd, "do shell script \"%s\"", igorCmd
 	ExecuteUnixShellCommand(igorCmd, 0, 0)
 End
-
-Function/S ExecuteUnixShellCommand(uCommand, printCommandInHistory, printResultInHistory)
-	String uCommand				// Unix command to execute
-	Variable printCommandInHistory
-	Variable printResultInHistory
-
-	if (printCommandInHistory)
-		printf "Unix command: %s\r", uCommand
-	endif
-
-	String cmd
-	sprintf cmd, "do shell script \"%s\"", uCommand
-	ExecuteScriptText/Z cmd
-
-	if (printResultInHistory)
-		Print S_value
-	endif
-
-	return S_value
-End
-
