@@ -33,7 +33,6 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 		i +=1
 	while(i<9)
 	
-	String setname = "s"+num2istr(ishot)
 	Setdatafolder root:$setname
 	If(DataFolderExists("Raw_data"))
 		Setdatafolder "Raw_data"
