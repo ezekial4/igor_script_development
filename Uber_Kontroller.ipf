@@ -247,33 +247,33 @@ Window Plot_fs_data() : Graph
 	String dataset = "root:s"+num2istr(ishot)
 	string septrix = "rmidout_"+num2istr(ishot)
 	SetDataFolder dataset
-	if(checkname("fsmid1_da",1)!=0)
-		Display /W=(7,44,559,465) fsmid1_da vs t_fsmid1_da
-		AppendToGraph fsmid2_da vs t_fsmid2_da
-		AppendToGraph fsmid3_da vs t_fsmid3_da
-		AppendToGraph fsmid4_da vs t_fsmid4_da
-		AppendToGraph fsmid5_da vs t_fsmid5_da
-		AppendToGraph fsmid6_da vs t_fsmid6_da
-		AppendToGraph fsmid7_da vs t_fsmid7_da
-		AppendToGraph fsmid8_da vs t_fsmid8_da
+	if(checkname("fs1mid_da",1)!=0)
+		Display /W=(7,44,559,465) fs1midda vs t_fs1midda
+		AppendToGraph fs2midda vs t_fs2midda
+		AppendToGraph fs3midda vs t_fs3midda
+		AppendToGraph fs4midda vs t_fs4midda
+		AppendToGraph fs5midda vs t_fs5midda
+		AppendToGraph fs6midda vs t_fs6midda
+		AppendToGraph fs7midda vs t_fs7midda
+		AppendToGraph fs8midda vs t_fs8midda
 		AppendToGraph/R $septrix vs $"t_"+septrix
 		SetDataFolder fldrSav0
-		ModifyGraph mode(fsmid1_da)=3,mode(fsmid2_da)=3,mode(fsmid3_da)=3,mode(fsmid4_da)=3
+		ModifyGraph mode(fs1midda)=3,mode(fs2midda)=3,mode(fs3midda)=3,mode(fs4midda)=3
 		ModifyGraph mode(fsmid5_da)=3,mode(fsmid6_da)=3,mode(fsmid7_da)=3,mode(fsmid8_da)=3
 		ModifyGraph mode($septrix)=4
-		ModifyGraph marker(fsmid1_da)=16,marker(fsmid2_da)=16,marker(fsmid3_da)=16,marker(fsmid4_da)=16
+		ModifyGraph marker(fs1midda)=16,marker(fs2midda)=16,marker(fs3midda)=16,marker(fs4midda)=16
 		ModifyGraph marker(fsmid5_da)=16,marker(fsmid6_da)=16,marker(fsmid7_da)=16,marker(fsmid8_da)=16
 		ModifyGraph marker($septrix)=19
-		ModifyGraph rgb(fsmid1_da)=(0,0,65535),rgb(fsmid2_da)=(3,52428,1),rgb(fsmid4_da)=(52428,52425,1)
+		ModifyGraph rgb(fs1midda)=(0,0,65535),rgb(fs2midda)=(3,52428,1),rgb(fs4midda)=(52428,52425,1)
 		ModifyGraph rgb(fsmid5_da)=(65535,16385,55749),rgb(fsmid6_da)=(0,0,0),rgb(fsmid7_da)=(26214,26214,26214)
 		ModifyGraph rgb(fsmid8_da)=(1,52428,52428)
-		ModifyGraph msize(fsmid1_da)=2,msize(fsmid2_da)=2,msize(fsmid3_da)=2,msize(fsmid4_da)=2
+		ModifyGraph msize(fs1midda)=2,msize(fs2midda)=2,msize(fs3midda)=2,msize(fs4midda)=2
 		ModifyGraph msize(fsmid5_da)=2,msize(fsmid6_da)=2,msize(fsmid7_da)=2,msize(fsmid8_da)=2
 		ModifyGraph msize($septrix)=4
 		ModifyGraph useMrkStrokeRGB($septrix)=1,standoff=0,tick=2,mirror(bottom)=1
 		ModifyGraph manTick(bottom)={0,500,0,0},manMinor(bottom)={0,0}
 		SetAxis bottom 0,6000
-		Legend/C/N=text0/J/F=0/A=MC/X=-30.28/Y=31.68 "\\s(fsmid1_da) fsmid1_da\r\\s(fsmid2_da) fsmid2_da\r\\s(fsmid3_da) fsmid3_da\r\\s(fsmid4_da) fsmid4_da\r\\s(fsmid5_da) fsmid5_da"
+		Legend/C/N=text0/J/F=0/A=MC/X=-30.28/Y=31.68 "\\s(fs1midda) fsmid1_da\r\\s(fs2midda) fsmid2_da\r\\s(fs3midda) fsmid3_da\r\\s(fs4midda) fsmid4_da\r\\s(fsmid5_da) fsmid5_da"
 		AppendText "\\s(fsmid6_da) fsmid6_da\r\\s(fsmid7_da) fsmid7_da\r\\s(fsmid8_da) fsmid8_da\r\\s(rout_fsmid) rout_fsmid"
 	else
 		print "*************"
