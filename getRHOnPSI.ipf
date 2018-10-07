@@ -12,8 +12,14 @@ Function getRHOPSI(shot,efittime,server)
 	endif
 	String unixPath = ParseFilePath(5,S_path,"/",0,0)
 	
+	PathInfo python
+	if(V_flag == 0)
+		Abort "Data Path does Exist: Make New Path."
+	endif
+	String pythonPath = ParseFilePath(5,S_path,"/",0,0)
+	
 	print "Calculating rhoN"
-	calcRHOfromEFIT(shot,efittime,server,unixPath,0)
+	calcRHOfromEFIT(shot,efittime,server,unixPath,pythonPath,0)
 
 	string fname = "pyEFIT_rhoN_psiN_"+num2istr(shot)+".h5"
 	variable fileID
@@ -27,11 +33,12 @@ Function getRHOPSI(shot,efittime,server)
 	ExecuteUnixShellCommand(igorCmd2, 0, 0)
 End
 	
-Function calcRHOfromEFIT(shot,t_efit,server,unixPath,printCmd)
+Function calcRHOfromEFIT(shot,t_efit,server,unixPath,pythonPath,printCmd)
 	Variable shot
 	Variable t_efit
 	String server
 	String unixPath
+	String pythonPath
 	Variable printCmd
 	
 	string igorCmd, exeCmd, tags
