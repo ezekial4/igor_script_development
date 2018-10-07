@@ -24,23 +24,15 @@ Function Wave_avg()
 	//	Truncate fsmid waves to match EFIT times
 	String trunc_basewav = "rmidout"
 	String dum= "t_"+trunc_basewav
-	// check to see if baswav is loaded
-	if (WaveExists($dum) == 0)
-		String fldrSav0= GetDataFolder(1)
-		SetDataFolder root:
-		NVAR GA
-		NVAR Local
-		GA_load_wav_time_his(ishot,trunc_basewav,GA,Local)
-		SetDataFolder fldrSav0
-	endif 
 	
 	String fsname = "fsmid"
 	trunc_n_interp(ishot,$dum,fsname,ext)
 		
 	Variable j
+	String inwav 
 	For (j=1;j<9;j+=1)
 		
-		String inwav = "fsmid"+num2str(j)+ext
+		inwav = "fs"+num2str(j)+"mid"+ext[1,2]
 		Wave dummy = $"t_"+inwav
 		Wave dummy2 = $"t_"+inwav+"_L"
 		
