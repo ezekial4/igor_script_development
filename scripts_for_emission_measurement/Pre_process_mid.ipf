@@ -54,9 +54,6 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 		Duplicate/O ::$"t_"+dum $"t_"+fsname+num2str(i)+ext+"_raw"
 		Duplicate/O ::$dum $fsname+num2str(i)+ext+"_raw"
 		::$fsname+num2str(i)+ext -=V_avg
-		
-		Killwaves ::$dum
-		Killwaves ::$"t_"+dum
 		i+=1
 	while(i<9)
 
@@ -66,5 +63,5 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 //---end---
 
 	Setdatafolder root:
-	print "Completed loading and pre-procesing"
+	print "Completed loading and pre-processing"
 End
