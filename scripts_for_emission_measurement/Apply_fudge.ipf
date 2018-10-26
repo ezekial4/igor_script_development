@@ -1,4 +1,4 @@
-#pragma rtGlobals=1		// Use modern global access method.
+#pragma rtGlobals=3		// Use modern global access method.
 
 Function Fudg_app(fudg_nam, wav_nam, err_wav)
 	String fudg_nam
@@ -9,7 +9,7 @@ Function Fudg_app(fudg_nam, wav_nam, err_wav)
 	String setname = "s"+num2istr(ishot)
 	SetDataFolder root:$setname
 	
-	Wave Fudge=root:$fudg_nam
+	Wave Fudge=root:FSmid_geometry:$fudg_nam
 	Wave Wav_uncorr = $wav_nam
 	Wave Err_uncorr = $err_wav
 	

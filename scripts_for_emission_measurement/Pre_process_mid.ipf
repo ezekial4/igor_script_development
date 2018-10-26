@@ -42,14 +42,15 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 
 //Make a noise wav to store error from digitizer noise 
 	Make/O/N=8 fsnoise_err
-	Variable ierr = 40    //This is the stopping point of the offset analysis 
-	
+	Variable ierr = 400    //This is the stopping point of the offset analysis 
+	Variable stopper
 //	Move raw waves out of the working directory and correct for offsets
 	i=1
 	do
 		dum =  fsname+num2str(i)+ext
-		
-		Wavestats/Q/R=[0,ierr] ::$dum
+		Wavestats/Q ::$dum
+		stopper = V_endRow - ierr
+		Wavestats/Q/R=[0,stopper] ::$dum
 		fsnoise_err[i-1]=V_sdev
 		Duplicate/O ::$"t_"+dum $"t_"+fsname+num2str(i)+ext+"_raw"
 		Duplicate/O ::$dum $fsname+num2str(i)+ext+"_raw"

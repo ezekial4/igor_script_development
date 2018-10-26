@@ -20,40 +20,53 @@ Function Build_profiles(Timepnts,zipfit_YN)
 	String setname = "s"+num2istr(ishot)
 	SetDataFolder root:$setname
 	
-	Wave Tmpnt = $Timepnts
+	Wave Tmpnt = root:$Timepnts
 	
-	Wave refwav = $"t_fsmid1"+ext+"_shrt"
+	String hold = "t_fs1mid"+ext[1,2]+"_shrt"
+	Wave refwav = $hold
 	Build_fsarray(refwav)
 	
-	Wavestats/Q/M=0 $Timepnts
-	For	(i =0;i < (V_endrow+1);i +=1)
+	Wavestats/Z/M=0 Tmpnt
+	
+	for (i=0;i<=V_endrow;i+=1)
 		Make/N=8/O $"fsmid_"+num2istr(Tmpnt[i])+ext
 		Make/N=8/O $"fsmid_"+num2istr(Tmpnt[i])+"_err"+ext
-//		Make/N=8/O $"radi_fsmid_"+num2istr(Tmpnt[i])
 	
+	   FindValue/T=13/V=(Tmpnt[i]) refwav
+	   Variable tHOLD = V_value
+		
 		if(zipfit_YN ==1)
 			Make/N=8/O $"edens_"+num2istr(Tmpnt[i])
-        		Make/N=8/O $"etemp_"+num2istr(Tmpnt[i])
+        	Make/N=8/O $"etemp_"+num2istr(Tmpnt[i])
+        	Wave edens_plot
+        	Wave etemp_plot
+        	Wave rho_etemp_plot
+        	hold = "fsmid_rho_"+num2istr(Tmpnt[i])
+        	Wave clocker = $hold
+        	Wave dummy1 = $"edens_"+num2istr(Tmpnt[i])
+        	Wave dummy2 = $"etemp_"+num2istr(Tmpnt[i])
+        	for(j=0;j<=8;j+=1) 
+        		FindValue/T=0.01/V=(clocker[j]) rho_etemp_plot
+        		print tHOLD,clocker[j],V_Value
+        		if(V_Value ==-1)
+	        		dummy1[j] = dummy1[j-1]
+	        		dummy2[j] = dummy2[j-1]
+        		else
+	        		dummy1[j] = edens_plot[tHOLD][V_value]
+	        		dummy2[j] = etemp_plot[tHOLD][V_value]
+        		endif
+        	endfor
 		endif
 		
-	       FindValue/T=13/V=(Tmpnt[i]) refwav
 		Wave Dum1 = $"fsmid_"+num2istr(Tmpnt[i])+ext
 		Wave Dum2 = fsarray
 		
 		Wave Dum3 = $"fsmid_"+num2istr(Tmpnt[i])+"_err"+ext
 		Wave Dum4 =  fsarray_err
 		
-		Dum1[] = Dum2[V_value][p]
-		Dum3[] = Dum4[V_value][p]
-		
-		FindValue/T=2/V=(Tmpnt[i]) $"t_rmidout"
-	       
-//		For(j=0;j<8;j+=1)
-//		 	Wave dummy1 = root:$"s"+num2istr(ishot):$"radi_fsmid"+num2istr(j+1)			 	 
-//		 	 Wave dummy3 =  $"radi_fsmid_"+num2istr(Tmpnt[i])
-//		 	  dummy3[j]=  dummy1[V_value]*100	
-//		Endfor
-	Endfor
+		Dum1[] = Dum2[tHOLD][p]
+		Dum3[] = Dum4[tHOLD][p]
+	endfor
 	KillWaves fsarray,fsarray_err
 	
 	Setdatafolder root:

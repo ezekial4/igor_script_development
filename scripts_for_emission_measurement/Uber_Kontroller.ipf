@@ -5,7 +5,6 @@ Window Uber_Kontroller() : Panel
 	PauseUpdate; Silent 1		// building window...
 	NewPanel /W=(163,44,700,619) as "Uber_Kontrolle"
 	ModifyPanel cbRGB=(43690,43690,43690), frameInset=3
-	ShowTools/A
 	SetDrawLayer UserBack
 	SetDrawEnv fname= "Helvetica",fstyle= 1
 	DrawText 19,136,"Where to get data?"
@@ -21,7 +20,7 @@ Window Uber_Kontroller() : Panel
 	GroupBox FSmid_group,font="Gill Sans",fSize=16
 	SetVariable SetShot,pos={25,48},size={125,22},title="Shot #"
 	SetVariable SetShot,labelBack=(65535,65535,65535),font="Gill Sans",fSize=16
-	SetVariable SetShot,limits={0,135000,1},value= ishot
+	SetVariable SetShot,limits={0,435000,1},value= ishot
 	Button Pre_process_FS_mid,pos={12,146},size={180,25},proc=PreProcess_button,title="Go and PreProcess FSmidData"
 	Button Pre_process_FS_mid,font="Gill Sans",fColor=(0,17409,26214)
 	CheckBox GA_data,pos={135,121},size={75,15},proc=Radio_Change,title="GA server"
@@ -46,19 +45,19 @@ Window Uber_Kontroller() : Panel
 	GroupBox Average_wave,font="Gill Sans",fSize=16,fStyle=0
 	SetVariable Numpnts_avg,pos={40,220},size={115,13},bodyWidth=35,title="Smooth Pnts. = "
 	SetVariable Numpnts_avg,font="Helvetica",fSize=10,fStyle=1
-	SetVariable Numpnts_avg,limits={-inf,inf,0},value= root:s132463:numpnt
+	SetVariable Numpnts_avg,limits={-inf,inf,0},value=numpnt
 	Button Avg_wav,pos={49,262},size={55,20},proc=Avg_waves,title="Do AVG"
 	Button Avg_wav,font="Gill Sans",fColor=(0,17409,26214)
 	SetVariable time_display,pos={62,236},size={78,18},disable=2,title="time  ="
 	SetVariable time_display,labelBack=(65535,65535,65535),font="Helvetica Neue"
 	SetVariable time_display,fSize=12,frame=0,fStyle=1
-	SetVariable time_display,limits={0,200,0},value= root:s132463:Time_avg_num
-	Button Kill_fs_data_1,pos={254,146},size={50,25},proc=Kill_fs_data_1,title="Kill It!"
+	SetVariable time_display,limits={0,200,0},value= Time_avg_num
+	Button Kill_fs_data_1,pos={254,146},size={50,25},proc=Kill_fs_data,title="Kill It!"
 	Button Kill_fs_data_1,font="Gill Sans",fSize=14,fColor=(13107,0,0)
 	Button Kill_zipfit_data,pos={456,151},size={50,25},proc=Kill_zipfit_data,title="Kill It!"
 	Button Kill_zipfit_data,font="Gill Sans",fSize=14,fColor=(13107,0,0)
-	Button Plot_fs_data_1,pos={121,259},size={30,25},proc=FS_plot,title="Plot"
-	Button Plot_fs_data_1,font="Gill Sans",fSize=14,fColor=(0,13107,0)
+	Button Plot_fs_avg,pos={121.00,259.00},size={30.00,25.00},proc=FS_Avg_plot,title="Plot"
+	Button Plot_fs_avg,font="Gill Sans",fSize=14,fColor=(0,13107,0)
 	GroupBox Timepnt_wave,pos={360,190},size={150,100},labelBack=(65535,65535,65535)
 	GroupBox Timepnt_wave,font="Gill Sans",fSize=16,fStyle=0
 	CheckBox make_zipfit_profile,pos={366,224},size={133,14},title="Make dens & temp profile?"
@@ -100,7 +99,7 @@ Window Uber_Kontroller() : Panel
 	SetVariable fudg_wav,pos={185,228},size={152,14},title=" Fudge Wavname"
 	SetVariable fudg_wav,labelBack=(65535,65535,65535),font="Helvetica Neue",fSize=9
 	SetVariable fudg_wav,fStyle=1,limits={-inf,inf,0},value= fudg_nam
-	Button Fdug_go,pos={223,285},size={75,16},proc=Build_prof_button,title="Fudge 'em!"
+	Button Fdug_go,pos={223.00,285.00},size={75.00,16.00},proc=Button_App_FUDG,title="Fudge 'em!"
 	Button Fdug_go,font="Gill Sans",fColor=(0,17409,26214)
 	TitleBox do_fudg_corr,pos={190,195},size={141,25},title="(2a) 'Fudge' Correction"
 	TitleBox do_fudg_corr,labelBack=(21845,21845,21845),font="Gill Sans",fSize=14

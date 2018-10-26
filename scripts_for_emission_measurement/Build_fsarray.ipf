@@ -31,11 +31,11 @@ Function Build_fsarray(fswav)
 		endif
 		if (waveexists($fname_err2)==1)
 			WAVE dummy2=$fname_err2
-             else
-             		WAVE dummy2=$fname_err
-             	endif
-              fsarray[][i] = dummy[p]
-              fsarray_err[][i]=dummy2[p]
-        endfor
+     	else
+         WAVE dummy2=$fname_err
+      endif
+      fsarray[][i] = dummy[p]
+   	fsarray_err[][i]=dummy2[p]
+	endfor
 End
 

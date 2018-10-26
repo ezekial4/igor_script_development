@@ -20,23 +20,25 @@ Function Build_profiles(Timepnts,zipfit_YN)
 	String setname = "s"+num2istr(ishot)
 	SetDataFolder root:$setname
 	
-	Wave Tmpnt = $Timepnts
+	Wave Tmpnt = root:$Timepnts
 	
-	Wave refwav = $"t_fsmid1"+ext+"_shrt"
+	String hold = "t_fs1mid"+ext[1,2]+"_shrt"
+	Wave refwav = $hold
 	Build_fsarray(refwav)
 	
 	Wavestats/Q/M=0 $Timepnts
 	For	(i =0;i < (V_endrow+1);i +=1)
+		print Tmpnt[i]
 		Make/N=8/O $"fsmid_"+num2istr(Tmpnt[i])+ext
 		Make/N=8/O $"fsmid_"+num2istr(Tmpnt[i])+"_err"+ext
 //		Make/N=8/O $"radi_fsmid_"+num2istr(Tmpnt[i])
 	
 		if(zipfit_YN ==1)
 			Make/N=8/O $"edens_"+num2istr(Tmpnt[i])
-        		Make/N=8/O $"etemp_"+num2istr(Tmpnt[i])
+        	Make/N=8/O $"etemp_"+num2istr(Tmpnt[i])
 		endif
 		
-	       FindValue/T=13/V=(Tmpnt[i]) refwav
+	   FindValue/T=13/V=(Tmpnt[i]) refwav
 		Wave Dum1 = $"fsmid_"+num2istr(Tmpnt[i])+ext
 		Wave Dum2 = fsarray
 		
