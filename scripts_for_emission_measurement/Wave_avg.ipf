@@ -28,7 +28,7 @@ Function Wave_avg()
 	String fsname = "fsmid"
 	trunc_n_interp(ishot,$dum,fsname,ext)
 		
-	Variable j
+	Variable i,j
 	String inwav 
 	For (j=1;j<9;j+=1)
 		
@@ -43,7 +43,6 @@ Function Wave_avg()
 		Wave dummy3 = $inwav+"_avg"
 		Wave dummy4 = $inwav+"_stdev"
 		
-		Variable i
 		for (i=0;i<(stoppnt+1);i+=1)
 			FindValue/T=2/V=(dummy2[i]) dummy
 			Variable startpnt = V_value
