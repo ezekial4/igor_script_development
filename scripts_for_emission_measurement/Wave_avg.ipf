@@ -55,10 +55,12 @@ Function Wave_avg()
 			NVAR Time_avg_num = root:Time_avg_num
 			Time_avg_num = dummy[Epnt]-dummy[Spnt]
 			
-			Wavestats/Q/M=2/R=[Spnt,Epnt] $inwav
+			//Wavestats/Q/M=2/R=[Spnt,Epnt] $inwav
+			Variable V_mead = median($inwav,Spnt,Epnt)
+			Variable V_stdev = sqrt(variance($inwav,Spnt,Epnt))
 			
-			dummy3[i] = V_avg
-			dummy4[i] = V_sdev
+			dummy3[i] = V_mead
+			dummy4[i] = V_stdev
 			
 			dummy2[i]=trunc(dummy2[i])
 		endfor
