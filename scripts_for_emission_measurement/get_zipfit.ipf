@@ -43,18 +43,15 @@ Function get_zipfit(ishot,fname_dens,fname_temp,GA_DL,LocalDL)
 	else
 		NewDataFolder/S $setname
 	endif
+	
 	//transpose density and temp. waves to make pretty graphs
-	String saveloca="root:"+setname+":Raw_FS_data"
-		
 	String fnamelong_pl=fnamelong[0,4] 
 	Duplicate/O $fnamelong_pl+"_"+num2istr(ishot) $fnamelong_pl+"_plot"
-	string save1=saveloca+":"+fnamelong_pl+"_raw"
-	Duplicate/O $fnamelong_pl+"_"+num2istr(ishot) $save1
+	Duplicate/O $fnamelong_pl+"_"+num2istr(ishot) root:$"s"+num2istr(ishot):$"Raw_data":$fnamelong_pl+"_raw"
 	
 	String fnamelong2_pl=fnamelong2[0,4]
 	Duplicate/O $fnamelong2_pl+"_"+num2istr(ishot) $fnamelong2_pl+"_plot"
-	string save2=saveloca+":"+fnamelong2_pl+"_raw"
-	Duplicate/O $fnamelong2_pl+"_"+num2istr(ishot) $save2
+	Duplicate/O $fnamelong2_pl+"_"+num2istr(ishot) root:$"s"+num2istr(ishot):$"Raw_data":$fnamelong2_pl+"_raw"
 	matrixtranspose $fnamelong_pl+"_plot"
 	matrixtranspose $fnamelong2_pl+"_plot"
 	KillWaves $fnamelong_pl+"_"+num2istr(ishot),$fnamelong2_pl+"_"+num2istr(ishot)
@@ -62,26 +59,22 @@ Function get_zipfit(ishot,fname_dens,fname_temp,GA_DL,LocalDL)
 	//Now need to make plot-able time and rho waves
 	String fnamelong3_pl = fnamelong3[0,8]
 	Duplicate/O $ fnamelong3_pl+"_"+num2istr(ishot) $ fnamelong3_pl+"_plot"
-	string save3=saveloca+":"+fnamelong3_pl+"_raw"
-	Duplicate/O $fnamelong3_pl+"_"+num2istr(ishot) $save3
+	Duplicate/O $fnamelong3_pl+"_"+num2istr(ishot) root:$"s"+num2istr(ishot):$"Raw_data":$fnamelong3_pl+"_raw"
 	KillWaves $fnamelong3_pl+"_"+num2istr(ishot)
 
 	String fnamelong4_pl = fnamelong4[0,8]
 	Duplicate/O $ fnamelong4_pl+"_"+num2istr(ishot) $ fnamelong4_pl+"_plot"
-	string save4=saveloca+":"+fnamelong4_pl+"_raw"
-	Duplicate/O $fnamelong4_pl+"_"+num2istr(ishot) $save4
+	Duplicate/O $fnamelong4_pl+"_"+num2istr(ishot) root:$"s"+num2istr(ishot):$"Raw_data":$fnamelong4_pl+"_raw"
 	KillWaves $fnamelong4_pl+"_"+num2istr(ishot)
 
 	String fnamelong5_pl = fnamelong5[0,9]
 	Duplicate/O $ fnamelong5_pl+"_"+num2istr(ishot) $ fnamelong5_pl+"_plot"
-	string save5=saveloca+":"+fnamelong5_pl+"_raw"
-	Duplicate/O $fnamelong5_pl+"_"+num2istr(ishot) $save5
+	Duplicate/O $fnamelong5_pl+"_"+num2istr(ishot) root:$"s"+num2istr(ishot):$"Raw_data":$fnamelong5_pl+"_raw"
 	KillWaves $fnamelong5_pl+"_"+num2istr(ishot)
 
 	String fnamelong6_pl = fnamelong6[0,9]
 	Duplicate/O $ fnamelong6_pl+"_"+num2istr(ishot) $ fnamelong6_pl+"_plot"
-	string save6=saveloca+":"+fnamelong6_pl+"_raw"
-	Duplicate/O $fnamelong6_pl+"_"+num2istr(ishot) $save6
+	Duplicate/O $fnamelong6_pl+"_"+num2istr(ishot) root:$"s"+num2istr(ishot):$"Raw_data":$fnamelong6_pl+"_raw"
 	KillWaves $fnamelong6_pl+"_"+num2istr(ishot)
 
 	Wavestats/Q/M=1  $fnamelong3_pl+"_plot"

@@ -25,7 +25,9 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 	else
 		NewDataFolder/S $setname
 	endif
+	
 	Variable i=1
+	Setdatafolder root:
 	do
 		dum = fsname+num2str(i)+ext
 		GA_load_wav_time_his(ishot,dum,GA,Local)
@@ -48,9 +50,10 @@ Macro Pre_process_FS_mid(ishot,GA,Local)
 	i=1
 	do
 		dum =  fsname+num2str(i)+ext
+		print dum
 		Wavestats/Q ::$dum
 		stopper = V_endRow - ierr
-		Wavestats/Q/R=[0,stopper] ::$dum
+		Wavestats/Q/R=[stopper,V_endRow] ::$dum
 		fsnoise_err[i-1]=V_sdev
 		Duplicate/O ::$"t_"+dum $"t_"+fsname+num2str(i)+ext+"_raw"
 		Duplicate/O ::$dum $fsname+num2str(i)+ext+"_raw"
