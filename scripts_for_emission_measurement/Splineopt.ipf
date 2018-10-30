@@ -111,7 +111,7 @@ Function Splineopt(y_data,x_data,y_err_str,int_knots,tol,itermax)
  	printf "Probability of exceeding chi_sq: %g\r",prob
  	
 	Killwaves y_random, y_random_cs,mat_spline_str, y_diff_sq
-	KillVariables prob
+	//KillVariables prob
 
 	Setdatafolder root:
 end
