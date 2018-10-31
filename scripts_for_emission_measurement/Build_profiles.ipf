@@ -26,7 +26,7 @@ Function Build_profiles(Timepnts,zipfit_YN)
 	Wave refwav = $hold
 	Build_fsarray(refwav)
 	
-	Wavestats/Z/M=0 Tmpnt
+	Wavestats/Q/Z/M=0 Tmpnt
 	
 	for (i=0;i<=V_endrow;i+=1)
 		Make/N=8/O $"fsmid_"+num2istr(Tmpnt[i])+ext
@@ -47,7 +47,7 @@ Function Build_profiles(Timepnts,zipfit_YN)
         	Wave dummy2 = $"etemp_"+num2istr(Tmpnt[i])
         	for(j=0;j<=8;j+=1) 
         		FindValue/T=0.01/V=(clocker[j]) rho_etemp_plot
-        		print tHOLD,clocker[j],V_Value
+        		//print tHOLD,clocker[j],V_Value
         		if(V_Value ==-1)
 	        		dummy1[j] = dummy1[j-1]
 	        		dummy2[j] = dummy2[j-1]
