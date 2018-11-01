@@ -1,4 +1,5 @@
-#pragma rtGlobals=1		// Use modern global access method.
+#pragma rtGlobals=3		// Use modern global access method.
+#pragma IgorVersion = 7.00
 
 Function Splineopt(y_data,x_data,y_err_str,int_knots,tol,itermax)
 	String y_data
@@ -15,6 +16,7 @@ Function Splineopt(y_data,x_data,y_err_str,int_knots,tol,itermax)
 	
 	Wave y_error =$y_err_str
 	
+	Wave error_wave=root:error_wave
 	if(waveexists(error_wave)==0)
 		Make/O/N=3 error_wave=0
 	endif
@@ -78,7 +80,7 @@ Function Splineopt(y_data,x_data,y_err_str,int_knots,tol,itermax)
 	For(i=0;i<(outpnts+1);i+=1)
 		ImageStats/G={i,i,0,(itermax-1)} mat_spline_str	
 		dummy3[i] = V_avg
-	       dummy6[i] = V_adev
+	   dummy6[i] = V_adev
 	Endfor
 
 		dummy4 = dummy3 + dummy6
