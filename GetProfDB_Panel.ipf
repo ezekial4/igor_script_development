@@ -194,8 +194,8 @@ Window SumPlot() : Graph
 	ModifyGraph mode(NEP)=3,marker(NEP)=19,msize(NEP)=4
 	ModifyGraph lSize=3
 	ModifyGraph rgb(NEP)=(34181,50372,17990,6554),useMrkStrokeRGB(NEP)=1,mrkStrokeRGB(NEP)=(0,31097,13364,26214)
-	ModifyGraph fSize=14, font="Arial Narrow", fStyle=1
-	Legend/C/N=text0/J/A=MC/H=9/X=30/Y=35 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(NEP) NEP [x10\\S20 \\M\Z13m\\S-3\\M]\\Z13\r\\s(NETHP)NETHP            \\s(NET0P)NET0P"
+	ModifyGraph fSize=14, font="Helvetica Neue Bold Condensed", fStyle=1
+	Legend/C/N=text0/J/A=MC/H=9/X=30/Y=35 "\\M\\Z13\\F'Helvetica Neue Bold Condensed'\\f01\\s(NEP) NEP [x10\\S20 \\M\Z13m\\S-3\\M]\\Z13\r\\s(NETHP)NETHP            \\s(NET0P)NET0P"
 	AppendText "\\s(nisplpsiWAV)nisplpsiWAV  \\s(NBSPLPSIWAV)NBSPLPSIWAV"
 	RenameWindow #,G0
 	SetActiveSubwindow ##
@@ -214,8 +214,8 @@ Window SumPlot() : Graph
 	ModifyGraph height=220, standoff=0, axisOnTop=1, lSize=3, tick=2, mirror=1, noLabel(bottom)=2
 	ModifyGraph mode(TEP)=3,marker(TEP)=19,msize(TEP)=4
 	ModifyGraph rgb(TEP)=(34181,50372,17990,6554),useMrkStrokeRGB(TEP)=1,mrkStrokeRGB(TEP)=(0,31097,13364,26214)
-	ModifyGraph fSize=14,font="Arial Narrow", fStyle=1
-	Legend/C/N=text0/J/A=MC/H=9/X=32.32/Y=30.00 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(TEP)TEP [keV]\r\\s(TETHP)TETHP\r\\s(TET0P)TET0P\r\\s(TISPLPSIWAV)TISPLPSIWAV"
+	ModifyGraph fSize=14,font="Helvetica Neue Bold Condensed", fStyle=1
+	Legend/C/N=text0/J/A=MC/H=9/X=32.32/Y=30.00 "\\M\\Z13\\F'Helvetica Neue Bold Condensed'\\f01\\s(TEP)TEP [keV]\r\\s(TETHP)TETHP\r\\s(TET0P)TET0P\r\\s(TISPLPSIWAV)TISPLPSIWAV"
 	RenameWindow #,G1
 	SetActiveSubwindow ##
 	
@@ -232,7 +232,7 @@ Window SumPlot() : Graph
 	SetAxis bottom 0,1.1
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=35,margin(top)=5,margin(right)=5,width={Aspect,2.7}
-	ModifyGraph height=220, lSize=3,axisOnTop=1,standoff=0,tick=2,mirror=1,fSize=14,font="Arial Narrow",fStyle=1
+	ModifyGraph height=220, lSize=3,axisOnTop=1,standoff=0,tick=2,mirror=1,fSize=14,font="Helvetica Neue Bold Condensed",fStyle=1
 	ModifyGraph mode(PEP)=3
 	ModifyGraph marker(PEP)=19
 	ModifyGraph rgb(PTOTSPLPSIWAV)=(6682,40349,38550),rgb(PETHP)=(34952,13107,11822)
@@ -240,7 +240,7 @@ Window SumPlot() : Graph
 	ModifyGraph msize(PEP)=4
 	ModifyGraph useMrkStrokeRGB(PEP)=1,mrkStrokeRGB(PEP)=(0,31097,13364,26214)
 	ModifyGraph muloffset(PTOTSPLPSIWAV)={0,0.5},muloffset(PTTHP)={0,0.5},muloffset(PTT0P)={0,0.5}
-	Legend/C/N=text0/J/A=MC/H=9/X=15/Y=25.45 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(PEP)PEP [kPa]\r\\s(PETHP)PETHP\r\\s(PTTHP)0.5xP_TOT_TANH   \\s(PTT0P)0.5xP_TOT_TANH0   \\s(PTOTSPLPSIWAV)0.5xP_TOT_SPL\r\\s(PBSPLPSIWAV)PBSPLPSIWAV"
+	Legend/C/N=text0/J/A=MC/H=9/X=15/Y=25.45 "\\M\\Z13\\F'Helvetica Neue Bold Condensed'\\f01\\s(PEP)PEP [kPa]\r\\s(PETHP)PETHP\r\\s(PTTHP)0.5xP_TOT_TANH   \\s(PTT0P)0.5xP_TOT_TANH0   \\s(PTOTSPLPSIWAV)0.5xP_TOT_SPL\r\\s(PBSPLPSIWAV)PBSPLPSIWAV"
 	RenameWindow #,G2
 	SetActiveSubwindow ##
 	
@@ -257,12 +257,12 @@ Window SumPlot() : Graph
 	SetAxis bottom 0,1.1
 	SetDataFolder fldrSav0
 	ModifyGraph margin(left)=35,margin(bottom)=5,margin(top)=5,margin(right)=5,width={Aspect,2.7}
-	ModifyGraph height=220,lSize=3,mirror=1,standoff=0,axisOnTop=1,tick=2,noLabel(bottom)=2,fSize=14,font="Arial Narrow",fStyle=1
+	ModifyGraph height=220,lSize=3,mirror=1,standoff=0,axisOnTop=1,tick=2,noLabel(bottom)=2,fSize=14,font="Helvetica Neue Bold Condensed",fStyle=1
 	ModifyGraph mode(FZP)=3,marker(FZP)=19,msize(FZP)=4
 	ModifyGraph rgb(FZP)=(34181,50372,17990,6554)
 	ModifyGraph useMrkStrokeRGB(FZP)=1
 	ModifyGraph mrkStrokeRGB(FZP)=(0,31097,13364,26214)
-	Legend/C/N=text0/J/A=MC/H=9/X=-35/Y=30 "\\M\\Z13\\F'Arial Narrow'\\f01\\s(FZP)FZP = 6n\\Bc\\M\Z13/n\\Be\\M\\Z13 [%]\r\\Z13\\s(FZSPLPSIWAV)FZSPLPSIWAV\r\\s(FZTHP)FZTHP\r\\s(FZT0P)FZT0P"
+	Legend/C/N=text0/J/A=MC/H=9/X=-35/Y=30 "\\M\\Z13\\F'Helvetica Neue Bold Condensed'\\f01\\s(FZP)FZP = 6n\\Bc\\M\Z13/n\\Be\\M\\Z13 [%]\r\\Z13\\s(FZSPLPSIWAV)FZSPLPSIWAV\r\\s(FZTHP)FZTHP\r\\s(FZT0P)FZT0P"
 	RenameWindow #,G3
 	SetActiveSubwindow ##
 	
