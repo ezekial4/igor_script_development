@@ -16,7 +16,7 @@ Function match_uneven_timebase(timewav,datawav)
 	
 	for (i= 0; i<(lgth);i+=1)
 		loc = timewav[i]
-		FindValue/T=1.1/V=(loc) dum1
+		FindValue/T=0.01/V=(loc) dum1
 		value = dum2[V_value]
 		Make/O/N=(lgth) $datawav+"_valu"
 		Wave dum3 = $datawav+"_valu"
