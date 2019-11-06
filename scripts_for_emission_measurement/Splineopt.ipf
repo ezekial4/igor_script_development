@@ -16,9 +16,10 @@ Function Splineopt(y_data,x_data,y_err_str,int_knots,tol,itermax)
 	
 	Wave y_error =$y_err_str
 	
+	print y_error
 	Wave error_wave=root:error_wave
 	if(waveexists(error_wave)==0)
-		Make/O/N=3 error_wave=0
+		Make/O/N=3 root:error_wave=0
 	endif
 	
 	//First fit
@@ -78,7 +79,8 @@ Function Splineopt(y_data,x_data,y_err_str,int_knots,tol,itermax)
 	Wave dummy6 = $y_data+"_splsdev"
 	
 	For(i=0;i<(outpnts+1);i+=1)
-		ImageStats/G={i,i,0,(itermax-1)} mat_spline_str	
+		ImageStats/G={i,i,0,(itermax-1)} mat_spline_str
+		print V_avg	
 		dummy3[i] = V_avg
 	   dummy6[i] = V_adev
 	Endfor
