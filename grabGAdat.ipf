@@ -30,7 +30,7 @@ Function getGADAT(shot,pntname,server)
 	string igorCmd = "cd ~;source .bash_profile;cd '"+unixPath+"';rm -f "+fname
 	string exeCmd
 	sprintf exeCmd, "do shell script \"%s\"", igorCmd
-	ExecuteUnixShellCommand(igorCmd, 0, 0)
+	ExecuteScriptText/UNQ/B/Z igorCmd
 End
 
 Function grabGAdat(shot,tags,server,unixPath,pythonPath,printCmd)
@@ -47,5 +47,5 @@ Function grabGAdat(shot,tags,server,unixPath,pythonPath,printCmd)
 		print igorCmd
 	endif
 	sprintf exeCmd, "do shell script \"%s\"", igorCmd
-	ExecuteUnixShellCommand(igorCmd, 0, 1)
+	ExecuteScriptText/UNQ/Z igorCmd
 End
